@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sslserver',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+THIRDPARTY_MODULE = [
+
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -144,3 +149,8 @@ AWS_S3_REGION_NAME = "ap-northeast-2"
 AWS_S3_SIGNATURE_VERSION = "s3v4"
 
 AWS_DEFAULT_ACL = 'public-read'
+
+# SSL 
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
