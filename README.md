@@ -4,23 +4,29 @@
 ![image](https://user-images.githubusercontent.com/92630511/157400997-2696e974-fe29-4277-8763-8073ab921831.png)
 ![image](https://user-images.githubusercontent.com/92630511/157476539-a825b50d-0ef6-4978-9f8a-15ed582b5ed5.png)
 ![image](https://user-images.githubusercontent.com/92630511/157476597-ddfd3fb6-fc3f-47c9-bb17-643b4f4b5aab.png)
+<br>
 
-개발 관련한 상당수의 정보교류 부터 포트폴리오 관리까지 이미 업계에서 Github의 입지는 굳이 설명하지 않아도 될 정도입니다
-게다가 현업자들이 신입 개발자에게 요구하는 가장 중요한 능력치로 Github가 1순위에 손꼽히는 것도 전혀 놀라운 일이 아니죠
-하지만 업계에 발을 들이고자 하는 주니어들에게 높은 진입장벽을 가진것 또한 Github 입니다
-이를 해소하기 위해 Github와 관련된 기본적인 정보와 더불어, 키워드를 기반으로 목적성에 부합하는 다양한 repository들을 추천해주는 시스템을 구축하려 합니다
-구글링과 유튜브 검색 등 으로 해결되지 않았던, 수많은 개발 노하우와 기술들이 잠들어있는 Github의 바다를 좀 더 순항하실 수 있도록 도와주는 나침반을 
+개발 관련한 상당수의 정보교류 부터 포트폴리오 관리까지 이미 업계에서 Github의 입지는 굳이 설명하지 않아도 될 정도입니다<br>
+게다가 현업자들이 신입 개발자에게 요구하는 가장 중요한 능력치로 Github가 1순위에 손꼽히는 것도 전혀 놀라운 일이 아니죠<br>
+하지만 업계에 발을 들이고자 하는 주니어들에게 높은 진입장벽을 가진것 또한 Github 입니다<br>
+이를 해소하기 위해 Github와 관련된 기본적인 정보와 더불어, 키워드를 기반으로 목적성에 부합하는 다양한 repository들을 추천해주는 시스템을 구축하려 합니다<br>
+구글링과 유튜브 검색 등 으로 해결되지 않았던, 수많은 개발 노하우와 기술들이 잠들어있는 Github의 바다를 좀 더 순항하실 수 있도록 도와주는 나침반을<br>
+<br>
 
 ### 프로젝트명 : Github Repository 추천 페이지
 개발자를 희망하거나 아직 깃허브에 익숙치 못한 주니어들을 위해 깃허브와 관련된 기초적인 정보와 더불어
 특정 키워드를 활용해 참고할 만한 repository 들을 추천
+<br>
 
 ### 개발기간
 22.03.04(금) ~ 22.04.12(화)
+<br>
 
 ### 개발 일정 로드맵
 ![image](https://user-images.githubusercontent.com/92630511/157398692-ab31851a-bcf6-4b66-88bf-bf7ed809587f.png)
 참고 링크: https://www.notion.so/ee0499b83cad437cabc8cf7e3b251c98?v=8d6c3d47571c41a493123b875dd9c4e0
+<br>
+<br>
 
 ## 서비스 기능
 
@@ -28,21 +34,26 @@
 - 비로그인 활동 가능
 - 댓글달기/북마크와 같은 기능 사용시 로그인 & 회원가입 유도
 - 크게 4~5가지 섹션으로 나누어서 각 페이지로 이동할 수 있게 제작
+<br>
 
 ### 2. Github Intro page
 - 깃허브의 역사(깃허브를 우리가 공부하고 사용해야하는 이유 ++)소개
+<br>
 
 ### 3. Github Tutorial page
 - 로컬에서 깃허브 사용시에 반드시 알아야될 기본적인 커맨드 위주의 정보전달
 - source tree 사용법은 기본적으로 배제
+<br>
 
 ### 4. Recommend Repositories page
 - word2vec & cosine_similarity를 활용한 관심사에 맞는 repository 추천
 - 썸네일+카드 리스트 형태로 이루어진 게시판 형태
 - 각 repository에 대한 댓글 달기 및 북마크 기능
+<br>
 
 ### 5. User page
 - 간단한 활동 기록과 더불어 북마크 한 repository 모아보기 기능
+<br>
 
 ## 사용도구
 - HTML, CSS
