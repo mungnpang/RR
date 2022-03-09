@@ -1,18 +1,17 @@
 # Recommend Repositories
-<br>
+
 ## 프로젝트 개요
 ### 프로젝트명 : Github Repository 추천 페이지
 개발자를 희망하거나 아직 깃허브에 익숙치 못한 주니어들을 위해 깃허브와 관련된 기초적인 정보와 더불어
 특정 키워드를 활용해 참고할 만한 repository 들을 추천
-<br>
+
 ### 개발기간
 22.03.04(금) ~ 22.04.12(화)
-<br>
+
 ### 개발 일정 로드맵
 ![image](https://user-images.githubusercontent.com/92630511/157398692-ab31851a-bcf6-4b66-88bf-bf7ed809587f.png)
 참고 링크: https://www.notion.so/ee0499b83cad437cabc8cf7e3b251c98?v=8d6c3d47571c41a493123b875dd9c4e0
-<br>
-<br>
+
 ## 서비스 기능
 
 ### 1. Main page
