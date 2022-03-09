@@ -74,26 +74,31 @@
 - 부트캠프 <스파르타 내일배움캠프> 참가자로 구성
 <br>
 ### 개발자 (가나다순)<br>
+
 **김건우 @aopd408**<br>
 ✔️ BE 총괄<br>
 ✔️ 웹/API 서버 구축<br>
 ✔️ DB 연결 및 관리<br>
 <br>
+
 **김재명 @mungnpang**<br>
 ✔️ Machine Learning 총괄<br>
 ✔️ 추천시스템 구축<br>
 ✔️ FE support<br>
 <br>
-**김한석 @novahope**<br>
+
+**김한석 @novahope** <br>
 ✔️ 디자인 파트 총괄<br>
 ✔️ 일러스트 및 영상 제작<br>
 <br>
-**김효은 @**<br>
+
+**김효은 @** <br>
 ✔️ BE support<br>
 ✔️ 로그인/회원가입 기능 담당<br>
 ✔️ 전체적인 일정관리 담당<br>
+<br>
 
-**박지훈 @**<br>
+**박지훈 @** <br>
 ✔️ FE 총괄<br>
 ✔️ 페이지 디자인 프로토타입 제작<br>
 ✔️ javascript 활용 동적 페이지 구성<br>
