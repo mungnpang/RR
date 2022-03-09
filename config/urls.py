@@ -14,8 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from ninja import NinjaAPI
+
+from user.API.V1 import router as user_router
+
+api = NinjaAPI()
+api.add_router("/user/", user_router)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/', api.urls),
+    path('accounts/', include('allauth.urls'))
 ]

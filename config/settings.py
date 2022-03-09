@@ -11,8 +11,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-from config.local_settings import *
+from config.conf.local_settings import *
 import pymysql, os, json
+from typing import List
+from config.conf.social import github
+from config.conf.email import EMAIL
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +30,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS: List[str] = ["*"]
 
 
 # Application definition
@@ -39,7 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'sslserver',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+    'user'
 ]
 
 MIDDLEWARE = [
@@ -75,7 +84,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
-
+ASGI_APPLICATION = 'config.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -138,7 +147,7 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
-with open(os.path.join(BASE_DIR, 'config/aws.json')) as f:
+with open(os.path.join(BASE_DIR, 'config/conf/aws.json')) as f:
     secrets = json.loads(f.read())
 
 AWS_ACCESS_KEY_ID = secrets['AWS']['ACCESS_KEY_ID']
@@ -154,3 +163,45 @@ AWS_DEFAULT_ACL = 'public-read'
 
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+
+# ALLAUTH
+AUTH_USER_MODEL = 'user.UserModel'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+LOGIN_URL = '/accounts/login'
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login'  
+SOCIALACCOUNT_LOGIN_ON_GET = True
+SOCIALACCOUNT_QUERY_EMAIL = True
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_EMAIL_REQUIRED = True 
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = True 
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email' 
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory" 
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+
+SOCIALACCOUNT_PROVIDERS = {
+    "github": github
+}
+
+# 보안설정
+SESSION_COOKIE_SECURE = True 
+CSRF_COOKIE_SECURE = True
+
+#EMAIL
+EMAIL_HOST = EMAIL['EMAIL_HOST']
+EMAIL_PORT = EMAIL['EMAIL_PORT']
+EMAIL_HOST_USER = EMAIL['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = EMAIL['EMAIL_HOST_PASSWORD']
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = EMAIL['EMAIL_BACKEND'] 
+EMAIL_USE_TLS = True
+EMAIL_SUBJECT_PREFIX = "[RR]"
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "[RR]"
