@@ -1,18 +1,18 @@
 # Recommend Repositories
-
+<br>
 ## 프로젝트 개요
 ### 프로젝트명 : Github Repository 추천 페이지
 개발자를 희망하거나 아직 깃허브에 익숙치 못한 주니어들을 위해 깃허브와 관련된 기초적인 정보와 더불어
 특정 키워드를 활용해 참고할 만한 repository 들을 추천
-
+<br>
 ### 개발기간
 22.03.04(금) ~ 22.04.12(화)
-
+<br>
 ### 개발 일정 로드맵
 ![image](https://user-images.githubusercontent.com/92630511/157398692-ab31851a-bcf6-4b66-88bf-bf7ed809587f.png)
 참고 링크: https://www.notion.so/ee0499b83cad437cabc8cf7e3b251c98?v=8d6c3d47571c41a493123b875dd9c4e0
-
-
+<br>
+<br>
 ## 서비스 기능
 
 ### 1. Main page
@@ -43,7 +43,6 @@
 - colab pro
 - AWS
 
-
 ### Collaboration & Tools
 - Slack & gather
 - Figma
@@ -51,8 +50,7 @@
 
 ## 팀빌딩 및 역할
 - 부트캠프 <스파르타 내일배움캠프> 참가자로 구성
-
-
+<br>
 ### 개발자 (가나다순)<br>
 **김건우 @aopd408**<br>
 ✔️ BE 총괄<br>
@@ -77,15 +75,16 @@
 ✔️ FE support<br>
 ✔️ 페이지 디자인 프로토타입 제작<br>
 ✔️ javascript 활용 동적 페이지 구성<br>
-
+<br>
+<br>
 ## API소개
-![image](https://user-images.githubusercontent.com/92630511/157398108-5cac079d-2dd1-4cf5-bd2b-446559e45b7c.png)
-![image](https://user-images.githubusercontent.com/92630511/157398280-a83ce3d8-1981-4786-b963-c2dfabe72f4c.png)
+![image](https://user-images.githubusercontent.com/92630511/157399138-9d061838-9f0a-495c-81b7-d72670646df9.png)
+![image](https://user-images.githubusercontent.com/92630511/157398280-a83ce3d8-1981-4786-b963-c2dfabe72f4c.png)<br>
 참고 링크: https://www.notion.so/4a40f4e459c34cce97165a25b0b01b8b?v=d6e6bcce33624f908e6fa9dae6251de3<br>
-
-
+<br>
+<br>
 ## Workflow
-![image](https://user-images.githubusercontent.com/92630511/157398505-d11d0469-6dfc-4248-9196-a90ac5d42b1c.png)
+![image](https://user-images.githubusercontent.com/92630511/157398505-d11d0469-6dfc-4248-9196-a90ac5d42b1c.png)<br>
 참고 링크: https://www.figma.com/file/1aZNTndbyzyAaJKDsvr2XO/RR?node-id=70%3A186<br>
 
 
