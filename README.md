@@ -107,9 +107,11 @@
 <br>
 ## Workflow
 ![image](https://user-images.githubusercontent.com/92630511/157398505-d11d0469-6dfc-4248-9196-a90ac5d42b1c.png)<br>
-참고 링크: https://www.figma.com/file/1aZNTndbyzyAaJKDsvr2XO/RR?node-id=70%3A186<br>
 
+## Wireframe
+![image](https://user-images.githubusercontent.com/92630511/157482826-0302237c-b963-4a22-b4de-acba68dad2f8.png)
 
+Workflow & Wireframe in Figma: https://www.figma.com/file/1aZNTndbyzyAaJKDsvr2XO/RR?node-id=0%3A1
 
 
 
