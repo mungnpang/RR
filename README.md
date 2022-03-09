@@ -9,7 +9,7 @@
 22.03.04(금) ~ 22.04.12(화)
 
 ### 개발 일정 로드맵
-![image](https://user-images.githubusercontent.com/92630511/157394416-c2326576-6bbd-4242-87f2-15e10735c97c.png)
+![image](https://user-images.githubusercontent.com/92630511/157398692-ab31851a-bcf6-4b66-88bf-bf7ed809587f.png)
 참고 링크: https://www.notion.so/ee0499b83cad437cabc8cf7e3b251c98?v=8d6c3d47571c41a493123b875dd9c4e0
 
 
@@ -79,14 +79,14 @@
 ✔️ javascript 활용 동적 페이지 구성<br>
 
 ## API소개
-https://www.notion.so/4a40f4e459c34cce97165a25b0b01b8b?v=d6e6bcce33624f908e6fa9dae6251de3
 ![image](https://user-images.githubusercontent.com/92630511/157398108-5cac079d-2dd1-4cf5-bd2b-446559e45b7c.png)
 ![image](https://user-images.githubusercontent.com/92630511/157398280-a83ce3d8-1981-4786-b963-c2dfabe72f4c.png)
+참고 링크: https://www.notion.so/4a40f4e459c34cce97165a25b0b01b8b?v=d6e6bcce33624f908e6fa9dae6251de3<br>
 
 
 ## Workflow
-https://www.figma.com/file/1aZNTndbyzyAaJKDsvr2XO/RR?node-id=70%3A186<br>
 ![image](https://user-images.githubusercontent.com/92630511/157398505-d11d0469-6dfc-4248-9196-a90ac5d42b1c.png)
+참고 링크: https://www.figma.com/file/1aZNTndbyzyAaJKDsvr2XO/RR?node-id=70%3A186<br>
 
 
 
