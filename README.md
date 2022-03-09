@@ -1,8 +1,16 @@
 # Recommend Repositories
-![image](https://user-images.githubusercontent.com/92630511/157400997-2696e974-fe29-4277-8763-8073ab921831.png)
-
 
 ## 프로젝트 개요
+![image](https://user-images.githubusercontent.com/92630511/157400997-2696e974-fe29-4277-8763-8073ab921831.png)
+![image](https://user-images.githubusercontent.com/92630511/157476539-a825b50d-0ef6-4978-9f8a-15ed582b5ed5.png)
+![image](https://user-images.githubusercontent.com/92630511/157476597-ddfd3fb6-fc3f-47c9-bb17-643b4f4b5aab.png)
+
+개발 관련한 상당수의 정보교류 부터 포트폴리오 관리까지 이미 업계에서 Github의 입지는 굳이 설명하지 않아도 될 정도입니다
+게다가 현업자들이 신입 개발자에게 요구하는 가장 중요한 능력치로 Github가 1순위에 손꼽히는 것도 전혀 놀라운 일이 아니죠
+하지만 업계에 발을 들이고자 하는 주니어들에게 높은 진입장벽을 가진것 또한 Github 입니다
+이를 해소하기 위해 Github와 관련된 기본적인 정보와 더불어, 키워드를 기반으로 목적성에 부합하는 다양한 repository들을 추천해주는 시스템을 구축하려 합니다
+구글링과 유튜브 검색 등 으로 해결되지 않았던, 수많은 개발 노하우와 기술들이 잠들어있는 Github의 바다를 좀 더 순항하실 수 있도록 도와주는 나침반을 
+
 ### 프로젝트명 : Github Repository 추천 페이지
 개발자를 희망하거나 아직 깃허브에 익숙치 못한 주니어들을 위해 깃허브와 관련된 기초적인 정보와 더불어
 특정 키워드를 활용해 참고할 만한 repository 들을 추천
