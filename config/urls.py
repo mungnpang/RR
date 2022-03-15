@@ -20,11 +20,13 @@ from ninja import NinjaAPI
 from user.API.V1 import router as user_router
 from comment.API.V1 import router as comment_router
 from repositories.API.V1 import router as repo_router
+from bookmark.API.V1 import router as bookmark_router
 
 api = NinjaAPI()
 api.add_router("/user/", user_router)
 api.add_router("/comment/", comment_router)
 api.add_router("/repository/", repo_router)
+api.add_router("/bookmark/", bookmark_router)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

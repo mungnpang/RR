@@ -1,2 +1,2 @@
-from .bookmark_request import BookmarkRequest
-from .bookmark_response import BookmarkReponse
+from .bookmark_request import CreateBookmarkRequest, DeleteBookmarkRequest
+from .bookmark_response import CreateBookmarkResponse, ReadBookmarkResponse, DeleteBookmarkResponse
