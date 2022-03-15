@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% csrf_token %}
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- JQuery -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- AXIOS -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <input type="email" id="email">
+    <input type="password" id="password">
+    <input type="text" id="nickname">
+    <button id="signup">가입</button>
+</body>
+<script>
+
+$(document).ready(function(){
+    $('#password').hide()
+    $('#nickname').hide()
+    $('#signup').hide()
+})
+    $('#email').on('input', function () {
+        valid_check('email')
+    })
+
+    $('#password').on('input', function () {
+        valid_check('password')
+    })
+
+    $('#nickname').on('input', function() {
+        valid_check('nickname')
+    })
+    // async function valid_check(input_id) {
+    //     let input_value = $(`#${input_id}`).val()
+    //     let type = input_id + 'check'
+    //     let key = input_id.toUpperCase()
+    //     let data ={}
+    //     data[key] = input_value
+    //     const response = await fetch(`/api/v1/user/${type}`, {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(data)
+    // })
+    // .then(response => response.json())
+    // if (response['result'] == "success"){
+    //     if (input_id == "email"){
+    //         $('#password').show()
+    //     } else if (input_id == "password"){
+    //         $('#nickname').show()
+    //     } else if (input_id == "nickname"){
+    //         $('#signup').show()
+    //     }
+    // } else {
+    //     if (input_id == "email" ){
+    //         $('#password').hide()
+    //     } else if (input_id == "password"){
+    //         $('#nickname').hide()
+    //     } else if (input_id == "nickname"){
+    //         $('#signup').hide()
+    //     }
+    // }
+    // }
+    function valid_check(input_id) {
+        let input_value = $(`#${input_id}`).val()
+        let type = input_id + 'check'
+        let key = input_id.toUpperCase()
+        let data ={}
+        data[key] = input_value
+    axios({
+        method: "post",
+        url: `/api/v1/user/${type}`,
+        data: data
+    })
+    .then(function (response){
+        console.log(response)
+        if (response['data']['result'] == "success"){
+        if (input_id == "email"){
+            $('#password').show()
+        } else if (input_id == "password"){
+            $('#nickname').show()
+        } else if (input_id == "nickname"){
+            $('#signup').show()
+        }
+    } else {
+        if (input_id == "email" ){
+            $('#password').hide()
+        } else if (input_id == "password"){
+            $('#nickname').hide()
+        } else if (input_id == "nickname"){
+            $('#signup').hide()
+        }
+    }
+    })
+    
+}
+</script>
+</html>

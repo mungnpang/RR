@@ -1,14 +1,41 @@
-from typing import Tuple
-from django.http import HttpRequest, response ,JsonResponse
+from django.http import HttpRequest, JsonResponse
 from ninja import Router
-from ninja.errors import HttpError
-from user.API.V1.schemas import JoinRequest, JoinResponse, IdCheckRequest, IdCheckResponse
-from user.services import IDCHECK
+from user.API.V1.schemas import (
+    IdCheckRequest, 
+    IdCheckResponse,
+    PassWordCheckRequest,
+    PassWordCheckResponse, 
+    NickNameCheckRequest,
+    NickNameCheckResponse
+)
+
+from user.services import IDCHECK, NAMECHECK, PASSWORDCHECK
 
 router = Router(tags=["user"])
 
-@router.post("/idcheck", response={201: IdCheckResponse})
+@router.post("/emailcheck", response={200: IdCheckResponse})
 async def check_to_id(request: HttpRequest, id_check_request: IdCheckRequest) -> dict:
-    result = await IDCHECK(id_check_request.EMAIL)
-    return {"result":result}
+    result, msg = await IDCHECK(id_check_request.EMAIL)
+    data = {
+        "result" : result,
+        "msg" : msg
+    }
+    return JsonResponse(data)
 
+@router.post("/passwordcheck", response={200:PassWordCheckResponse})
+async def check_to_pw(request: HttpRequest, pw_check_request: PassWordCheckRequest) -> dict:
+    result, msg = await PASSWORDCHECK(pw_check_request.PASSWORD)
+    data = {
+        "result" : result,
+        "msg" : msg
+    }
+    return JsonResponse(data)
+
+@router.post("/nicknamecheck", response={200: NickNameCheckResponse})
+async def check_to_nickname(request: HttpRequest, nickname_check_requests: NickNameCheckRequest) -> dict:
+    result, msg = await NAMECHECK(nickname_check_requests.NICKNAME)
+    data = {
+        "result" : result,
+        "msg" : msg
+    }
+    return JsonResponse(data)

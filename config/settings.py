@@ -48,7 +48,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
-    'user'
+    'user',
+    'comment',
+    'repositories',
 ]
 
 MIDDLEWARE = [
@@ -114,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko'
 
 TIME_ZONE = 'UTC'
 
@@ -146,7 +148,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-
 with open(os.path.join(BASE_DIR, 'config/conf/aws.json')) as f:
     secrets = json.loads(f.read())
 
@@ -160,7 +161,6 @@ AWS_S3_SIGNATURE_VERSION = "s3v4"
 AWS_DEFAULT_ACL = 'public-read'
 
 # SSL 
-
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
@@ -181,11 +181,12 @@ SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_EMAIL_REQUIRED = True 
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_USERNAME_REQUIRED = True 
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email' 
+ACCOUNT_AUTHENTICATION_METHOD = 'email' 
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory" 
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_SIGNUP_FORM_CLASS = "user.forms.SignupForm"
+ACCOUNT_PASSWORD_INPUT_RENDER_VALUE = True
 
 SOCIALACCOUNT_PROVIDERS = {
     "github": github
@@ -203,5 +204,5 @@ EMAIL_HOST_PASSWORD = EMAIL['EMAIL_HOST_PASSWORD']
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_BACKEND = EMAIL['EMAIL_BACKEND'] 
 EMAIL_USE_TLS = True
-EMAIL_SUBJECT_PREFIX = "[RR]"
-ACCOUNT_EMAIL_SUBJECT_PREFIX = "[RR]"
+EMAIL_SUBJECT_PREFIX = " "
+ACCOUNT_EMAIL_SUBJECT_PREFIX = " "

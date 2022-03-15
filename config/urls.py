@@ -18,13 +18,17 @@ from django.urls import path, include
 from ninja import NinjaAPI
 
 from user.API.V1 import router as user_router
+from comment.API.V1 import router as comment_router
+from repositories.API.V1 import router as repo_router
 
 api = NinjaAPI()
 api.add_router("/user/", user_router)
-
+api.add_router("/comment/", comment_router)
+api.add_router("/repository/", repo_router)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', api.urls),
-    path('accounts/', include('allauth.urls'))
+    path('accounts/', include('allauth.urls')),
+    path('repository/', include('repositories.urls')),
 ]
