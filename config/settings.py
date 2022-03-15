@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'user',
     'comment',
     'repositories',
+    'bookmark',
 ]
 
 MIDDLEWARE = [

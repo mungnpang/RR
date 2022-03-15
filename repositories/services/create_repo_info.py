@@ -1,5 +1,5 @@
 from config.conf.github_token import token
-from repositories.models import repositories
+from repositories.models import Repositories
 from bs4 import BeautifulSoup
 import requests
 from time import sleep
@@ -7,7 +7,7 @@ from django.db.utils import IntegrityError
 
 def db_create(repo_dict: dict, keyword: str):
     try:
-        repositories.objects.create(
+        Repositories.objects.create(
         keyword = keyword,
         repo_id = repo_dict['id'],
         repo_name = repo_dict['repo_name'],

@@ -1,26 +1,27 @@
+from typing import List
 from django.http import HttpRequest, JsonResponse, response
 from ninja import Router
 from comment.API.V1.schemas import (
-    CommentsRequest,
     CommentsResponse,
     CreateCommentRequest,
     CreateCommentResponse,
     UpdateCommentRequest,
     UpdateCommentResponse,
     DeleteCommentRequest,
-    DeleteCommentResponse
+    DeleteCommentResponse,
 )
+from comment.models import Comment
 from comment.services import COMMENTS_READ, COMMENTS_CREATE, COMMENT_UPDATE, DELETE_COMMENT
 from django.contrib.auth.decorators import login_required
 
 router = Router(tags=["comment"])
 
-@router.get("/read", response={200: CommentsResponse})
-def comment_read(request: HttpRequest, comment_request:CommentsRequest) -> dict:
-    comments = COMMENTS_READ(comment_request.REPO_ID)
+@router.get("/read/<str:repo>", response={200: List[CommentsResponse]})
+def comment_read(request: HttpRequest, repo: str) -> List[Comment]:
+    comments = COMMENTS_READ(int(repo))
     if comments == []:
         return JsonResponse({"result":"failed", "message" : "Data is None"})
-    return JsonResponse({"result":"success", "data":comments})
+    return comments
 
 @login_required
 @router.post('/create', response={201:CreateCommentResponse})

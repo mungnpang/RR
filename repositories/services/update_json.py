@@ -2,7 +2,7 @@ from pathlib import Path
 import os, json
 
 from django.http import request
-from repositories.models import repositories
+from repositories.models import Repositories
 from repositories.apps import RepositoriesConfig as repo
 from config.settings import AWS_STORAGE_BUCKET_NAME, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 import requests
@@ -13,7 +13,7 @@ def UPDATE_JSON():
         Prefix=('archive/')
     )
     json_list = [file['Key'].split('/')[-1].split('.')[0] for file in directory['Contents'][1:]]
-    keyword_list = [keyword['keyword'] for keyword in repositories.objects.distinct().values('keyword')]
+    keyword_list = [keyword['keyword'] for keyword in Repositories.objects.distinct().values('keyword')]
     not_in_db_list = []
     for file in json_list:
         if file in keyword_list:
@@ -31,7 +31,7 @@ def UPDATE_JSON():
     
     # file_list = os.listdir(path)
     # file_list_py = [file.split('.')[0] for file in file_list]
-    # keyword_list = [keyword['keyword'] for keyword in repositories.objects.distinct().values('keyword')]
+    # keyword_list = [keyword['keyword'] for keyword in Repositories.objects.distinct().values('keyword')]
     # for file in file_list_py:
     #     if file in keyword_list:
     #         continue
@@ -39,7 +39,7 @@ def UPDATE_JSON():
     #         json_data = json.load(f)
     #         for repo in json_data:
     #             try:
-    #                 repositories.objects.create(
+    #                 Repositories.objects.create(
     #                 keyword = file.split('.')[0],
     #                 repo_id = repo['id'],
     #                 repo_name = repo['repo_name'],

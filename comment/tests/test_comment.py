@@ -5,7 +5,7 @@ from comment.tests.services.comment_service import Create_Comment, Read_Comment,
 from comment.models import Comment
 from repositories.tests.services.repo_services import CREATE_REPO_DATA
 from user.models import UserModel
-from repositories.models import repositories
+from repositories.models import Repositories
 
 
 class Test_to_comment(TestCase):
@@ -24,7 +24,7 @@ class Test_to_comment(TestCase):
         self.assertEqual(comment.author_id, self.user1.id)
         self.assertIsInstance(comment.author,UserModel)
         self.assertEqual(comment.repo_id,self.repo1.id)
-        self.assertIsInstance(comment.repo,repositories)
+        self.assertIsInstance(comment.repo, Repositories)
     
     # FAILED_CREATE_COMMENT
     def test_comment_create_failed(self) -> None:

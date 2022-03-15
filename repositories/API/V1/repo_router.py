@@ -12,12 +12,12 @@ from repositories.services import (
     READ_DETAIL_REPO
 )
 from repositories.services import UPDATE_JSON
-from repositories.models import repositories
+from repositories.models import Repositories
 
 router = Router(tags=["repository"])
 
 @router.get("/<str:keyword>", response=List[SearchResponse])
-def Repo_Read(request: HttpRequest, keyword: str) -> List[repositories]:
+def Repo_Read(request: HttpRequest, keyword: str) -> List[Repositories]:
     repos = READ_REPO(keyword)
     return list(repos)
 
@@ -26,7 +26,7 @@ def Repo_Read(request: HttpRequest, keyword: str) -> List[repositories]:
 #     UPDATE_JSON()
 
 @router.get("/detail/<str:repo>", response=SearchResponse)
-def Repo_Read_One(request: HttpRequest, repo: str) -> repositories:
+def Repo_Read_One(request: HttpRequest, repo: str) -> Repositories:
     repo = READ_DETAIL_REPO(repo)
     return repo
     

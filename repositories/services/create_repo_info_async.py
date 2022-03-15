@@ -1,14 +1,13 @@
-from urllib.error import HTTPError
 from asgiref.sync import sync_to_async
 from config.conf.github_token import token
-from repositories.models import repositories
+from repositories.models import Repositories
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 import asyncio, json
 import requests
 
 def db_create(repo_dict: dict, keyword: str, keyword_page:int):
-    repositories.objects.create(
+    Repositories.objects.create(
         keyword = keyword,
         keyword_page = keyword_page,
         repo_id = repo_dict['id'],

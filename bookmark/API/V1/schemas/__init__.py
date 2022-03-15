@@ -1,0 +1,2 @@
+from .bookmark_request import BookmarkRequest
+from .bookmark_response import BookmarkReponse

@@ -1,6 +1,6 @@
 from typing import List
 from django.test import TestCase
-from repositories.models import repositories
+from repositories.models import Repositories
 from repositories.tests.services.repo_services import CREATE_REPO_DATA, READ_DETAIL_REPO_DATA, READ_REPO_DATA
 
 class Test_read_repository(TestCase):
@@ -9,17 +9,17 @@ class Test_read_repository(TestCase):
         CREATE_REPO_DATA(2, "test")
         
     # 데이터 있을 경우 (DETAIL 조회)
-    def test_repo_detail_read(self) -> repositories:
+    def test_repo_detail_read(self) -> Repositories:
         repo = READ_DETAIL_REPO_DATA(1)
-        self.assertIsInstance(repo, repositories)
+        self.assertIsInstance(repo, Repositories)
 
     # 데이터 없을 경우 (DETAIL 조회)
-    def test_repo_detail_read(self) -> repositories:
+    def test_repo_detail_read(self) -> Repositories:
         repo = READ_DETAIL_REPO_DATA(10)
         self.assertEqual(repo, "Data is None")
 
     # REPOSITORY Keyword 데이터 조회 
-    def test_repo_read(self) -> List[repositories]:
+    def test_repo_read(self) -> List[Repositories]:
         CREATE_REPO_DATA(3, "test")
         CREATE_REPO_DATA(4, "python")
         CREATE_REPO_DATA(5, "django")

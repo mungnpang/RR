@@ -5,7 +5,7 @@ from django_mysql.models import ListCharField
 
 # Create your models here.
 
-class repositories(models.Model):
+class Repositories(models.Model):
     class Meta:
         db_table = "repositories"
     keyword = models.CharField(max_length=30, null=False, blank=False)

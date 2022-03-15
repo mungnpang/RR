@@ -1,9 +1,9 @@
 from typing import List
-from repositories.models import repositories
+from repositories.models import Repositories
 from random import random, randrange
 
-def CREATE_REPO_DATA(index: int, keyword: str) -> repositories:
-    return repositories.objects.create(
+def CREATE_REPO_DATA(index: int, keyword: str) -> Repositories:
+    return Repositories.objects.create(
             keyword = keyword,
             repo_id = index,
             repo_name = f"repo{index}",
@@ -17,13 +17,13 @@ def CREATE_REPO_DATA(index: int, keyword: str) -> repositories:
             topics = ["test","tdd","python","django"]
         )
         
-def READ_DETAIL_REPO_DATA(repo_id: int) -> repositories:
+def READ_DETAIL_REPO_DATA(repo_id: int) -> Repositories:
     try:
-        repo = repositories.objects.get(id=repo_id)
-    except repositories.DoesNotExist:
+        repo = Repositories.objects.get(id=repo_id)
+    except Repositories.DoesNotExist:
         return "Data is None"
     else:
         return repo
 
-def READ_REPO_DATA(keyword: str) -> List[repositories]:
-    return list(repositories.objects.filter(keyword=keyword))
+def READ_REPO_DATA(keyword: str) -> List[Repositories]:
+    return list(Repositories.objects.filter(keyword=keyword))
