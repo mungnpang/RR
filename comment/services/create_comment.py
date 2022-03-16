@@ -1,9 +1,10 @@
+from typing import Optional
 from django.http import HttpRequest
 from comment.models import Comment
 from django.db import transaction
 from django.db.utils import IntegrityError
 
-def COMMENTS_CREATE(author:int, repo_id:int, content: str, parent_comment_id: str) -> str:
+def COMMENTS_CREATE(author:int, repo_id:int, content: str, parent_comment_id: Optional[int]) -> str:
     try:
         with transaction.atomic():
             Comment.objects.create(

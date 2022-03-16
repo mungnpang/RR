@@ -1,4 +1,8 @@
+from typing import List
 from repositories.models import Repositories
 
-def READ_REPO(keyword: str)-> Repositories:
-    return Repositories.objects.filter(keyword=keyword)
+def READ_REPO(keyword: str)-> List[Repositories]:
+    repos = Repositories.objects.filter(keyword=keyword) 
+    if len(repos):
+        return repos
+    return "Keyword is Empty"

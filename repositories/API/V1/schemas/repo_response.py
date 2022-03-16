@@ -1,7 +1,8 @@
+from ast import keyword
 from typing import List, Optional
 from ninja import Schema
 
-class SearchResponse(Schema):
+class ReadRepoResponse(Schema):
     keyword: str
     repo_id: int 
     repo_name: str
@@ -13,3 +14,7 @@ class SearchResponse(Schema):
     forks: int
     subscribers: int
     topics: List
+
+class RepoResponse(Schema):
+    str
+

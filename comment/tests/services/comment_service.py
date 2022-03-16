@@ -4,7 +4,7 @@ from django.db.utils import IntegrityError
 from django.db import transaction
 
 
-def Create_Comment(content: str, author_id:int, repo_id:int, parent_id: Optional[int])->Comment:
+def Create_Comment(content: str, author_id:int, repo_id:int, parent_id: int)->Comment:
     try:
         with transaction.atomic():
             comment = Comment.objects.create(

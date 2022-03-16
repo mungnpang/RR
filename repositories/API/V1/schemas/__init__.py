@@ -1,2 +1,2 @@
-from .repo_request import SearchRequest
-from .repo_response import SearchResponse
+from .repo_request import RepoRequest
+from .repo_response import RepoResponse, ReadRepoResponse
