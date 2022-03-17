@@ -104,9 +104,18 @@
 <br>
 <br>
 ## API소개
-![image](https://user-images.githubusercontent.com/92630511/157399138-9d061838-9f0a-495c-81b7-d72670646df9.png)
-![image](https://user-images.githubusercontent.com/92630511/157398280-a83ce3d8-1981-4786-b963-c2dfabe72f4c.png)<br>
+![image](https://images.velog.io/images/aopd48/post/0496214b-e337-4cc2-9126-4e41b3b8d64a/image.png)
+![image](https://images.velog.io/images/aopd48/post/2549a777-bb49-4713-8d8c-c45bc8c21acc/image.png)
+![image](https://images.velog.io/images/aopd48/post/0574a6bb-1400-4d95-9077-b5f60f500d0a/image.png)
+![image](https://images.velog.io/images/aopd48/post/273b5e96-fc03-41a7-9097-e3faae7f4e82/image.png)<br>
 참고 링크: https://www.notion.so/4a40f4e459c34cce97165a25b0b01b8b?v=d6e6bcce33624f908e6fa9dae6251de3<br>
+<br>
+<br>
+## DB소개
+![image](https://images.velog.io/images/aopd48/post/abc41f19-c8a3-42e3-aa56-26e9d53db5a7/image.png)
+![image](https://images.velog.io/images/aopd48/post/db52a093-d303-477a-a8a1-e330b7106ead/image.png)
+![image](https://images.velog.io/images/aopd48/post/719fb9a2-fda1-4757-b28c-2bc9aed53935/image.png)
+![image](https://images.velog.io/images/aopd48/post/25bc691d-79e5-42c5-b903-e43c8782b599/image.png)
 <br>
 <br>
 ## Workflow
