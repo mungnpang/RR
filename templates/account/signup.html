@@ -1,105 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% csrf_token %}
-
+{% load static %}
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up in GitHub tutorials</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'account/css/sign_up.css' %}">
     <!-- JQuery -->
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script> 
     <!-- AXIOS -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <title>Document</title>
+    <!-- 폰트어썸 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js" integrity="sha512-Cvxz1E4gCrYKQfz6Ne+VoDiiLrbFBvc6BPh4iyKo2/ICdIodfgc5Q9cBjRivfQNUXBCEnQWcEInSXsvlNHY/ZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-    <input type="email" id="email">
-    <input type="password" id="password">
-    <input type="text" id="nickname">
-    <button id="signup">가입</button>
+    <div id="sign_up_box">
+        <h1 id="top_text">Register</h1>
+        {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert-error">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert-error">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+        <form id="sign_up_wrapper" action="{% url 'account_signup' %}" method="post">
+            {% csrf_token %}
+            <div class="input_item_wrapper" id="email_wrap">
+                <div class="input_top_wrap">
+                    <label for="email"><b>Email</b></label>
+                    <svg id="email_icon" class="check_false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" id="email_icon_path" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+                </div>
+                <input class="input_field" type="email" autocomplete="email" placeholder="Enter Github e-mail" name="email" required id="id_email">
+                <p id="email_check" class="check_text" value="False"></p>
+            </div>
+            <div class="input_item_wrapper" id="password_wrap">
+                <div class="input_top_wrap">
+                    <label for="password1"><b>Password</b></label>
+                    <svg id="password1_icon" class="check_false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" id="password1_icon_path" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+                </div>
+                <div>
+                    <input class="input_field" type="password" autocomplete="new-password" placeholder="Enter Password" name="password1" required id="id_password1">
+                    <div>
+                        <svg id="password1_show" onclick="pwd_show('password1')" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" id="password1_show_path" d="M160 256C160 185.3 217.3 128 288 128C358.7 128 416 185.3 416 256C416 326.7 358.7 384 288 384C217.3 384 160 326.7 160 256zM288 336C332.2 336 368 300.2 368 256C368 211.8 332.2 176 288 176C287.3 176 286.7 176 285.1 176C287.3 181.1 288 186.5 288 192C288 227.3 259.3 256 224 256C218.5 256 213.1 255.3 208 253.1C208 254.7 208 255.3 208 255.1C208 300.2 243.8 336 288 336L288 336zM95.42 112.6C142.5 68.84 207.2 32 288 32C368.8 32 433.5 68.84 480.6 112.6C527.4 156 558.7 207.1 573.5 243.7C576.8 251.6 576.8 260.4 573.5 268.3C558.7 304 527.4 355.1 480.6 399.4C433.5 443.2 368.8 480 288 480C207.2 480 142.5 443.2 95.42 399.4C48.62 355.1 17.34 304 2.461 268.3C-.8205 260.4-.8205 251.6 2.461 243.7C17.34 207.1 48.62 156 95.42 112.6V112.6zM288 80C222.8 80 169.2 109.6 128.1 147.7C89.6 183.5 63.02 225.1 49.44 256C63.02 286 89.6 328.5 128.1 364.3C169.2 402.4 222.8 432 288 432C353.2 432 406.8 402.4 447.9 364.3C486.4 328.5 512.1 286 526.6 256C512.1 225.1 486.4 183.5 447.9 147.7C406.8 109.6 353.2 80 288 80V80z"/></svg>
+                    </div>
+                <p id="password1_check" class="check_text" value="False"></p>
+                </div>
+            </div>
+            <div class="input_item_wrapper" id="password2_wrap">
+                <div class="input_top_wrap">
+                    <label for="password2"><b>Repeat Password</b></label>
+                    <svg id="password2_icon" class="check_false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" id="password2_icon_path" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+                </div>
+                <div>
+                    <input class="input_field" type="password" autocomplete="new-password" placeholder="Enter Password" name="password2" required id="id_password2">
+                    <div>
+                        <svg id="password2_show" onclick="pwd_show('password2')" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" id="password2_show_path" d="M160 256C160 185.3 217.3 128 288 128C358.7 128 416 185.3 416 256C416 326.7 358.7 384 288 384C217.3 384 160 326.7 160 256zM288 336C332.2 336 368 300.2 368 256C368 211.8 332.2 176 288 176C287.3 176 286.7 176 285.1 176C287.3 181.1 288 186.5 288 192C288 227.3 259.3 256 224 256C218.5 256 213.1 255.3 208 253.1C208 254.7 208 255.3 208 255.1C208 300.2 243.8 336 288 336L288 336zM95.42 112.6C142.5 68.84 207.2 32 288 32C368.8 32 433.5 68.84 480.6 112.6C527.4 156 558.7 207.1 573.5 243.7C576.8 251.6 576.8 260.4 573.5 268.3C558.7 304 527.4 355.1 480.6 399.4C433.5 443.2 368.8 480 288 480C207.2 480 142.5 443.2 95.42 399.4C48.62 355.1 17.34 304 2.461 268.3C-.8205 260.4-.8205 251.6 2.461 243.7C17.34 207.1 48.62 156 95.42 112.6V112.6zM288 80C222.8 80 169.2 109.6 128.1 147.7C89.6 183.5 63.02 225.1 49.44 256C63.02 286 89.6 328.5 128.1 364.3C169.2 402.4 222.8 432 288 432C353.2 432 406.8 402.4 447.9 364.3C486.4 328.5 512.1 286 526.6 256C512.1 225.1 486.4 183.5 447.9 147.7C406.8 109.6 353.2 80 288 80V80z"/></svg>
+                    </div>
+                <p id="password2_check" class="check_text" value="False"></p>
+                </div>
+            </div>
+            <div class="input_item_wrapper" id="nickname_wrap">
+                <div class="input_top_wrap">
+                    <label for="id_username"><b>Nickname</b></label>
+                    <svg id="username_icon" class="check_false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" id="username_icon_path" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>                
+                </div>
+                <input class="input_field" type="text" name="username" placeholder="Enter Nickname" autocomplete="username" minlength="1" maxlength="150" required id="id_username">
+                <p id="username_check" class="check_text" value="False"></p>
+            </div>
+            <div class="clearfix">
+                <button type="submit" class="sign_up_btn" id="signup">Sign Up</button>
+            </div>
+        </form>
+    </div>
+    <div class="create_account_box">
+        <p class="normal_text">New to here? <a class="linked_text" href="{% url 'account_login' %}">Login</a>.</p>
+    </div>
+
+<script src="{% static 'account/js/sign_up.js' %}"></script>
 </body>
-<script>
-
-$(document).ready(function(){
-    $('#password').hide()
-    $('#nickname').hide()
-    $('#signup').hide()
-})
-    $('#email').on('input', function () {
-        valid_check('email')
-    })
-
-    $('#password').on('input', function () {
-        valid_check('password')
-    })
-
-    $('#nickname').on('input', function() {
-        valid_check('nickname')
-    })
-    // async function valid_check(input_id) {
-    //     let input_value = $(`#${input_id}`).val()
-    //     let type = input_id + 'check'
-    //     let key = input_id.toUpperCase()
-    //     let data ={}
-    //     data[key] = input_value
-    //     const response = await fetch(`/api/v1/user/${type}`, {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(data)
-    // })
-    // .then(response => response.json())
-    // if (response['result'] == "success"){
-    //     if (input_id == "email"){
-    //         $('#password').show()
-    //     } else if (input_id == "password"){
-    //         $('#nickname').show()
-    //     } else if (input_id == "nickname"){
-    //         $('#signup').show()
-    //     }
-    // } else {
-    //     if (input_id == "email" ){
-    //         $('#password').hide()
-    //     } else if (input_id == "password"){
-    //         $('#nickname').hide()
-    //     } else if (input_id == "nickname"){
-    //         $('#signup').hide()
-    //     }
-    // }
-    // }
-    function valid_check(input_id) {
-        let input_value = $(`#${input_id}`).val()
-        let type = input_id + 'check'
-        let key = input_id.toUpperCase()
-        let data ={}
-        data[key] = input_value
-    axios({
-        method: "post",
-        url: `/api/v1/user/${type}`,
-        data: data
-    })
-    .then(function (response){
-        console.log(response)
-        if (response['data']['result'] == "success"){
-        if (input_id == "email"){
-            $('#password').show()
-        } else if (input_id == "password"){
-            $('#nickname').show()
-        } else if (input_id == "nickname"){
-            $('#signup').show()
-        }
-    } else {
-        if (input_id == "email" ){
-            $('#password').hide()
-        } else if (input_id == "password"){
-            $('#nickname').hide()
-        } else if (input_id == "nickname"){
-            $('#signup').hide()
-        }
-    }
-    })
-    
-}
-</script>
 </html>

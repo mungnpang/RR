@@ -36,14 +36,14 @@ class TestCreateUser(TestCase):
         self.assertEqual(response.status_code, 200)
         response = response.json()
         self.assertEqual(response['result'], "failed")
-        self.assertEqual(response['message'], "이메일은 영문, 숫자만 입력이 가능합니다.")
+        self.assertEqual(response['message'], "이메일은 15자이상, 영문, 숫자만 입력이 가능합니다.")
 
         # EMAIL 유효성 검사 동작 확인 (길이 제한)
         response = join_service.check_to_id_modify(email="te@gmail.com")
         self.assertEqual(response.status_code, 200)
         response = response.json()
         self.assertEqual(response['result'], "failed")
-        self.assertEqual(response['message'], "이메일은 영문, 숫자만 입력이 가능합니다.")
+        self.assertEqual(response['message'], "이메일은 15자이상, 영문, 숫자만 입력이 가능합니다.")
 
         # EMAIL 유효성 검사 동작 확인 (없는 경우)
         response = join_service.check_to_id_modify(email="tester2@gmail.com")

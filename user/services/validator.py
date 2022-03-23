@@ -23,7 +23,7 @@ def contains_specail_character(value):
     return False
 
 def contains_nickname(value):
-    if re.search('[^a-zA-Z0-9가-핳_]', value) is None:
+    if re.search('[^a-zA-Z0-9가-힣_]', value) is None:
         return True
     return False
 
@@ -33,7 +33,7 @@ def email_validation(value):
         contains_email(value) 
     ):
         return True, ""
-    return False, "이메일은 영문, 숫자만 입력이 가능합니다."
+    return False, "이메일은 15자이상, 영문, 숫자만 입력이 가능합니다."
 
 def password_validation(value):
     if (

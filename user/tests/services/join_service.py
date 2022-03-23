@@ -12,7 +12,7 @@ class join_service:
 
     def check_to_id_modify(email: str) -> str:
         client = Client()
-        response = client.post('/api/v1/user/emailcheck', json.dumps({"EMAIL":email}), content_type="application/json")
+        response = client.post('/api/v1/user/emailcheck', json.dumps({"EMAIL":email}), content_type="mutlpart_from xform")
         return response
 
     def check_to_pw_modify(password: str) -> str:

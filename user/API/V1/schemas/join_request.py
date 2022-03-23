@@ -4,7 +4,7 @@ class IdCheckRequest(Schema):
     EMAIL: str
 
 class PassWordCheckRequest(Schema):
-    PASSWORD: str
+    PASSWORD1: str
 
 class NickNameCheckRequest(Schema):
-    NICKNAME: str
+    USERNAME: str

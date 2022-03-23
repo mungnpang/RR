@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+{% load static %}
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="static/main_page.css" />
+    <title>Let's Git it! Git LINI</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/main_page.css' %}" />
 </head>
 <body>
 <div id="navbar_wrapper">
@@ -43,6 +44,6 @@
 <div id="footer_box">
     <p id="copyright_text">© 2022. sparta. all rights reserved.</p>
 </div>
-<script src="static/main_page.js"></script>
+<script src="{% static 'main/js/main_page.js' %}"></script>
 </body>
 </html>

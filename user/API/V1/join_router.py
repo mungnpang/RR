@@ -22,18 +22,18 @@ async def check_to_id(request: HttpRequest, id_check_request: IdCheckRequest) ->
     }
     return JsonResponse(data)
 
-@router.post("/passwordcheck", response={200:PassWordCheckResponse})
+@router.post("/password1check", response={200:PassWordCheckResponse})
 async def check_to_pw(request: HttpRequest, pw_check_request: PassWordCheckRequest) -> dict:
-    result, message = await PASSWORDCHECK(pw_check_request.PASSWORD)
+    result, message = await PASSWORDCHECK(pw_check_request.PASSWORD1)
     data = {
         "result" : result,
         "message" : message
     }
     return JsonResponse(data)
 
-@router.post("/nicknamecheck", response={200: NickNameCheckResponse})
+@router.post("/usernamecheck", response={200: NickNameCheckResponse})
 async def check_to_nickname(request: HttpRequest, nickname_check_requests: NickNameCheckRequest) -> dict:
-    result, message = await NAMECHECK(nickname_check_requests.NICKNAME)
+    result, message = await NAMECHECK(nickname_check_requests.USERNAME)
     data = {
         "result" : result,
         "message" : message

@@ -2,7 +2,6 @@ from django.test import TestCase
 from user.tests.services import join_service 
 from repositories.tests.services.repo_services import CREATE_REPO_DATA
 from bookmark.tests.services.bookmark_service import Create_Bookmark
-from bookmark.models import Bookmark
 
 class test_bookmark_api(TestCase):
     def setUp(self) -> None:

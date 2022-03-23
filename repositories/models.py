@@ -1,10 +1,9 @@
-from unittest.util import _MAX_LENGTH
 from django.db import models
 from django_mysql.models import ListCharField
+from pydantic.dataclasses import dataclass
 
 
 # Create your models here.
-
 class Repositories(models.Model):
     class Meta:
         db_table = "repositories"

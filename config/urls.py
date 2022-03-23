@@ -31,6 +31,7 @@ api.add_router("/bookmark/", bookmark_router)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', api.urls),
-    path('accounts/', include('allauth.urls')),
+    path('accounts/', include('allauth.urls'), name="accounts"),
     path('repository/', include('repositories.urls')),
+    path('', include('main.urls')),
 ]

@@ -15,6 +15,4 @@ class ReadRepoResponse(Schema):
     subscribers: int
     topics: List
 
-class RepoResponse(Schema):
-    str
 

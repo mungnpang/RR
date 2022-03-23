@@ -52,9 +52,12 @@ INSTALLED_APPS = [
     'comment',
     'repositories',
     'bookmark',
+    'corsheaders',
+    'main',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -67,6 +70,12 @@ MIDDLEWARE = [
 THIRDPARTY_MODULE = [
 
 ]
+
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:8000',
+    'http://localhost:8000',
+]
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'config.urls'
 
@@ -186,7 +195,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory" 
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
-ACCOUNT_SIGNUP_FORM_CLASS = "user.forms.SignupForm"
+# ACCOUNT_SIGNUP_FORM_CLASS = "user.forms.SignupForm"
 ACCOUNT_PASSWORD_INPUT_RENDER_VALUE = True
 
 SOCIALACCOUNT_PROVIDERS = {
