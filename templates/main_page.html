@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Let's Git it! Git LINI</title>
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/main_page.css' %}" />
+    <link rel="shortcut icon" href="{% static 'icon/favicon.png' %}" type="image/x-icon">
+
 </head>
 <body>
 <div id="navbar_wrapper">
@@ -19,7 +21,7 @@
         <h2 class="subtitle_text">About Git</h2>
         <div class="subtitle_item_wrapper">
             <p class="subtitle_description">Git? Github? 개발자들은 다들 쓴다는데 도대체 뭘까? 간단한 Git 과 Github의 배경부터 어떤 원리인지 한번 알아봅시다!</p>
-            <button class="sub_item_btn" onclick="">LEARN MORE</button>
+            <button class="sub_item_btn" onclick="window.location.replace('{% url 'history' %}')">LEARN MORE</button>
         </div>
     </div>
 </div>
@@ -37,7 +39,7 @@
             <h2 class="subtitle_text">추천 repo</h2>
         <div class="subtitle_item_wrapper">
             <p class="subtitle_description">Git? Github? 개발자들은 다들 쓴다는데 도대체 뭘까? 간단한 Git 과 Github의 배경부터 어떤 원리인지 한번 알아봅시다!</p>
-            <button class="sub_item_btn" onclick="">LEARN MORE</button>
+            <button class="sub_item_btn" onclick="window.location.replace('{% url 'repository' %}')">LEARN MORE</button>
         </div>
     </div>
 </div>

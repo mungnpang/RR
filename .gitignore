@@ -14,7 +14,6 @@ media
 conf/
 django.crt
 django.key
-.ebextensions/
 .elasticbeanstalk/
 .idea/
 
