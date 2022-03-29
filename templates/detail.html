@@ -30,6 +30,7 @@
             <div class="target-image"><img id="image" src="https://i.imgur.com/vngEnqV.png"></div>
             <div class="target-contents">
                 <div class="target-items"><span class="material-icons-outlined">person_outline</span>Username: {{ repo.full_name | split:'/' }}</div>
+                <div class="target-items"><span id="bookmark" class="material-icons-outlined" style="font-size: 35px; color:steelblue" onclick="create_bookmark()">bookmark_border</span></div>
                 <div class="target-items"><span class="material-icons-outlined">home</span>Address: <p onclick="window.location.replace('http://github.com/{{repo.full_name}}')">Move to Github Page</p></div>
                 <div class="target-items"><span class="material-icons-outlined">star_outline</span>Stars: {{ repo.stars }}</div>
                 <div class="target-items"><span class="material-icons-outlined">account_tree</span>Forks: {{ repo.forks }}</div>
@@ -40,6 +41,7 @@
                 <div class="target-items"><span class="material-icons-outlined">description</span>Description</div>
                 <div class="indentation">{{ repo.description }}</div>
                 <div class="blank"></div>
+
             </div>
         </div>
         <div class="target-comments">
@@ -89,7 +91,11 @@
                             {% if comment.id == reply.parent_comment_id  %}    
                                 {% if user.username == reply.author.username %}    
                                 <div class="reply_contain">
-                                    <div id="reply_{{reply.id}}" class="comments-reply"><span style="color:coral;">{{ reply.author.username }} $</span> {{ reply.content }}</div>
+                                    <div class="reply_front">
+                                        <div id="reply_{{reply.id}}" class="comments-reply"><span style="color:coral;">{{ reply.author.username }} $</span> {{ reply.content }}</div>
+                                        <p class="time-checker">{{reply.created_at | time}}</p>
+                                    </div>
+                                    
                                     <div class="more_reply" id="more_reply_{{reply.id}}">
                                         <div class="more_icon_reply">
                                             <span id="more_icon_{{reply.id}}"class="material-icons-outlined">more_horiz</span>
@@ -102,7 +108,10 @@
                                     </div>
                                 </div>    
                                 {% else %}
-                                    <div id="{{comment.id_reply}}" class="comments-reply"><span>{{ reply.author.username }} $</span> {{ reply.content }}</div>
+                                <div class="reply_front">
+                                    <div id="reply_{{reply.id}}" class="comments-reply"><span>{{ reply.author.username }} $</span> {{ reply.content }}</div>
+                                    <p class="time-checker">{{reply.created_at | time}}</p>
+                                </div>
                                 {% endif %}
                             
                             {% endif %}

@@ -1,12 +1,26 @@
 $(document).ready(function(){
     card_image()
     recommand()
+    bookmark()
     $('.reply-nav').hide()
     $('.hide-reply').hide()
     $('#cancle').hide()
     $('.more_option').hide()
     $('.more_option_reply').hide()
 })
+
+async function bookmark(){
+    let id = window.location.href.split('/')[4]
+    await axios({
+        'url':`http://127.0.0.1:8000/api/v1/bookmark/read_get_one/${id}`
+    })
+    .then(function(response){
+        if (response.data.result == 'success'){
+            $('#bookmark').text('bookmark')
+            $('#bookmark').attr('onclick','delete_bookmark()')
+        }
+    })
+}
 
 async function language_image(language){
     const response = await axios(`http://127.0.0.1:8000/api/v1/repository/language/${language}`)
@@ -38,13 +52,14 @@ async function fill_recommand_cards(repo){
         let name = repo[i].repo_name
         let stars = repo[i].stars
         let language = repo[i].language
+        let author = repo[i].full_name.split('/')[0]
         let image = await language_image(language)
         let temp_html = `
         <div id="repo" value=${repo_id}></div>
         <div class="repo-card" onclick="window.location.replace('/detail/${id}')">
                 <img class="repo-image" id=${id} ></img>
                 <div class="repo-summary">
-                    <div class="repo-bookmark"><span class="material-icons-outlined">bookmark_border</span></div>
+                <div class="repo-items"><span class="material-icons-outlined">person</span>${author}</div>
                     <div class="repo-items"><span class="material-icons-outlined">article</span>${name}</div>
                     <div class="repo-items"><span class="material-icons-outlined">star_outline</span>${stars}</div>
                     <div class="repo-items"><span class="material-icons-outlined">public</span>${language}</div>
@@ -234,5 +249,51 @@ async function update_comment_run(id){
             alert(response.data.message)
         }
 
+    })
+}
+
+async function create_bookmark(){
+    let id = window.location.href.split('/')[4]
+    await axios({
+        'url':'http://127.0.0.1:8000/api/v1/bookmark/create/',
+        'method': 'post',
+        'data': {
+            "REPO_ID" : id
+        }
+    })
+    .then(function(response){
+        if (response.data.result == 'success'){
+            alert('북마크가 등록되었습니다.')
+            window.location.reload()
+        } else {
+            alert(response.data.message)
+            window.location.reload()
+        }
+    })
+    .catch(function(error){
+        alert(error)
+    })
+}
+
+async function delete_bookmark(){
+    let id = window.location.href.split('/')[4]
+    await axios({
+        'url':'http://127.0.0.1:8000/api/v1/bookmark/delete',
+        'method': 'delete',
+        'data' : {
+            "REPO_ID" : id
+        }
+    })
+    .then(function(response){
+        if (response.data.result == 'success'){
+            alert('북마크가 삭제되었습니다.')
+            window.location.reload()
+        } else {
+            alert(response.data.message)
+            window.location.reload()
+        }
+    })
+    .catch(function(error){
+        alert('error')
     })
 }

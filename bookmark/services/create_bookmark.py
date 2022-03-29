@@ -1,6 +1,7 @@
 from bookmark.models import Bookmark
 from user.models import UserModel
 from repositories.models import Repositories
+from django.db.utils import IntegrityError
 
 
 def CREATE_BOOKMARK(user_id: int, repo_id: int) -> str:

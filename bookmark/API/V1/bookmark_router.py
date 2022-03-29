@@ -1,3 +1,4 @@
+from os import stat
 from typing import List
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from ninja import Router
@@ -10,7 +11,7 @@ from bookmark.API.V1.schemas import (
 )
 
 from django.contrib.auth.decorators import login_required
-from bookmark.services import CREATE_BOOKMARK, READ_BOOKMARK, DELETE_BOOKMARK
+from bookmark.services import CREATE_BOOKMARK, READ_BOOKMARK, DELETE_BOOKMARK, READ_GET_BOOKMARK
 from bookmark.models import Bookmark
 
 router = Router(tags=["Bookmark"])
@@ -21,6 +22,14 @@ def read_bookmark(request: HttpRequest, user_id: int) -> List[Bookmark]:
     if len(bookmark) == 0:
         return JsonResponse({"result":"failed","message":"Bookmark is None"}, status=422)
     return bookmark
+
+@router.get('/read_get_one/{repo_id}', response={200: ReadBookmarkResponse})
+def read_get_one_bookmark(request: HttpRequest, repo_id: int) -> Bookmark:
+    user = request.user.id
+    bookmark = READ_GET_BOOKMARK(user, repo_id)
+    if len(bookmark) == 0:
+        return JsonResponse({"result":"failed","message":"Bookmark is None"}, status=422)
+    return JsonResponse({"result":"success"}, status=200)
 
 @login_required
 @router.post('/create/', response={201:CreateBookmarkResponse})

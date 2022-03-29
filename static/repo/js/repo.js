@@ -98,6 +98,8 @@ async function repository_fill(respositories){
     let stars = respositories[i]['stars']
     let language = respositories[i]['language']
     let id = respositories[i]['id']
+    let author = respositories[i]['full_name'].split('/')[0]
+    console.log(author)
     let image = await language_image(language)
     if (language == null){
       language = ''
@@ -106,7 +108,7 @@ async function repository_fill(respositories){
     <div class="repo-card" onclick="window.location.replace('/detail/${id}')">
             <img class="repo-image" id=${id} ></img>
             <div class="repo-summary">
-                <div class="repo-bookmark"><span class="material-icons-outlined">bookmark_border</span></div>
+                <div class="repo-items"><span class="material-icons-outlined">person</span>${author}</div>
                 <div class="repo-items"><span class="material-icons-outlined">article</span>${name}</div>
                 <div class="repo-items"><span class="material-icons-outlined">star_outline</span>${stars}</div>
                 <div class="repo-items"><span class="material-icons-outlined">public</span>${language}</div>
