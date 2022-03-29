@@ -7,6 +7,7 @@ from user.models import UserModel
 class Bookmark(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     repo = models.ForeignKey(Repositories, on_delete=models.CASCADE)
+    
 
     class Meta:
         constraints = [models.UniqueConstraint(fields=["user", "repo"], name="unique_user_repo")]

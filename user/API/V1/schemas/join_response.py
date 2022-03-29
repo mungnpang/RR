@@ -11,3 +11,6 @@ class PassWordCheckResponse(Schema):
 class NickNameCheckResponse(Schema):
     result : str
     message : str
+
+class UserNameResponse(Schema):
+    username: str

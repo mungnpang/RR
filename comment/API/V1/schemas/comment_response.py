@@ -1,13 +1,18 @@
+from datetime import datetime
 from typing import Optional
 from ninja import Schema
+from user.API.V1.schemas.join_response import UserNameResponse
 
 class CommentsResponse(Schema):
+    id: int
     content: str
-    author_id: int
+    author: UserNameResponse
     parent_comment_id: Optional[int]
-    repo_id: int
     message: Optional[str]
     result: Optional[str]
+    created_at: datetime
+    reply: int
+    
 
 class CreateCommentResponse(Schema):
     message: str

@@ -6,4 +6,4 @@ def DELETE_BOOKMARK(user_id:int, repo_id:int ) -> str:
     except Bookmark.DoesNotExist:
         return True, "Bookmark is None"
     bookmark.delete()
-    return False, "Delete Success"
+    return False, "Delete Success"       

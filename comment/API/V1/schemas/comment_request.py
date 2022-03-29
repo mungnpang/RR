@@ -7,7 +7,6 @@ class CommentsRequest(Schema):
     REPO_ID: int
 
 class CreateCommentRequest(Schema):
-    USER_ID: int
     REPO_ID: int
     CONTENT: str
     PARENT_COMMENT_ID: Optional[int]

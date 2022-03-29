@@ -13,6 +13,7 @@ setInterval(typing,300);
 
 
 
+
 // window.addEventListener('scroll',function(){
 //     let value = window.scrollY;
 //

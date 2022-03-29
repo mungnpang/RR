@@ -25,7 +25,8 @@ def read_bookmark(request: HttpRequest, user_id: int) -> List[Bookmark]:
 @login_required
 @router.post('/create/', response={201:CreateBookmarkResponse})
 def create_bookmark(request: HttpRequest, create_bookmark_request: CreateBookmarkRequest) -> str:
-    result, message = CREATE_BOOKMARK(create_bookmark_request.USER_ID, create_bookmark_request.REPO_ID)
+    user = request.user.id
+    result, message = CREATE_BOOKMARK(user, create_bookmark_request.REPO_ID)
     if result:
         return JsonResponse({"result":"failed","message" : message}, status=422)
     return JsonResponse({"result":"success","message" : message}, status=201)
@@ -33,7 +34,8 @@ def create_bookmark(request: HttpRequest, create_bookmark_request: CreateBookmar
 @login_required
 @router.delete('/delete', response={201:DeleteBookmarkResponse})
 def delete_bookmark(request: HttpRequest, delete_bookmark_request: DeleteBookmarkRequest) -> str:
-    result, message =  DELETE_BOOKMARK(delete_bookmark_request.USER_ID, delete_bookmark_request.REPO_ID)
+    user = request.user.id
+    result, message =  DELETE_BOOKMARK(user, delete_bookmark_request.REPO_ID)
     if result:
         return JsonResponse({"result":"failed", "message":message}, status=422)
     return JsonResponse({"result":"success", "message": message}, status=201)

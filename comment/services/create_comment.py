@@ -15,4 +15,8 @@ def COMMENTS_CREATE(author:int, repo_id:int, content: str, parent_comment_id: Op
             )
     except IntegrityError:
             return True, "Empty Space"
+    if parent_comment_id is not None:
+        comment = Comment.objects.get(id=parent_comment_id)
+        comment.reply += 1
+        comment.save()
     return False, "Create Success"

@@ -1,5 +1,5 @@
-from typing import List
-from django.http import HttpRequest, JsonResponse, response
+from typing import List, Tuple
+from django.http import HttpRequest, HttpResponse, JsonResponse, response
 from ninja import Router
 from comment.API.V1.schemas import (
     CommentsResponse,
@@ -11,7 +11,7 @@ from comment.API.V1.schemas import (
     DeleteCommentResponse,
 )
 from comment.models import Comment
-from comment.services import COMMENTS_READ, COMMENTS_CREATE, COMMENT_UPDATE, DELETE_COMMENT
+from comment.services import COMMENTS_READ, COMMENTS_CREATE, COMMENT_UPDATE, DELETE_COMMENT, REPLYS_READ
 from django.contrib.auth.decorators import login_required
 
 router = Router(tags=["comment"])
@@ -23,11 +23,18 @@ def comment_read(request: HttpRequest, repo: str) -> List[Comment]:
         return JsonResponse({"result":"failed", "message" : "Data is None"}, status=422)
     return comments
 
+@router.get("/read_reply/{repo}", response={200: List[CommentsResponse]})
+def comment_reply_read(request: HttpRequest, repo: str) -> List[Comment]:
+    replys = REPLYS_READ(int(repo))
+    if len(replys) == 0:
+        return JsonResponse({"result":"failed", "message" : "Data is None"}, status=422)
+    return replys
+
 @login_required
 @router.post('/create/', response={201:CreateCommentResponse})
 def comment_create(request: HttpRequest, create_comment_request: CreateCommentRequest) -> dict:
-    # result, message = COMMENTS_CREATE(request.user, create_comment_request.REPO_ID,create_comment_request.CONTENT, create_comment_request.PARENT_COMMENT_ID)
-    result, message = COMMENTS_CREATE(create_comment_request.USER_ID, create_comment_request.REPO_ID,create_comment_request.CONTENT, create_comment_request.PARENT_COMMENT_ID)
+    user_id = request.user.id
+    result, message = COMMENTS_CREATE(user_id, create_comment_request.REPO_ID,create_comment_request.CONTENT, create_comment_request.PARENT_COMMENT_ID)
     if result:
         return JsonResponse({"result":"failed","message" : message}, status=422)
     return JsonResponse({"result":"success","message" : message}, status=201)

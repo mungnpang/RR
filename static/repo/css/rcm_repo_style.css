@@ -9,12 +9,11 @@
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background: #0d1117;
-  opacity: 1;
+  background: #1b1a2a;
+  opacity: 0.9;
   display: flex;
   align-items: center;
   justify-content: center;
-  display: none;
 }
 
 .search-container {
@@ -29,35 +28,34 @@
 }
 
 .search-container > h1 {
-  font-size: 10rem;
+  font-size: 2.5rem;
   color: floralwhite;
 }
 
-#search-bar {
-  width: 30vw;
-  height: 5vh;
-  border-radius: 30px;
-  background: 313131;
-  box-shadow: 1px 1px 3px white;
+.search-container > h2 {
+  margin-bottom: 2vh;
+  font-size: 2.2rem;
+  color: floralwhite;
 }
 
 #rcm-title {
-  color: white;
   margin: 5vh auto 5vh 15vw;
 }
 
 #rcm-title p {
-  width: 50%;
-  font-size: 5rem;
+  color: white;
+  font-size: 3rem;
   cursor: pointer;
+  width: 32rem;
 }
 
 .search-result {
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background: #0d1117;
-  opacity: 1;
+  background: #1b1a2a;
+  opacity: 0.9;
+  display: none;
 }
 
 .result-nav {
@@ -76,6 +74,7 @@
   width: 30%;
   align-self: center;
   color: ghostwhite;
+  text-align: center;
 }
 
 .search__input {
@@ -103,12 +102,14 @@
 .search__input::placeholder {
   color: ghostwhite;
   font-size: 1.2rem;
+  font-weight: lighter;
   text-transform: uppercase;
   letter-spacing: 1.5px;
 }
 
 .search__input:hover,
 .search__input:focus {
+  color: ghostwhite;
   padding: 1.5vh 0;
   outline: 0;
   border: 1px solid transparent;
@@ -122,7 +123,8 @@
   height: 70vh;
   margin-left: 15vw;
   border-radius: 15px;
-  background: #161b22;
+  background: #0f0e17;
+  box-shadow: 3px 3px 12px black;
   display: flex;
   flex-wrap: wrap;
   overflow-y: auto;
@@ -140,6 +142,11 @@
   border-radius: 15px;
   box-shadow: 3px 3px 7px black;
   overflow: hidden;
+  cursor: pointer;
+}
+
+.repo-card:hover {
+  transform: scale(1.1);
 }
 
 .repo-image {
@@ -332,9 +339,9 @@ h2 {
   border-radius: 120px;
   border: none;
   background: rgba(255, 255, 255, 0);
-  padding: 0 68px 0 68px;
+  padding: 0 2vw 0 2vw;
   color: #ffffff;
-  font-size: 1.32em;
+  font-size: 3em;
   font-weight: 400;
   letter-spacing: -0.015em;
   outline: none;
@@ -358,4 +365,20 @@ h2 {
 #search::selection {
   color: #ffffff;
   background: rgba(0, 0, 0, 0.25);
+}
+
+.loading {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgray;
+  opacity: 0.9;
+  z-index: 999;
+}
+
+.loading img {
+  width: 64px;
 }
