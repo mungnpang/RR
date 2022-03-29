@@ -1,0 +1,73 @@
+* {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.desktop-screen {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    opacity: 0.9;
+}
+
+#theme {
+    color: white;
+    font-size: 4rem;
+    margin: 1vh auto auto 15vw;
+    font-weight: bold;
+}
+
+.all-container {
+    width: 70vw;
+    height: 85vh;
+    margin: auto;
+    border-radius: 10px;
+    background-color: lightslategrey;
+    /*background: rgb(191,95,240);*/
+    /*background: linear-gradient(120deg, rgba(191,95,240,1) 30%, rgba(93,103,232,1) 60%, rgba(134,179,240,1) 90%);*/
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+}
+/********목차***********/
+.index-container {
+    width: 300px;
+    height: 85%;
+    border-radius: 7px;
+    background: white;
+    margin-left: 2%;
+    opacity: 0.5;
+
+}
+.index-container > .index{
+    width: 90%;
+    margin: auto;
+}
+
+#github-image {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+}
+#github-image > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/*********내용**********/
+#contents-container {
+    width: 100%;
+    height: 85%;
+    margin: 0 2%;
+    border-radius: 7px;
+    background: white;
+    opacity: 0.9;
+    box-shadow: 2px 2px 8px black;
+    font-size: 1.8rem;
+    overflow: auto;
+    -ms-overflow-style: none;
+}
+
+#contents-container::-webkit-scrollbar {
+    display: none;
+}

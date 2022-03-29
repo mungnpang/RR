@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block static %}
+    <link href="/static/tutorial/tutorial_page.css?after" rel="stylesheet">
+{% endblock %}
+
+{% block theme %}
+    Git Tutorial
+{% endblock %}
+
+{% block index %}
+    <div>
+        <button id="title-btn" onclick="click_btn('start_git')">Start Git</button>
+        <div class="subtitle" id="start_git">
+            <li><a onclick="click_subtitle('git')">Git?</a></li>
+            <li><a onclick="click_subtitle('git_word')">Git 용어 정리</a></li>
+            <li><a onclick="click_subtitle('git_install_start')">Git 설치 및 시작</a></li>
+        </div>
+    </div>
+    <div>
+        <button id="title-btn" onclick="click_btn('learn_git')">Learn Git</button>
+        <div class="subtitle" id="learn_git">
+            <li><a onclick="click_subtitle('commit')">Commit</a></li>
+            <li><a onclick="click_subtitle('branch')">Branch</a></li>
+            <li><a onclick="click_subtitle('push_pull_fetch')">Push/Pull/Fetch</a></li>
+        </div>
+    </div>
+    <div>
+        <button id="title-btn" onclick="click_btn('start_github')">Start GitHub</button>
+        <div class="subtitle" id="start_github">
+            <li><a onclick="click_subtitle('github')">GitHub?</a></li>
+            <li><a onclick="click_subtitle('github_issue')">Github Issue</a></li>
+            <li><a onclick="click_subtitle('github_pr')">Pull requests</a></li>
+
+        </div>
+    </div>
+    <div>
+        <button id="title-btn" onclick="click_btn('practice_git')">Practice Git</button>
+        <div class="subtitle" id="practice_git">
+            <li><a href="tuto/" style="text-decoration:none;color: black;">Practice push</a></li>
+
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="contents-wrap">
+        <h2>Intro</h2>
+        <p>Git, Github는 무엇이고, Git의 기본적인 명령어와 Github에서 제공하는 기본 기능들을 배워봅니다.</p>
+
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(() => {
+            $('.subtitle').hide()
+
+        })
+
+        function click_btn(name) {
+            $(`#${name}`).toggle()
+
+        }
+
+        function click_subtitle(name) {
+            fetch(name).then(function (response) {
+                response.text().then(function (text) {
+                    document.getElementById('contents-container').innerHTML = text;
+                })
+            })
+
+        }
+
+    </script>
+{% endblock %}

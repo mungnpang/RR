@@ -1,0 +1,122 @@
+* {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: smaller;
+    font-weight: bold;
+}
+
+.desktop-screen {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    opacity: 0.9;
+}
+
+#history-title {
+    color: white;
+    font-size: 4rem;
+    margin: 3vh auto 3vh 15vw;
+    letter-spacing: 0.015em;
+}
+
+.contents-container {
+    width: 70vw;
+    height: 80vh;
+    margin: auto;
+    border-radius: 10px;
+    background: rgb(190,149,123);
+    background: linear-gradient(120deg, rgba(190,149,123,1) 30%, rgba(221,198,182,1) 70%);
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+}
+
+.history-index-container {
+    width: 20%;
+    height: 90%;
+    border-radius: 7px;
+    background: white;
+    margin-left: 2vw;
+    opacity: 0.8;
+    box-shadow: 2px 2px 5px black;
+}
+
+.history-index {
+    width: 80%;
+    margin-top: 5vh;
+    margin-left: 2vw;
+}
+
+.history-intro {
+    margin-top: 10vh;
+}
+
+.history-index > div {
+    margin-top: 3vh;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+}
+
+.history-index > div > li {
+    font-size: 1.3rem;
+    font-weight: lighter;
+    cursor: pointer;
+}
+
+.history-intro:hover {
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.history-index > div > li:hover {
+    font-size: 1.5rem;
+}
+
+#github-image {
+    width: 100%;
+    height: 25%;
+    margin: 3vh auto;
+}
+
+#github-image > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contents-area {
+    width: 71%;
+    height: 90%;
+    border-radius: 7px;
+    background: white;
+    margin-left: 2vw;
+    opacity: 0.9;
+    padding: 3%;
+    box-shadow: 2px 2px 8px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+}
+
+.subtitle {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.contents-area::-webkit-scrollbar {
+    display: none;
+}
+
+#contents-5 {
+    position: relative;
+    top: 18vh;
+}
+
+#contents-6 {
+    position: relative;
+    top: 18vh;
+}
