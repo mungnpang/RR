@@ -1,3 +1,4 @@
 .idea
 config
 db.sqlite3
+manage.py
