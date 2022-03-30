@@ -40,7 +40,7 @@ function crawling(){
 
 function get_data(){
   return axios({
-    url: `http://127.0.0.1:8000/api/v1/repository/${keyword}/${index}`
+    url: `https://gitlini.com/api/v1/repository/${keyword}/${index}`
   })
 }
 
@@ -127,7 +127,7 @@ async function repository_fill(respositories){
 }
 
 async function language_image(language){
-  const response = await axios(`http://127.0.0.1:8000/api/v1/repository/language/${language}`)
+  const response = await axios(`https://gitlini.com/api/v1/repository/language/${language}`)
   return response.data.path
 }
 let loading_max = false

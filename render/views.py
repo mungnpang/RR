@@ -40,9 +40,9 @@ def my_page(request: HttpRequest):
     user = request.user.id
     visit_count_check(user)
     user_data = UserModel.objects.get(id=user)
-    bookmark_data = requests.get(f"http://127.0.0.1:8000/api/v1/bookmark/read/{user}").json()
-    comment_data = requests.get(f"http://127.0.0.1:8000/api/v1/comment/read_user/{user}").json()
-    history = requests.get(f"http://127.0.0.1:8000/api/v1/mypage/read/{user}").json()
+    bookmark_data = requests.get(f"https://gitlini.com/api/v1/bookmark/read/{user}").json()
+    comment_data = requests.get(f"https://gitlini.com/api/v1/comment/read_user/{user}").json()
+    history = requests.get(f"https://gitlini.com/api/v1/mypage/read/{user}").json()
     total = set(history['repo_history']+history['reco_history'])
     repos = list(Repositories.objects.filter(id__in=total))
     repo_data = [0 for _ in range(len(history['repo_history']))]
@@ -57,9 +57,9 @@ def my_page(request: HttpRequest):
 
 def detail_page(request: HttpRequest, repo_id: int):
     visit_count_check(request.user.id)
-    repo = requests.get(f'http://127.0.0.1:8000/api/v1/repository/detail/{repo_id}').json()
-    comments = requests.get(f"http://127.0.0.1:8000/api/v1/comment/read/{repo_id}").json()
-    replys = requests.get(f"http://127.0.0.1:8000/api/v1/comment/read_reply/{repo_id}").json()
+    repo = requests.get(f'https://gitlini.com/api/v1/repository/detail/{repo_id}').json()
+    comments = requests.get(f"https://gitlini.com/api/v1/comment/read/{repo_id}").json()
+    replys = requests.get(f"https://gitlini.com/api/v1/comment/read_reply/{repo_id}").json()
     try:
         comments['message']
     except TypeError:

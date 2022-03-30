@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS: List[str] = ["*"]
 
@@ -73,7 +73,8 @@ THIRDPARTY_MODULE = [
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    'https://api.gitlini.com'
+    'https://api.gitlini.com',
+    'https://gitlini.com',
 ]
 CORS_ALLOW_CREDENTIALS = True
 
