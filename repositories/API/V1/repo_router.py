@@ -1,8 +1,10 @@
 from typing import List
 from django.http import HttpRequest, JsonResponse, response, HttpResponse
 from ninja import Router
+from render.templatetags.tags import language_list
 from repositories.API.V1.schemas import(
     RepoRequest,
+    LanguageRequest,
     ReadRepoResponse,
     LanguageResponse
 )
@@ -31,6 +33,19 @@ def Language_img_Read(request: HttpRequest, lang: str) -> dict:
         lang = quote(lang, safe='')
         return JsonResponse({"path":f"https://rrproject.s3.ap-northeast-2.amazonaws.com/language_image/{lang}.svg"})
     return JsonResponse({"path":"https://rrproject.s3.ap-northeast-2.amazonaws.com/language_image/default.svg"})
+
+@router.post("/language_many/", response=List)
+def Language_imgs_Read(request: HttpRequest, language_request: LanguageRequest) -> List:
+    language_list = language_request.DATA.split(',')
+    img_list = RepositoriesConfig.language_img_list
+    lang_img_list = []
+    for lang in language_list:
+        if lang in img_list:
+            lang = quote(lang, safe='')
+            lang_img_list.append(f"https://rrproject.s3.ap-northeast-2.amazonaws.com/language_image/{lang}.svg")
+        else:
+            lang_img_list.append("https://rrproject.s3.ap-northeast-2.amazonaws.com/language_image/default.svg")
+    return lang_img_list
 
 @router.get("/{keyword}/{index}", response=List[ReadRepoResponse])
 def Repo_Read(request: HttpRequest, keyword: str, index: int ) -> List[Repositories]:

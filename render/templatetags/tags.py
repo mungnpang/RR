@@ -8,13 +8,23 @@ register = template.Library()
 def split(str, key):
     return str.split(key)[0]
 
+@register.filter(name="language")
+def language_list(language,length, list=[]):
+    list.append(language)
+    if length < len(list):
+        list.clear()
+        list.append(language)
+    if len(list) == length:
+        return ','.join(list)
+    return language
+
 @register.filter(name='time')
 def timezone(time):
     now = datetime.now()
     time = time.split('.')[0].replace('T', ' ').replace('Z', ' ')
     time = datetime.strptime(time, '%Y-%m-%d %H:%M:%S')
     diff = str(now - time)
-    if 'days' in diff:
+    if 'days' in diff or 'day' in diff:
         days = diff.split(',')[0].split()[0]
         if int(days) // 365 > 0:
             return str(int(days)//365) +"년 전"

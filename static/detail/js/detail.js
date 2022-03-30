@@ -58,7 +58,7 @@ async function fill_recommand_cards(repo){
         let stars = repo[i].stars
         let language = repo[i].language
         let image = await language_image(language)
-        if (language.length < 1){
+        if (language == null){
             language = ''
         }
         let author = repo[i].full_name.split('/')[0]
