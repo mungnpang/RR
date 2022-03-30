@@ -14,7 +14,7 @@ def visit_count_check(user_id):
         now = datetime.datetime.now()
         user_last_visit = user.last_visit
         time = now-user_last_visit
-        if 'days' not in str(time):
+        if 'days' not in str(time) and 'day' not in str(time):
             time_hour = list(map(int,str(time).split('.')[0].split(':')))
             if time_hour[0] == 0 and time_hour[1] < 30:
                 return

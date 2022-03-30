@@ -100,7 +100,7 @@ async function repository_fill(respositories){
     let id = respositories[i]['id']
     let author = respositories[i]['full_name'].split('/')[0]
     let image = await language_image(language)
-    if (language == 'None'){
+    if (language == 'None' | language == null){
       language = ''
     }
     let temp_html = ` 
@@ -141,6 +141,6 @@ $('#repo_cards').scroll(function () {
     setTimeout(function() {
       search_result_is_already()
       $('.loading').hide()
-    }, 2500);
+    }, 2000);
   }
 })
