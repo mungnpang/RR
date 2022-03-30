@@ -6,8 +6,7 @@
     <title>My Page</title>
     <meta charset="UTF-8">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <!-- <link rel="stylesheet" href="{% static 'mypage/css/mypage_style.css' %}"> -->
-    <link rel="stylesheet" href="../static/mypage/css/mypage_style.css">
+    <link rel="stylesheet" href="{% static 'mypage/css/mypage_style.css' %}">
     <link rel="shortcut icon" href="{% static 'icon/favicon.png' %}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
@@ -19,11 +18,14 @@
 </head>
 
 <body>
+{% include 'nav.html' %}
+{% block navbar %}
+{% endblock %}
 <div id="bookmark_count" value={{bookmark_data | length}}></div>
 <div class="desktop-screen">
     <div class="mypage-head">
-        <div id="mypage-title">My Page</div>
-        <div id="btn-profile-edit">Edit Profile</div>
+        <div id="mypage-title" onclick="window.location.href='{% url 'main' %}'">My Page</div>
+        <div id="btn-profile-edit" onclick="window.location.href='{% url 'profile' %}'">Edit Profile</div>
     </div>
     <div class="user-detail">
         <div class="detail-box">
@@ -33,20 +35,28 @@
             <div class="user-description"><span class="user-title">Username: </span>{{ user_data.username }}</div>
             <div class="user-description"><span class="user-title">Joined: </span> {{ user_data.date_joined }}</div>
             <div class="user-description"><span class="user-title">Total visit: </span> {{ user_data.visit_count }} </div>
+            {% if comment_data.result == 'failed' %}
+            <div class="user-description"><span class="user-title">Total comments: </span> 0 </div>
+            {% else %}
             <div class="user-description"><span class="user-title">Total comments: </span> {{ comment_data | length }} </div>
+            {% endif %}
+            {% if bookmark_data.result == 'failed' %}
+            <div class="user-description"><span class="user-title">Total bookmark: </span>0 </div>
+            {% else %}
             <div class="user-description"><span class="user-title">Total bookmark: </span>{{ bookmark_data | length }} </div>
+            {% endif %}
         </div>
         <div class="detail-box">
             <div class="detail-subtitle">📌Recently Visited</div>
             {% for visit in repo_data  %}
-            <div class="user-repo" onclick="window.location.replace(`/detail/{{visit.id}}`)"><span class="material-icons-sharp">notes</span>{{ visit.repo_name }} </div>
+            <div class="user-repo" onclick="window.location.href=`/detail/{{visit.id}}`"><span class="material-icons-sharp">notes</span>{{ visit.repo_name }} </div>
             {% endfor %}
         </div>
 
         <div class="detail-box">
             <div class="detail-subtitle">💡Recently Recommended</div>
             {% for recommand in reco_data %}
-            <div class="user-recommand"onclick="window.location.replace(`/detail/{{recommand.id}}`)"><span class="material-icons-sharp">notes</span>{{ recommand.repo_name }} </div>
+            <div class="user-recommand"onclick="window.location.href=`/detail/{{recommand.id}}`"><span class="material-icons-sharp">notes</span>{{ recommand.repo_name }} </div>
             {% endfor %}
         </div>
 
@@ -56,7 +66,7 @@
             
             {% else %}
             {% for comment in comment_data %}
-                <div class="user-comments" onclick="window.location.replace(`/detail/{{comment.repo_id}}`)" ><span class="material-icons-sharp">chat</span>{{comment.content}}</div>
+                <div class="user-comments" onclick="window.location.href=`/detail/{{comment.repo_id}}`" ><span class="material-icons-sharp">chat</span>{{comment.content}}</div>
             {% endfor %}
             {% endif %}
         </div>
@@ -68,10 +78,9 @@
         <div class="bookmark_is_none"> 등록되어있는 Bookmark가 없습니다. </div>
         {% else %}
         <div class="repo-container">
-
         {% for bookmark in bookmark_data %}
         <div id="length" value="{{len}}"></div>
-        <div class="repo-card" onclick="window.location.replace('/detail/{{bookmark.repo.id}}')">
+        <div class="repo-card" onclick="window.location.href='/detail/{{bookmark.repo.id}}'">
             {% if bookmark.repo.language is None %}
             <img class="repo-image" id="{{forloop.counter}}" value="{{ ' ' | language:len }}"></img>
             {% else %}
@@ -81,7 +90,7 @@
                 <div class="repo-items"><span class="material-icons-outlined">person</span>{{ bookmark.repo.full_name | split:'/' }}</div>
                 <div class="repo-items"><span class="material-icons-outlined">article</span>{{bookmark.repo.repo_name}}</div>
                 <div class="repo-items"><span class="material-icons-outlined">star_outline</span>{{bookmark.repo.stars}}</div>
-                {% if bookmark.rep.language is None %}
+                {% if bookmark.repo.language is None %}
                 <div class="repo-items"><span class="material-icons-outlined">public</span> </div>
                 {% else %}
                 <div class="repo-items"><span class="material-icons-outlined">public</span>{{bookmark.repo.language}}</div>
@@ -95,7 +104,7 @@
         {% endwith %}
 </div>
 
-<script src="../static/mypage/js/mypage.js"></script>
+<script src="{% static 'mypage/js/mypage.js' %}"></script>
 
 </body>
 </html>

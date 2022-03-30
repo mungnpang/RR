@@ -51,7 +51,7 @@ def nickname_validation(value):
         contains_nickname(value)
     ):
         return True, ""
-    return False, "닉네임은 4자이상, 영문, 숫자, _ 외에 입력이 불가능합니다."
+    return False, "닉네임은 5자이상, 영문, 숫자, _ 외에 입력이 불가능합니다."
 
 def validation(job, value):
     if job == "email":

@@ -39,7 +39,7 @@ async function card_image(){
 async function recommand(){
     const repo_id = $('#repo').attr('value')
     const response = await axios({
-        url: 'http://127.0.0.1:8001/api/v1/recommand/create',
+        url: 'https://api.gitlini.com/api/v1/recommand/create',
         method: 'post',
         data: {
             "REPO_ID" : repo_id
@@ -64,7 +64,7 @@ async function fill_recommand_cards(repo){
         let author = repo[i].full_name.split('/')[0]
         let temp_html = `
         <div id="repo" value=${repo_id}></div>
-        <div class="repo-card" onclick="window.location.replace('/detail/${id}')">
+        <div class="repo-card" onclick="window.location.href='/detail/${id}'">
                 <img class="repo-image" id=${id} ></img>
                 <div class="repo-summary">
                 <div class="repo-items"><span class="material-icons-outlined">person</span>${author}</div>
@@ -319,3 +319,4 @@ async function delete_bookmark(){
         alert('error')
     })
 }
+

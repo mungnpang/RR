@@ -1,11 +1,12 @@
-from typing import List
 from django.http import HttpRequest
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 import requests
 from repositories.models import Repositories
 from user.models import UserModel
 import datetime
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import check_password
+from user.models import UserModel
 
 def visit_count_check(user_id):
     if user_id:
@@ -21,7 +22,6 @@ def visit_count_check(user_id):
         user.last_visit = now
         user.save()
     return 
-    
 
 def index_page(request: HttpRequest):
     visit_count_check(request.user.id)
@@ -55,7 +55,6 @@ def my_page(request: HttpRequest):
     
     return render(request, 'mypage.html', {'user_data':user_data,'repo_data':repo_data[::-1],'reco_data':reco_data, 'bookmark_data' : bookmark_data, 'comment_data' : comment_data})
 
-
 def detail_page(request: HttpRequest, repo_id: int):
     visit_count_check(request.user.id)
     repo = requests.get(f'http://127.0.0.1:8000/api/v1/repository/detail/{repo_id}').json()
@@ -67,3 +66,30 @@ def detail_page(request: HttpRequest, repo_id: int):
         return render(request, 'detail.html', {'repo':repo, 'comments':comments, 'replys':replys})
     else:
         return render(request, 'detail.html', {'repo':repo})
+
+@login_required
+def profile_page(request: HttpRequest):
+    visit_count_check(request.user.id)
+    if request.method == 'POST':
+        origin_password = request.POST.get("origin_password")
+        user = request.user
+        if check_password(origin_password, user.password):
+            new_password = request.POST.get("password1")
+            user.set_password(new_password)
+            user.save()
+            return redirect("account_logout")
+        else:
+            print('error')
+            error = {'message':"등록되어있는 비밀번호와 다릅니다."}
+            return render(request, 'account/edit_profile.html', {'error':error })
+    else:
+        return render(request, 'account/edit_profile.html')
+
+@login_required
+def nickname(request: HttpRequest):
+    if request.method == 'POST':
+        nickname = request.POST.get("username")
+        user = request.user
+        user.username = nickname
+        user.save()
+        return redirect('mypage')

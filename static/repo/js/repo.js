@@ -26,13 +26,13 @@ let keyword = ''
 
 function keyword_find(){
   return axios({
-    url: `http://127.0.0.1:8001/api/v1/recommand/searchkeyword/${keyword}`,
+    url: `https://api.gitlini.com/api/v1/recommand/searchkeyword/${keyword}`,
   })
 }
 
 function crawling(){
   return axios({
-    url: `http://127.0.0.1:8001/api/v1/recommand/crawling_data/`,
+    url: `https://api.gitlini.com/api/v1/recommand/crawling_data/`,
     method: 'post',
     data: {'KEYWORD': keyword}
   })
@@ -99,13 +99,12 @@ async function repository_fill(respositories){
     let language = respositories[i]['language']
     let id = respositories[i]['id']
     let author = respositories[i]['full_name'].split('/')[0]
-    console.log(language)
     let image = await language_image(language)
     if (language == 'None'){
       language = ''
     }
     let temp_html = ` 
-    <div class="repo-card" onclick="window.location.replace('/detail/${id}')">
+    <div class="repo-card" onclick="window.location.href='/detail/${id}'">
             <img class="repo-image" id=${id} ></img>
             <div class="repo-summary">
                 <div class="repo-items"><span class="material-icons-outlined">person</span>${author}</div>

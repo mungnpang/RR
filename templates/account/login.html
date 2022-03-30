@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+{% load static %}
 {% load i18n %}
 {% load account socialaccount %}
     <meta charset="UTF-8">
     <title>Sign in to GitHub Tutorials</title>
-    <link rel="stylesheet" href="../../static/account/css/login.css">
+    <link rel="stylesheet" href="{% static 'account/css/login.css' %}">
+    <link rel="shortcut icon" href="{% static 'icon/favicon.png' %}" type="image/x-icon">
+
 </head>
 <body>
     <div id="sign_in_box">
