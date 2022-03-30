@@ -8,25 +8,47 @@
     <link rel="shortcut icon" href="{% static 'icon/favicon.png' %}" type="image/x-icon">
 </head>
 <body>
-<div id="navbar_wrapper">
-
+<div id="navbar_container">
+    <div class ="navbar_item_wrapper">
+        <div id="navbar_home" class="navbar_items">
+            <a href="#"><img class="navbar_imgs" src="{% static 'main/img/home.png' %}" alt="home"></a>
+        </div>
+        <div id="navbar_history" class="navbar_items">
+            <a href="#"><img class="navbar_imgs" src="{% static 'main/img/history.png' %}" alt="history"></a>
+        </div>
+        <div id="navbar_tutorials" class="navbar_items">
+            <a href="#"><img class="navbar_imgs" src="{% static 'main/img/tutorials.png' %}" alt="tutorials"></a>
+        </div>
+        <div id="navbar_recommend" class="navbar_items">
+            <a href="#"><img class="navbar_imgs" src="{% static 'main/img/recommend.png' %}" alt="recommend"></a>
+        </div>
+        <div id="navbar_user" class="navbar_items">
+            <a href="#"><img class="navbar_imgs" src="{% static 'main/img/user.png' %}" alt="user"></a>
+        </div>
+    </div>
 </div>
 <div id="title_container">
-    <h1 id="project_title_text" class="extended-font0"><span class="text"></span><span class="blink">|</span></h1>
-    <h2 id="project_title_sub_text" class="extended-font0">Let's Git it</h2>
+    <div id="scroll_down_notice_wrapper">
+        <p id="scroll_down_text" class="extended-font0">Scroll down and checkout our service.</p>
+        <img id="down_arrow" src="{% static 'main/img/down_arrow.gif' %}">
+    </div>
+    <div class="project_title_wrapper">
+        <h2 id="project_title_sub_text" class="extended-font0">Let's Git it</h2>
+        <h1 id="project_title_text" class="extended-font0"><span class="text"></span><span class="blink">|</span></h1>
+    </div>
 </div>
 <div class="item_container">
     <div id="history_box" class="subtitle_box_row subtitle_box">
-        <h2 class="subtitle_text">About Git</h2>
+        <h2 class="subtitle_text">About<br>Git</h2>
         <div class="subtitle_item_wrapper">
             <p class="subtitle_description">Git? Github? 개발자들은 다들 쓴다는데 도대체 뭘까? 간단한 Git 과 Github의 배경부터 어떤 원리인지 한번 알아봅시다!</p>
             <button class="sub_item_btn" onclick="window.location.replace('{% url 'history' %}')">LEARN MORE</button>
         </div>
     </div>
 </div>
-<div class="item_container">
-    <div id="tutorials_box" class="subtitle_box_row subtitle_box">
-        <h2 class="subtitle_text">깃 튜토리얼</h2>
+<div id="tutorials_container" class="item_container">
+    <div id="tutorials_box" class="subtitle_box_row_reverse subtitle_box">
+        <h2 class="subtitle_text">Git<br>Tutorials</h2>
         <div class="subtitle_item_wrapper">
             <p class="subtitle_description">Git? Github? 개발자들은 다들 쓴다는데 도대체 뭘까? 간단한 Git 과 Github의 배경부터 어떤 원리인지 한번 알아봅시다!</p>
             <button class="sub_item_btn" onclick="">LEARN MORE</button>
@@ -35,7 +57,7 @@
 </div>
 <div class="item_container">
     <div id="history_box" class="subtitle_box_row subtitle_box">
-            <h2 class="subtitle_text">추천 repo</h2>
+            <h2 class="subtitle_text">Recommend<br>Repository</h2>
         <div class="subtitle_item_wrapper">
             <p class="subtitle_description">Git? Github? 개발자들은 다들 쓴다는데 도대체 뭘까? 간단한 Git 과 Github의 배경부터 어떤 원리인지 한번 알아봅시다!</p>
             <button class="sub_item_btn" onclick="window.location.replace('{% url 'repository' %}')">LEARN MORE</button>
