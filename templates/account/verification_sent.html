@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load i18n %}
+{% load account socialaccount %}
+{% load static %}
+    <meta charset="UTF-8">
+    <title>Sign in to GitHub Tutorials</title>
+    <link rel="stylesheet" href="{% static 'account/css/verification_sent.css' %}">
+</head>
+
+<body>
+    <div id="verification_wrap">
+      <h3>이메일을 발송해드렸습니다.</h3>
+      <p>몇분이내 이메일이 전달되지 않으셨을경우,</p>
+      <p>스팸메일함을 확인해주세요.</p>
+      <p>그래도 메일이 없을경우 연락부탁드립니다.</p>
+      <p>rrcomp13@gmail.com</p>
+    </div>
+    <div id="account_wrap">
+      <button class="verifi_btn" onclick="window.location.replace('{% url 'account_login' %}')"> Login 
+      <button class="verifi_btn" onclick="window.location.replace('{% url 'account_signup' %}')"> Sign-Up </button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+from typing import List
+from django.http import HttpRequest
+from django.shortcuts import render
+import requests
+from repositories.models import Repositories
+from user.models import UserModel
+import datetime
+
+def visit_count_check(user_id):
+    user = UserModel.objects.get(id=user_id)
+    now = datetime.datetime.now()
+    user_last_visit = user.last_visit
+    time = now-user_last_visit
+    if 'days' not in str(time):
+        time_hour = list(map(int,str(time).split('.')[0].split(':')))
+        if time_hour[0] == 0 and time_hour[1] < 30:
+            return
+    user.visit_count +=1
+    user.last_visit = now
+    user.save()
+    
+
+def index_page(request: HttpRequest):
+    visit_count_check(request.user.id)
+    return render(request, 'main_page.html')
+
+def history_page(request: HttpRequest):
+    visit_count_check(request.user.id)
+    return render(request, 'history.html')
+
+def repository_page(request: HttpRequest):
+    visit_count_check(request.user.id)
+    return render(request, 'repository.html')
+
+def my_page(request: HttpRequest):
+    user = request.user.id
+    visit_count_check(user)
+    user_data = UserModel.objects.get(id=user)
+    history = requests.get(f"http://127.0.0.1:8000/api/v1/mypage/read/{user}").json()
+    total = set(history['repo_history']+history['reco_history'])
+    repos = list(Repositories.objects.filter(id__in=total))
+    repo_data = [0 for _ in range(len(history['repo_history']))]
+    reco_data = [0 for _ in range(len(history['reco_history']))]
+    for repo in repos:
+        if repo.id in history['repo_history']:
+            repo_data[history['repo_history'].index(repo.id)] = repo
+        if repo.id in history['reco_history']:
+            reco_data[history['reco_history'].index(repo.id)] = repo
+    
+    return render(request, 'mypage.html', {'user_data':user_data,'repo_data':repo_data[::-1],'reco_data':reco_data})
+
+
+
+def detail_page(request: HttpRequest, repo_id: int):
+    visit_count_check(request.user.id)
+    repo = requests.get(f'http://127.0.0.1:8000/api/v1/repository/detail/{repo_id}').json()
+    comments = requests.get(f"http://127.0.0.1:8000/api/v1/comment/read/{repo_id}").json()
+    replys = requests.get(f"http://127.0.0.1:8000/api/v1/comment/read_reply/{repo_id}").json()
+    try:
+        comments['message']
+    except TypeError:
+        return render(request, 'detail.html', {'repo':repo, 'comments':comments, 'replys':replys})
+    else:
+        return render(request, 'detail.html', {'repo':repo})
