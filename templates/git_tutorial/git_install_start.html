@@ -1,0 +1,32 @@
+<div class="contents-wrap" id="git_install_start">
+    <h2>Git 설치하기</h2>
+    <p>1. Window</p>
+    <a href="https://git-scm.com/download/win">https://git-scm.com/downloads/win</a>
+    <p>2. Max</p>
+    <a href="https://git-scm.com/download/mac">https://git-scm.com/download/mac</a>
+    <h2>Git 시작하기</h2>
+    <div class="code-head"><span style="color: lawngreen"> me@work</span><span
+            style="color: deeppink">  MINGW64 ~</span>
+    </div>
+    <p class="code">git config --global user.name "본인이름"<br>
+        git config --global user.email "본인 이메일"
+    </p>
+    <p class="desc-box">Git bash에서 진행합니다.<br>커밋을 생성할 때 누가 만든 것인지 명시하기 위해 설정합니다. 처음에만 설정해주면 됩니다.</p>
+    <div class="code-head"><span style="color: lawngreen"> me@work</span><span
+            style="color: deeppink">  MINGW64 ~</span>
+    </div>
+    <p class="code">git config --list</p>
+    <p class="desc-box">config 설정 확인하기</p>
+    <div class="code-head"><span style="color: lawngreen"> me@work</span><span
+            style="color: deeppink">  MINGW64 ~</span>
+    </div>
+    <p class="code">git config --global init.defaultBranch main</p>
+    <p class="desc-box">기본 브랜치명을 main으로 변경합니다.<br>
+        기본 브랜치명은 master로 되어있는데 이 단어는 master/slave 를 연상시켜 권장되지 않고 있습니다.</p>
+    <p>git 저장소를 만들 프로젝트의 터미널에서 실행</p>
+    <div class="code-head"><span style="color: lawngreen"> me@work</span><span
+            style="color: deeppink">  MINGW64 ~</span>
+    </div>
+    <p class="code">git init</p>
+    <p class="desc-box">프로젝트 내에 git 저장소를 만듭니다. .git파일이 생성됩니다. (숨긴)</p>
+</div>

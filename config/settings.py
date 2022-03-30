@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'bookmark',
     'corsheaders',
     'render',
+    'tutorial',
+    'mypage',
 ]
 
 MIDDLEWARE = [

@@ -28,7 +28,7 @@ def read_get_one_bookmark(request: HttpRequest, repo_id: int) -> Bookmark:
     user = request.user.id
     bookmark = READ_GET_BOOKMARK(user, repo_id)
     if len(bookmark) == 0:
-        return JsonResponse({"result":"failed","message":"Bookmark is None"}, status=422)
+        return JsonResponse({"result":"failed","message":"Bookmark is None"})
     return JsonResponse({"result":"success"}, status=200)
 
 @login_required
@@ -48,3 +48,5 @@ def delete_bookmark(request: HttpRequest, delete_bookmark_request: DeleteBookmar
     if result:
         return JsonResponse({"result":"failed", "message":message}, status=422)
     return JsonResponse({"result":"success", "message": message}, status=201)
+
+

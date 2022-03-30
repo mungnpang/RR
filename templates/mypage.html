@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+    <title>My Page</title>
+    <meta charset="UTF-8">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="{% static 'mypage/css/mypage_style.css' %}">
+    <link rel="shortcut icon" href="{% static 'icon/favicon.png' %}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="desktop-screen">
+    <div class="mypage-head">
+        <div id="mypage-title">My Page</div>
+        <div id="btn-profile-edit">Edit Profile</div>
+    </div>
+    <div class="user-detail">
+        <div class="detail-box">
+            <div class="detail-subtitle">User Profile</div>
+            <div class="user-description">Username: {{ user_data.username }}</div>
+            <div class="user-description">Joined: {{ user_data.date_joined }}</div>
+            <div class="user-description">Total visit: {{ user_data.visit_count }} </div>
+            <div class="user-description">Total comments: </div>
+            <div class="user-description">Total bookmark: </div>
+        </div>
+        <div class="detail-box">
+            <div class="detail-subtitle">Recently Visited</div>
+            {% for visit in repo_data  %}
+            <div class="user-description"> {{ visit.repo_name }} </div>
+            {% endfor %}
+        </div>
+
+        <div class="detail-box">
+            <div class="detail-subtitle">Recently Recommended</div>
+            <div class="user-description"> mypage </div>
+        </div>
+
+        <div class="detail-box">
+            <div class="detail-subtitle">Written Comments</div>
+            <div class="user-description"> $</div>
+            <div class="user-comments">머신러닝 공부하는데 엄청 유용했습니다!!</div>
+            <div class="user-description"> $</div>
+            <div class="user-comments">이딴건 보지마세요..</div>
+        </div>
+    </div>
+
+    <h1 id="bookmark-title">Bookmarked Repositories</h1>
+    <div class="repo-container">
+        <div class="repo-card">
+            <div class="repo-image"></div>
+            <div class="repo-summary">
+                <div class="repo-bookmark"><span class="material-icons-outlined">bookmark_border</span></div>
+                <div class="repo-items"><span class="material-icons-outlined">home</span>https://github.com/</div>
+                <div class="repo-items"><span class="material-icons-outlined">star_outline</span>x </div>
+                <div class="repo-items"><span class="material-icons-outlined">topic</span></div>
+            </div>
+        </div>
+        <div class="repo-card"></div>
+        <div class="repo-card"></div>
+        <div class="repo-card"></div>
+        <div class="repo-card"></div>
+        <div class="repo-card"></div>
+        <div class="repo-card"></div>
+    </div>
+</div>
+
+<script>
+
+</script>
+
+</body>
+</html>

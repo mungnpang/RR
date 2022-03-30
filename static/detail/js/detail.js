@@ -20,6 +20,9 @@ async function bookmark(){
             $('#bookmark').attr('onclick','delete_bookmark()')
         }
     })
+    .catch(function(error){
+        
+    })
 }
 
 async function language_image(language){
@@ -45,6 +48,8 @@ async function recommand(){
     fill_recommand_cards(response.data)
 }
 
+let recommand_list = []
+
 async function fill_recommand_cards(repo){
     for (let i=0; i < repo.length ; i ++){
         let id = repo[i].id
@@ -52,8 +57,11 @@ async function fill_recommand_cards(repo){
         let name = repo[i].repo_name
         let stars = repo[i].stars
         let language = repo[i].language
-        let author = repo[i].full_name.split('/')[0]
         let image = await language_image(language)
+        if (language.length < 1){
+            language = ''
+        }
+        let author = repo[i].full_name.split('/')[0]
         let temp_html = `
         <div id="repo" value=${repo_id}></div>
         <div class="repo-card" onclick="window.location.replace('/detail/${id}')">
@@ -73,8 +81,22 @@ async function fill_recommand_cards(repo){
               'background-repeat': 'no-repeat',
               'background-position': 'center',
             })
+        recommand_list.push(id)
     }
-    
+    await create_history()
+}
+
+async function create_history(){
+    let id = window.location.href.split('/')[4]
+
+    await axios({
+        'url': 'http://127.0.0.1:8000/api/v1/mypage/create/',
+        'method':'post',
+        'data': {
+            "RECOMMAND": recommand_list,
+            "REPOSITORY": id
+        }
+    })
 }
 
 async function create_comment(){
