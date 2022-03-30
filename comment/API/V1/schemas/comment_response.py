@@ -12,6 +12,7 @@ class CommentsResponse(Schema):
     result: Optional[str]
     created_at: datetime
     reply: int
+    repo_id: int
     
 
 class CreateCommentResponse(Schema):

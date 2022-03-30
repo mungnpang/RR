@@ -99,9 +99,9 @@ async function repository_fill(respositories){
     let language = respositories[i]['language']
     let id = respositories[i]['id']
     let author = respositories[i]['full_name'].split('/')[0]
-    console.log(author)
+    console.log(language)
     let image = await language_image(language)
-    if (language == null){
+    if (language == 'None'){
       language = ''
     }
     let temp_html = ` 

@@ -16,6 +16,7 @@ from bookmark.models import Bookmark
 
 router = Router(tags=["Bookmark"])
 
+@login_required(login_url="/accounts/login")
 @router.get('/read/{user_id}', response={200: List[ReadBookmarkResponse]})
 def read_bookmark(request: HttpRequest, user_id: int) -> List[Bookmark]:
     bookmark = READ_BOOKMARK(user_id)
@@ -23,6 +24,7 @@ def read_bookmark(request: HttpRequest, user_id: int) -> List[Bookmark]:
         return JsonResponse({"result":"failed","message":"Bookmark is None"}, status=422)
     return bookmark
 
+@login_required(login_url="/accounts/login")
 @router.get('/read_get_one/{repo_id}', response={200: ReadBookmarkResponse})
 def read_get_one_bookmark(request: HttpRequest, repo_id: int) -> Bookmark:
     user = request.user.id
@@ -31,7 +33,7 @@ def read_get_one_bookmark(request: HttpRequest, repo_id: int) -> Bookmark:
         return JsonResponse({"result":"failed","message":"Bookmark is None"})
     return JsonResponse({"result":"success"}, status=200)
 
-@login_required
+@login_required(login_url="/accounts/login")
 @router.post('/create/', response={201:CreateBookmarkResponse})
 def create_bookmark(request: HttpRequest, create_bookmark_request: CreateBookmarkRequest) -> str:
     user = request.user.id
@@ -40,7 +42,7 @@ def create_bookmark(request: HttpRequest, create_bookmark_request: CreateBookmar
         return JsonResponse({"result":"failed","message" : message}, status=422)
     return JsonResponse({"result":"success","message" : message}, status=201)
 
-@login_required
+@login_required(login_url="/accounts/login")
 @router.delete('/delete', response={201:DeleteBookmarkResponse})
 def delete_bookmark(request: HttpRequest, delete_bookmark_request: DeleteBookmarkRequest) -> str:
     user = request.user.id

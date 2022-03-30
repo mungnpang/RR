@@ -17,6 +17,6 @@ class RepositoriesConfig(AppConfig):
         Prefix=('language_image/')
     )
     
-    language_img_list = language_img_load['Contents'][1:]
+    language_img_list = language_img_load['Contents']
     language_img_list = [i['Key'].split('/')[-1].split('.')[0] for i in language_img_list]
     

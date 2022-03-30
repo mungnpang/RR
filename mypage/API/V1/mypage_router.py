@@ -7,9 +7,11 @@ from mypage.API.V1.schemas import (
     )
 
 from mypage.services import CREATE_HISTORY, READ_HISTORY
+from django.contrib.auth.decorators import login_required
 
 router = Router(tags=["mypage"])
 
+@login_required(login_url="/accounts/login")
 @router.post('/create/', response = None)
 def Create_History(request: HttpRequest, create_history_request: Create_History_Request) -> None:
     recommand_list = create_history_request.RECOMMAND
@@ -17,9 +19,9 @@ def Create_History(request: HttpRequest, create_history_request: Create_History_
     user = request.user.id
     CREATE_HISTORY(user, repo_id, recommand_list)
 
+@login_required(login_url="/accounts/login")
 @router.get('/read/{user}', response={200: Read_Reponse})
 def Read_History(request: HttpRequest, user: int) -> dict:
     return READ_HISTORY(user)
 
-    
     

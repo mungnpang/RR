@@ -14,9 +14,11 @@ def CREATE_HISTORY(user_id: int, repo_id:int, repo_list: list) -> None:
         visit_list = user_info.recently_visit
         if len(visit_list) > 19:
             visit_list.pop(0)
-        if repo_id not in visit_list:
-            visit_list.append(repo_id)
-            user_info.recently_visit = visit_list
+        if repo_id in visit_list:
+            visit_list.remove(repo_id)
+        visit_list.append(repo_id)
+        print(visit_list)
+        user_info.recently_visit = visit_list
         user_info.recently_recommand = repo_list
         user_info.save()
 

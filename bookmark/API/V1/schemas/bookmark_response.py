@@ -1,11 +1,11 @@
 from typing import Optional
 from ninja import Schema
+from repositories.API.V1.schemas import ReadRepoResponse
 
 
 class ReadBookmarkResponse(Schema):
-    id: Optional[int]
-    user_id: Optional[int]
-    repo_id: Optional[int]
+    repo: ReadRepoResponse
+    
 
 class CreateBookmarkResponse(Schema):
     message: str
