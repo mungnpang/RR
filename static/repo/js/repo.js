@@ -26,13 +26,13 @@ let keyword = ''
 
 function keyword_find(){
   return axios({
-    url: `http://127.0.0.1:8001/api/v1/recommand/searchkeyword/${keyword}`,
+    url: `https://api.gitlini.com/api/v1/recommand/searchkeyword/${keyword}`,
   })
 }
 
 function crawling(){
   return axios({
-    url: `http://127.0.0.1:8001/api/v1/recommand/crawling_data/`,
+    url: `https://api.gitlini.com/api/v1/recommand/crawling_data/`,
     method: 'post',
     data: {'KEYWORD': keyword}
   })
@@ -40,7 +40,7 @@ function crawling(){
 
 function get_data(){
   return axios({
-    url: `http://127.0.0.1:8000/api/v1/repository/${keyword}/${index}`
+    url: `https://gitlini.com/api/v1/repository/${keyword}/${index}`
   })
 }
 
@@ -99,13 +99,12 @@ async function repository_fill(respositories){
     let language = respositories[i]['language']
     let id = respositories[i]['id']
     let author = respositories[i]['full_name'].split('/')[0]
-    console.log(language)
     let image = await language_image(language)
-    if (language == 'None'){
+    if (language == 'None' | language == null){
       language = ''
     }
     let temp_html = ` 
-    <div class="repo-card" onclick="window.location.replace('/detail/${id}')">
+    <div class="repo-card" onclick="window.location.href='/detail/${id}'">
             <img class="repo-image" id=${id} ></img>
             <div class="repo-summary">
                 <div class="repo-items"><span class="material-icons-outlined">person</span>${author}</div>
@@ -128,7 +127,7 @@ async function repository_fill(respositories){
 }
 
 async function language_image(language){
-  const response = await axios(`http://127.0.0.1:8000/api/v1/repository/language/${language}`)
+  const response = await axios(`https://gitlini.com/api/v1/repository/language/${language}`)
   return response.data.path
 }
 let loading_max = false
@@ -142,6 +141,6 @@ $('#repo_cards').scroll(function () {
     setTimeout(function() {
       search_result_is_already()
       $('.loading').hide()
-    }, 2500);
+    }, 2000);
   }
 })

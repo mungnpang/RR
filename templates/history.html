@@ -15,11 +15,14 @@
 
 </head>
 <body>
+{% include 'nav.html' %}
+{% block navbar %}
+{% endblock %}
 <div class="desktop-screen">
-    <div id="history-title"><p onclick="window.location.replace('{% url 'main' %}')">Github History</p></div>
+    <div id="history-title"><p onclick="window.location.href='{% url 'main' %}'">Github History</p></div>
     <div class="contents-container">
         <div class="history-index-container">
-            <div id="github-image"><img src="{% static 'history/img/github-icon.svg.png' %}" onclick="window.location.replace('{% url 'main' %}')"></div>
+            <div id="github-image"><img src="{% static 'history/img/github-icon.svg.png' %}" onclick="window.location.href='{% url 'main' %}'"></div>
             <div class="history-index">
                 <div class="history-intro">- Intro</div>
                 <div>- 역사적 배경

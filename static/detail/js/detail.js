@@ -12,7 +12,7 @@ $(document).ready(function(){
 async function bookmark(){
     let id = window.location.href.split('/')[4]
     await axios({
-        'url':`http://127.0.0.1:8000/api/v1/bookmark/read_get_one/${id}`
+        'url':`https://gitlini.com/api/v1/bookmark/read_get_one/${id}`
     })
     .then(function(response){
         if (response.data.result == 'success'){
@@ -26,7 +26,7 @@ async function bookmark(){
 }
 
 async function language_image(language){
-    const response = await axios(`http://127.0.0.1:8000/api/v1/repository/language/${language}`)
+    const response = await axios(`https://gitlini.com/api/v1/repository/language/${language}`)
     return response.data.path
   }
 
@@ -39,7 +39,7 @@ async function card_image(){
 async function recommand(){
     const repo_id = $('#repo').attr('value')
     const response = await axios({
-        url: 'http://127.0.0.1:8001/api/v1/recommand/create',
+        url: 'https://api.gitlini.com/api/v1/recommand/create',
         method: 'post',
         data: {
             "REPO_ID" : repo_id
@@ -64,7 +64,7 @@ async function fill_recommand_cards(repo){
         let author = repo[i].full_name.split('/')[0]
         let temp_html = `
         <div id="repo" value=${repo_id}></div>
-        <div class="repo-card" onclick="window.location.replace('/detail/${id}')">
+        <div class="repo-card" onclick="window.location.href='/detail/${id}'">
                 <img class="repo-image" id=${id} ></img>
                 <div class="repo-summary">
                 <div class="repo-items"><span class="material-icons-outlined">person</span>${author}</div>
@@ -90,7 +90,7 @@ async function create_history(){
     let id = window.location.href.split('/')[4]
 
     await axios({
-        'url': 'http://127.0.0.1:8000/api/v1/mypage/create/',
+        'url': 'https://gitlini.com/api/v1/mypage/create/',
         'method':'post',
         'data': {
             "RECOMMAND": recommand_list,
@@ -108,7 +108,7 @@ async function create_comment(){
         return
     }
     await axios({
-        url: 'http://127.0.0.1:8000/api/v1/comment/create/',
+        url: 'https://gitlini.com/api/v1/comment/create/',
         method: 'post',
         data : {
             'CONTENT': content,
@@ -130,7 +130,7 @@ async function create_reply(parent){
         return
     }
     await axios({
-        url: 'http://127.0.0.1:8000/api/v1/comment/create/',
+        url: 'https://gitlini.com/api/v1/comment/create/',
         method: 'post',
         data : {
             'CONTENT': content,
@@ -199,7 +199,7 @@ function delete_comment_confirm(id){
 
 async function delete_comment_run(id){
     await axios({
-        'url':'http://127.0.0.1:8000/api/v1/comment/delete',
+        'url':'https://gitlini.com/api/v1/comment/delete',
         'method':'delete',
         'data':{
             "COMMENT_ID" : id
@@ -256,7 +256,7 @@ async function update_comment_run(id){
         return
     }
     await axios({
-        url: 'http://127.0.0.1:8000/api/v1/comment/update',
+        url: 'https://gitlini.com/api/v1/comment/update',
         method: 'put',
         data : {
             'CONTENT': content,
@@ -277,7 +277,7 @@ async function update_comment_run(id){
 async function create_bookmark(){
     let id = window.location.href.split('/')[4]
     await axios({
-        'url':'http://127.0.0.1:8000/api/v1/bookmark/create/',
+        'url':'https://gitlini.com/api/v1/bookmark/create/',
         'method': 'post',
         'data': {
             "REPO_ID" : id
@@ -300,7 +300,7 @@ async function create_bookmark(){
 async function delete_bookmark(){
     let id = window.location.href.split('/')[4]
     await axios({
-        'url':'http://127.0.0.1:8000/api/v1/bookmark/delete',
+        'url':'https://gitlini.com/api/v1/bookmark/delete',
         'method': 'delete',
         'data' : {
             "REPO_ID" : id
@@ -319,3 +319,4 @@ async function delete_bookmark(){
         alert('error')
     })
 }
+

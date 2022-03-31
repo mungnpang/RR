@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block static %}
-    <link href="/static/tutorial/css/practice_push.css?ater" rel="stylesheet">
+    <link href="{% static 'tutorial/css/practice_push.css' %}" rel="stylesheet">
+{% endblock %}
+{% include 'nav.html' %}
+{% block navbar %}
 {% endblock %}
 {% block theme %}
+
     <a href="/tutorial/git/" style="text-decoration:none; color: white;">Git Tutorial</a>
+
 {% endblock %}
 {% block index %}
      <div>

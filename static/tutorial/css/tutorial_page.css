@@ -72,8 +72,16 @@ h2 {
 
 #intro {
     width: 80%;
-    background-color: #2ecc71;
     font-size: 0.8em;
-    margin: 10% auto;
-
+    margin: 120px auto;
+    padding: 100px;
+}
+#intro > h1{
+    margin-bottom: 5%;
+    font-weight: bolder;
+    text-shadow: 2px 2px 2px gray;
+}
+#intro > p{
+    font-size: 0.8em;
+    font-weight: bolder;
 }

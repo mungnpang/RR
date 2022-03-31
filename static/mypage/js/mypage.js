@@ -5,8 +5,9 @@ $(window).on("load",function () {
 async function language_image(){
     let count = $('#length').attr('value')
     let language_list = $(`#${count}`).attr('value')
+    console.log(language_list)
     await axios({
-        'url': `http://127.0.0.1:8000/api/v1/repository/language_many/`,
+        'url': `https://gitlini.com/api/v1/repository/language_many/`,
         'method':'post',
         'data':{
             'DATA':language_list
