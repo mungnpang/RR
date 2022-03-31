@@ -7,33 +7,37 @@ from user.models import UserModel
 import datetime
 from django.contrib.auth.decorators import login_required
 
+
 def visit_count_check(user_id):
     if user_id:
         user = UserModel.objects.get(id=user_id)
         now = datetime.datetime.now()
         user_last_visit = user.last_visit
-        time = now-user_last_visit
+        time = now - user_last_visit
         if 'days' not in str(time):
-            time_hour = list(map(int,str(time).split('.')[0].split(':')))
+            time_hour = list(map(int, str(time).split('.')[0].split(':')))
             if time_hour[0] == 0 and time_hour[1] < 30:
                 return
-        user.visit_count +=1
+        user.visit_count += 1
         user.last_visit = now
         user.save()
-    return 
-    
+    return
+
 
 def index_page(request: HttpRequest):
     visit_count_check(request.user.id)
     return render(request, 'main_page.html')
 
+
 def history_page(request: HttpRequest):
     visit_count_check(request.user.id)
     return render(request, 'history.html')
 
+
 def repository_page(request: HttpRequest):
     visit_count_check(request.user.id)
     return render(request, 'repository.html')
+
 
 @login_required(login_url="/accounts/login")
 def my_page(request: HttpRequest):
@@ -43,7 +47,7 @@ def my_page(request: HttpRequest):
     bookmark_data = requests.get(f"http://127.0.0.1:8000/api/v1/bookmark/read/{user}").json()
     comment_data = requests.get(f"http://127.0.0.1:8000/api/v1/comment/read_user/{user}").json()
     history = requests.get(f"http://127.0.0.1:8000/api/v1/mypage/read/{user}").json()
-    total = set(history['repo_history']+history['reco_history'])
+    total = set(history['repo_history'] + history['reco_history'])
     repos = list(Repositories.objects.filter(id__in=total))
     repo_data = [0 for _ in range(len(history['repo_history']))]
     reco_data = [0 for _ in range(len(history['reco_history']))]
@@ -52,8 +56,9 @@ def my_page(request: HttpRequest):
             repo_data[history['repo_history'].index(repo.id)] = repo
         if repo.id in history['reco_history']:
             reco_data[history['reco_history'].index(repo.id)] = repo
-    
-    return render(request, 'mypage.html', {'user_data':user_data,'repo_data':repo_data[::-1],'reco_data':reco_data, 'bookmark_data' : bookmark_data, 'comment_data' : comment_data})
+
+    return render(request, 'mypage.html', {'user_data': user_data, 'repo_data': repo_data[::-1], 'reco_data': reco_data,
+                                           'bookmark_data': bookmark_data, 'comment_data': comment_data})
 
 
 def detail_page(request: HttpRequest, repo_id: int):
@@ -64,6 +69,6 @@ def detail_page(request: HttpRequest, repo_id: int):
     try:
         comments['message']
     except TypeError:
-        return render(request, 'detail.html', {'repo':repo, 'comments':comments, 'replys':replys})
+        return render(request, 'detail.html', {'repo': repo, 'comments': comments, 'replys': replys})
     else:
-        return render(request, 'detail.html', {'repo':repo})
+        return render(request, 'detail.html', {'repo': repo})
