@@ -18,5 +18,8 @@
         <div id="navbar_user" class="navbar_items">
             <a href="{% url 'mypage' %}"><img class="navbar_imgs" src="{% static 'main/img/user.png' %}" alt="user"></a>
         </div>
+        <div id="navbar_logout" class="navbar_items">
+            <a href="{% url 'account_logout' %}"><img class="navbar_imgs" src="{% static 'main/img/logout.png' %}" alt="user"></a>
+        </div>
     </div>
 {% endblock %}
