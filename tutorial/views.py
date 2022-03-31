@@ -10,10 +10,7 @@ git_list = []
 def tuto(request):
 
     if request.method == "POST":
-        print("git_list:", git_list)
-
         command = request.POST.get("command")
-        print(command)
         if command == "git init":
             git_list.append("init")
             return JsonResponse({"msg": "원격 저장소가 생성되었습니다", "command": "init"})
@@ -51,9 +48,6 @@ def tuto(request):
         git_list.clear()
         return render(request, "practice_push.html")
 
-
-def history(request):
-    return render(request, "history.html")
 
 
 def git(request):
