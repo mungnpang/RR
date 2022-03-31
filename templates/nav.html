@@ -1,0 +1,22 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'base/navbar.css' %}">
+{% block navbar %}
+<div id="navbar_container">
+    <div class ="navbar_item_wrapper">
+        <div id="navbar_home" class="navbar_items">
+            <a href="{% url 'main' %}"><img class="navbar_imgs" src="{% static 'main/img/home.png' %}" alt="home"></a>
+        </div>
+        <div id="navbar_history" class="navbar_items">
+            <a href="{% url 'history' %}"><img class="navbar_imgs" src="{% static 'main/img/history.png' %}" alt="history"></a>
+        </div>
+        <div id="navbar_tutorials" class="navbar_items">
+            <a href="{% url 'git.html' %}"><img class="navbar_imgs" src="{% static 'main/img/tutorials.png' %}" alt="tutorials"></a>
+        </div>
+        <div id="navbar_recommend" class="navbar_items">
+            <a href="{% url 'repository' %}"><img class="navbar_imgs" src="{% static 'main/img/recommend.png' %}" alt="recommend"></a>
+        </div>
+        <div id="navbar_user" class="navbar_items">
+            <a href="{% url 'mypage' %}"><img class="navbar_imgs" src="{% static 'main/img/user.png' %}" alt="user"></a>
+        </div>
+    </div>
+{% endblock %}

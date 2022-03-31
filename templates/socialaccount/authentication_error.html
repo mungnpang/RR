@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'account/css/verification_sent.css' %}">
+    <title>Login_Failed</title>
+</head>
+
+<body>
+    <div id="verification_wrap">
+      <h3>소셜로그인에 실패하였습니다.</h3>
+      <p>잠시 후 다시 시도해주세요.</p>
+      <p>동일한 현상이 지속될경우 연락부탁드립니다.</p>
+      <p>rrcomp13@gmail.com</p>
+    </div>
+    <div id="account_wrap">
+      <button class="verifi_btn" onclick="window.location.href='{% url 'account_login' %}'"> Login 
+      <button class="verifi_btn" onclick="window.location.href='{% url 'account_signup' %}'"> Sign-Up </button>
+    </div>
+</body>
+</html>
