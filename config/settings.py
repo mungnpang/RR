@@ -11,8 +11,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-from config.local_settings import *
+from config.conf.local_settings import *
 import pymysql, os, json
+from typing import List
+from config.conf.social import github
+from config.conf.email import EMAIL
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,9 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS: List[str] = ["*"]
 
 
 # Application definition
@@ -39,10 +42,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sslserver',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+    'user',
+    'comment',
+    'repositories',
+    'bookmark',
+    'corsheaders',
+    'render',
+    'tutorial',
+    'mypage',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,6 +71,12 @@ MIDDLEWARE = [
 THIRDPARTY_MODULE = [
 
 ]
+
+CORS_ORIGIN_WHITELIST = [
+    'https://api.gitlini.com',
+    'https://gitlini.com',
+]
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'config.urls'
 
@@ -75,7 +97,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
-
+ASGI_APPLICATION = 'config.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -105,15 +127,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -137,8 +159,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-
-with open(os.path.join(BASE_DIR, 'config/aws.json')) as f:
+with open(os.path.join(BASE_DIR, 'config/conf/aws.json')) as f:
     secrets = json.loads(f.read())
 
 AWS_ACCESS_KEY_ID = secrets['AWS']['ACCESS_KEY_ID']
@@ -150,7 +171,39 @@ AWS_S3_SIGNATURE_VERSION = "s3v4"
 
 AWS_DEFAULT_ACL = 'public-read'
 
-# SSL 
+# ALLAUTH
+AUTH_USER_MODEL = 'user.UserModel'
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+LOGIN_URL = '/accounts/login'
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login'  
+SOCIALACCOUNT_LOGIN_ON_GET = True
+SOCIALACCOUNT_QUERY_EMAIL = True
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_EMAIL_REQUIRED = True 
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email' 
+# ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+# ACCOUNT_EMAIL_VERIFICATION = "mandatory" 
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_PASSWORD_INPUT_RENDER_VALUE = True
+SOCIALACCOUNT_PROVIDERS = {
+    "github": github
+}
+
+EMAIL
+EMAIL_HOST = EMAIL['EMAIL_HOST']
+EMAIL_PORT = EMAIL['EMAIL_PORT']
+EMAIL_HOST_USER = EMAIL['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = EMAIL['EMAIL_HOST_PASSWORD']
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = EMAIL['EMAIL_BACKEND'] 
+EMAIL_USE_TLS = True
+EMAIL_SUBJECT_PREFIX = " "
+ACCOUNT_EMAIL_SUBJECT_PREFIX = " "

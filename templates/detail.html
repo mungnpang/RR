@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+{% load tags %}
+    <title>Repositories</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'detail/css/detail.css' %}">
+    <link rel="shortcut icon" href="{% static 'icon/favicon.png' %}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script> 
+    <!-- AXIOS -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+{% include 'nav.html' %}
+{% block navbar %}
+{% endblock %}
+{% if repo.message %}
+    <h1>{{ repo.message }}</h1>
+{% else %}
+<div id="repo" value="{{repo.repo_id}}"></div>
+<div class="desktop-screen">
+    <div id="detail-title"><p onclick="window.location.href='{% url 'main' %}'">Repository Details</p></div>
+    <div class="target-detail-container">
+        <div class="target-detail">
+            <div class="target-image"><img id="image" src="https://i.imgur.com/vngEnqV.png"></div>
+            <div class="target-contents">
+                <div class="target-items"><span class="material-icons-outlined">person_outline</span>Username: {{ repo.full_name | split:'/' }}</div>
+                <div class="target-items"><span id="bookmark" class="material-icons-outlined" style="font-size: 35px; color:steelblue" onclick="create_bookmark()">bookmark_border</span></div>
+                <div class="target-items"><span class="material-icons-outlined">menu_book</span>Repository: {{ repo.repo_name }}</div>
+                <div class="target-items"><span class="material-icons-outlined">home</span>Address: <p onclick="window.location.href='http://github.com/{{repo.full_name}}'">Move to Github Page</p></div>
+                <div class="target-items"><span class="material-icons-outlined">star_outline</span>Stars: {{ repo.stars }}</div>
+                <div class="target-items"><span class="material-icons-outlined">account_tree</span>Forks: {{ repo.forks }}</div>
+                <div class="target-items"><span class="material-icons-outlined">schedule</span>Created: {{ repo.created }}</div>
+                <div id="language" class="target-items" value="{{repo.language}}"><span class="material-icons-outlined">language</span>Language: {{ repo.language }}</div>
+                <div class="target-items"><span class="material-icons-outlined">topic</span>Topics</div>
+                <div class="indentation">{{ repo.topics }}</div>
+                <div class="target-items"><span class="material-icons-outlined">description</span>Description</div>
+                <div class="indentation">{{ repo.description }}</div>
+                <div class="blank"></div>
+
+            </div>
+        </div>
+        <div class="target-comments">
+            <h1>Brief Comments</h1>
+            <div class="comments-container">
+                <div class="comments-wrap">
+                    {% if comments %}
+                        {% for comment in comments %}
+                        {% if comment.parent_comment_id == Null %}
+                        {% if user.username == comment.author.username %}
+                        <div class="comments" id="comment_{{comment.id}}"><span style="color: coral">{{ comment.author.username }}$</span> {{ comment.content }}</div>
+                        <div class="comments-addon">
+                            <div>
+                                <p class="time-checker">{{comment.created_at | time}}</p>
+                                <p class="add-reply"onclick="reply_run({{comment.id}})">답글 달기</p>
+                            </div>
+                            <div class="more" style="position: relative;">
+                                <div class="more_icon">
+                                    <span id="more_icon_{{comment.id}}"class="material-icons-outlined">more</span>
+                                </div>
+                                <div class="more_option" id="more_option_{{comment.id}}">
+                                    <div onclick="update_comment_set({{comment.id}},false)">수정</div>
+                                    <div onclick="delete_comment_confirm({{comment.id}})">삭제</div>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="comments"><span>{{ comment.author.username }}$</span> {{ comment.content }}</div>
+                        <div class="comments-addon_dif">
+                            <p class="time-checker">{{comment.created_at | time}}</p>
+                            <p class="add-reply"onclick="reply_run({{comment.id}})">답글 달기</p>
+                        </div>
+                        {% endif %}
+                        <div class="reply-nav" id="{{comment.id}}_reply">
+                            <input id="{{comment.id}}" class="comments-input" placeholder="write reply here."></input>
+                            <div>
+                                <button class="send-comments" onclick="reply_cancle({{comment.id}})">취소</button>
+                                <button class="send-comments" onclick="create_reply({{comment.id}})">답글</button>
+                            </div>
+                            
+                        </div>
+                        {% if comment.reply > 0 %}
+                        <p id="show_{{comment.id}}" class="show-reply" onclick="show_reply({{comment.id}})">ㅡ 답글 보기 ({{comment.reply}}개)</p>
+                        <p id="hide_{{comment.id}}" class="hide-reply" onclick="hide_reply({{comment.id}})">ㅡ 답글 숨기기</p>
+                        <div class="reply_for_{{comment.id}}" style="display: none; margin-bottom: 10px;">
+                        {% for reply in replys %}
+                            {% if comment.id == reply.parent_comment_id  %}    
+                                {% if user.username == reply.author.username %}    
+                                <div class="reply_contain">
+                                    <div class="reply_front">
+                                        <div id="reply_{{reply.id}}" class="comments-reply"><span style="color:coral;">{{ reply.author.username }} $</span> {{ reply.content }}</div>
+                                        <p class="time-checker">{{reply.created_at | time}}</p>
+                                    </div>
+                                    
+                                    <div class="more_reply" id="more_reply_{{reply.id}}">
+                                        <div class="more_icon_reply">
+                                            <span id="more_icon_{{reply.id}}"class="material-icons-outlined">more</span>
+                                        </div>
+                                        <div class="more_option_reply" id="more_option_{{reply.id}}">
+                                            <div onclick="update_comment_set({{reply.id}}, true)">수정</div>
+                                            <div onclick="delete_comment_confirm({{reply.id}})">삭제</div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>    
+                                {% else %}
+                                <div class="reply_front">
+                                    <div id="reply_{{reply.id}}" class="comments-reply"><span>{{ reply.author.username }} $</span> {{ reply.content }}</div>
+                                    <p class="time-checker">{{reply.created_at | time}}</p>
+                                </div>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="comments-nav">
+                <label class="username">{{ user }} $</label>
+                <div class="send_nav">
+                    <button id="cancle" class="send-comments" onclick="update_comment_cancle('{{user.username}}')">취소</button>
+                    <button id="submit" class="send-comments" onclick="create_comment()">작성</button>
+                </div>
+                
+            </div>
+            <textarea id="comment_create" class="comments-input" rows="3" maxlength="200" placeholder="write comments here."></textarea>
+            {% else %}
+            <div class="comments-nav">
+            </div>
+            <textarea readonly style="cursor: pointer;" class="comments-input" rows="3" maxlength="200" placeholder="This service requires login. &#13;&#10;if you want login, please click here" onclick="login_confirm({{repo.id}})"></textarea>
+            {% endif %}
+        </div>
+    </div>
+    <div id="relevant-title">Relevant Repositories</div>
+    <div class="repo-container">
+    </div>
+</div>
+{% endif %}
+
+<script src="{% static 'detail/js/detail.js' %}"></script>
+
+</body>
+</html>

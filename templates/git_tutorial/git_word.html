@@ -1,0 +1,29 @@
+<div class="contents-wrap" id="git_word">
+    <h2>Git을 사용하기 위해 알아야 할 용어</h2>
+    <p>1. 저장소 (Repository)</p>
+    <p class="desc">우리가 Git으로 관리하는 모든 내용이 담긴 폴더</p>
+    <p class="desc-box">
+        로컬 저장소 (local repository) : 인터넷없이 접속이 가능한 본인의 컴퓨터에 있는 Git 저장소. git을 사용하면 .git 폴더가 생성되는데 이것이 Git 로컬
+        저장소입니다.<br>
+        원격 저장소 (remote repository) : 인터넷으로 접속이 가능한 저장소. 원격 저장소를 만들고, 나의 로컬 저장소를 공유할 수 있는 사이트가 대표적으로 GitHub입니다.
+    </p>
+    <p>2. 커밋 (Commit)</p>
+    <p>하나의 버전 = 하나의 커밋</p>
+    <p class="desc-box">파일 및 폴더의 추가, 변경 사항들이 있을 때 하나의 커밋을 생성하여 저장합니다. 저장된 커밋들이 있기에 과거로 되돌리거나 변경 내역을 확인 할 수
+        있습니다.</p>
+    <p>3. 브랜치 (Branch)</p>
+    <p class="desc">작업 공간</p>
+    <p class="desc-box">저장소를 생성하면 기본적으로 main 브랜치가 생성이 됩니다. 보통 main 브랜치에서는 프로젝트의 최종본을 작업하고, 새로운 기능을 추가하려고 한다면 새로운
+        브랜치를 생성합니다. 새로운 기능은 새로운 브랜치에서 작업을 한 뒤 main 브랜치와 합치는 방식입니다.</p>
+    <p>4. HEAD</p>
+    <p class="desc">현재 브랜치의 가장 최신 커밋을 가리키는 것.</p>
+    <h2>Git으로 관리하는 법</h2>
+    <img src="https://support.nesi.org.nz/hc/article_attachments/360004194235/Git_Diagram.svg">
+    <p class="desc">Working Directory : 현재 작업 중인 디렉토리</p>
+    <p class="desc">Staging Area : git add 명령어로 커밋으로 만들 파일들을 올려놓습니다. 이 과정을 스테이징이라고 합니다.</p>
+    <p class="desc">Local Repository : git commit 명령어로 Staging Area 에 있는 파일들로 커밋을 생성합니다. 생성된 커밋들은 로컬 저장소에
+        저장됩니다.</p>
+    <p class="desc">Remote Repository : git push 명령어로 로컬 저장소에 있는 커밋들을 원격 저장소에 올립니다. 반대로 git pull 명령어로 원격 저장소에 있는
+        내용들을 Working Directory로 가져옵니다.</p>
+
+</div>

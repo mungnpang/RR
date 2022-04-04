@@ -11,8 +11,11 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media
-django.key
+conf/
 django.crt
+django.key
+.elasticbeanstalk/
+.idea/
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
@@ -244,5 +247,7 @@ cython_debug/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,django
 
-# AWS
-aws.json
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

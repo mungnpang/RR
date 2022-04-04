@@ -1,0 +1,32 @@
+.navbar_item_wrapper {
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50px;
+  position: fixed;
+  right: 20px;
+  top: 30vh;
+  border-radius: 24px;
+  border: solid 3px;
+  transition: 1s;
+  padding: 5px;
+  z-index: 999;
+}
+
+.navbar_items {
+  margin: 12px 10px;
+}
+
+.navbar_imgs {
+  width: 40px;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: 1s;
+}
+
+.navbar_imgs:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
