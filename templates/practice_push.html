@@ -118,7 +118,10 @@
                                                                                 <p>📁 static</p>`
                             break
                     }
+                    document.getElementById('command').value = '';
+                    
                 })
+                
                 .catch(error => {
                     console.log(error)
                 })

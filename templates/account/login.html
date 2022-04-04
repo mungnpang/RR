@@ -52,10 +52,10 @@
     <div class="create_account_box">
         <p class="normal_text">New to here? <a class="linked_text" href="{% url 'account_signup'%}">Create an account</a>.</p>
     </div>
-    {% if redirect_field_name %}
-    <div id="social_in_box" onclick="window.location.href='/accounts/github/login/?{{ redirect_field_name }}={{ redirect_field_value }}'">
-    {% else %}
+    {% if redirect_field_value is None %}
     <div id="social_in_box" onclick="window.location.href='/accounts/github/login/?process=login'">
+    {% else %}
+    <div id="social_in_box" onclick="window.location.href='/accounts/github/login/?{{ redirect_field_name }}={{ redirect_field_value }}'">
     {% endif %}
         <div class="github">
             <svg id="github_icon" height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github color-fg-on-emphasis">
