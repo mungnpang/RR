@@ -12,7 +12,6 @@ class test_bookmark_api(TestCase):
         self.bookmark_1 = Create_Bookmark(self.user_1.id, self.repo_1.id)
         self.bookmark_2 = Create_Bookmark(self.user_1.id, self.repo_2.id)
         
-        
     # CREATE_BOOKMARK
     def test_create_bookmark_api(self) -> None:
         # Given
