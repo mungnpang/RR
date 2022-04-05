@@ -3,7 +3,10 @@ from typing import List
 from django.test import TestCase
 
 from comment.models import Comment
-from comment.tests.services.comment_service import Create_Comment, Delete_Comment, Read_Comment, Update_Comment
+from comment.tests.services.comment_service import (Create_Comment,
+                                                    Delete_Comment,
+                                                    Read_Comment,
+                                                    Update_Comment)
 from repositories.models import Repositories
 from repositories.tests.services.repo_services import CREATE_REPO_DATA
 from user.models import UserModel

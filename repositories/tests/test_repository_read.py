@@ -3,7 +3,9 @@ from typing import List
 from django.test import TestCase
 
 from repositories.models import Repositories
-from repositories.tests.services.repo_services import CREATE_REPO_DATA, READ_DETAIL_REPO_DATA, READ_REPO_DATA
+from repositories.tests.services.repo_services import (CREATE_REPO_DATA,
+                                                       READ_DETAIL_REPO_DATA,
+                                                       READ_REPO_DATA)
 
 
 class Test_read_repository(TestCase):

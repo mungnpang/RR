@@ -7,7 +7,8 @@ from django.http import HttpRequest, HttpResponse, JsonResponse, response
 from ninja import Router
 
 from render.templatetags.tags import language_list
-from repositories.API.V1.schemas import LanguageRequest, LanguageResponse, ReadRepoResponse, RepoRequest
+from repositories.API.V1.schemas import (LanguageRequest, LanguageResponse,
+                                         ReadRepoResponse, RepoRequest)
 from repositories.apps import RepositoriesConfig
 from repositories.models import Repositories
 from repositories.services import read_detail_repo, read_repo

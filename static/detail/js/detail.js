@@ -219,7 +219,6 @@ function update_comment_set(id,reply){
     let text = ''
     if (reply == true){
         text = $(`#reply_${id}`).text().split("$ ")[1]
-        console.log(text)
     } else if (reply == false){
         text = $(`#comment_${id}`).text().split("$ ")[1]
     }

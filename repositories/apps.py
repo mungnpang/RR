@@ -1,7 +1,8 @@
 import boto3
 from django.apps import AppConfig
 
-from config.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_STORAGE_BUCKET_NAME
+from config.settings import (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY,
+                             AWS_STORAGE_BUCKET_NAME)
 
 
 class RepositoriesConfig(AppConfig):

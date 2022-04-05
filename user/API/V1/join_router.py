@@ -1,14 +1,9 @@
 from django.http import HttpRequest, JsonResponse
 from ninja import Router
 
-from user.API.V1.schemas import (
-    IdCheckRequest,
-    IdCheckResponse,
-    NickNameCheckRequest,
-    NickNameCheckResponse,
-    PassWordCheckRequest,
-    PassWordCheckResponse,
-)
+from user.API.V1.schemas import (IdCheckRequest, IdCheckResponse,
+                                 NickNameCheckRequest, NickNameCheckResponse,
+                                 PassWordCheckRequest, PassWordCheckResponse)
 from user.services import IDCHECK, NAMECHECK, PASSWORDCHECK
 
 router = Router(tags=["user"])

@@ -15,9 +15,9 @@ from bookmark.API.V1.schemas import (
 from bookmark.models import Bookmark
 from bookmark.services import (
     create_bookmark,
+    delete_bookmark,
     read_bookmark,
     read_get_bookmark,
-    delete_bookmark,
 )
 
 router = Router(tags=["Bookmark"])
@@ -46,7 +46,7 @@ def read_get_one_bookmark(request: HttpRequest, repo_id: int) -> Bookmark:
 @router.post("/create/", response={201: CreateBookmarkResponse})
 def bookmark_create(
     request: HttpRequest, create_bookmark_request: CreateBookmarkRequest
-) -> dict[str, str]:
+) -> dict:
     user = request.user.id
     bookmark = create_bookmark(user, create_bookmark_request.REPO_ID)
     if bookmark:
@@ -58,7 +58,7 @@ def bookmark_create(
 @router.delete("/delete", response={201: DeleteBookmarkResponse})
 def bookmark_delete(
     request: HttpRequest, delete_bookmark_request: DeleteBookmarkRequest
-) -> dict[str, str]:
+) -> dict:
     user = request.user.id
     try:
         delete_bookmark(user, delete_bookmark_request.REPO_ID)
