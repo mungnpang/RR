@@ -1,4 +1,5 @@
 from typing import List
+from urllib.error import HTTPError
 from django.http import HttpRequest, JsonResponse, response, HttpResponse
 from ninja import Router
 from render.templatetags.tags import language_list
@@ -21,9 +22,10 @@ router = Router(tags=["repository"])
 
 @router.get("/detail/{repo}", response=ReadRepoResponse)
 def Repo_Read_One(request: HttpRequest, repo: int) -> Repositories:
-    repo = READ_DETAIL_REPO(repo)
-    if type(repo) == str:
-        return JsonResponse({"message" : repo}, status=422)
+    try:
+        repo = READ_DETAIL_REPO(repo)
+    except Repositories.DoesNotExist:
+        return HTTPError(404, f"Repository #{repo} Not Found.")
     return repo
 
 @router.get("/language/{lang}", response=LanguageResponse)
@@ -51,6 +53,6 @@ def Language_imgs_Read(request: HttpRequest, language_request: LanguageRequest) 
 def Repo_Read(request: HttpRequest, keyword: str, index: int ) -> List[Repositories]:
     keyword = re.sub('[^a-zA-Z0-9가-힣]','',keyword)
     repos = READ_REPO(keyword)
-    if type(repos) == str:
+    if not len(repos):
         return JsonResponse({"message" : repos}, status=422)
     return list(repos)[12*index:12*(index+1)]
