@@ -78,22 +78,18 @@
         <div class="bookmark_is_none"> 등록되어있는 Bookmark가 없습니다. </div>
         {% else %}
         <div class="repo-container">
-        {% for bookmark in bookmark_data %}
         <div id="length" value="{{len}}"></div>
+        {% for bookmark in bookmark_data %}
         <div class="repo-card" onclick="window.location.href='/detail/{{bookmark.repo.id}}'">
-            {% if bookmark.repo.language is None %}
-            <img class="repo-image" id="{{forloop.counter}}" value="{{ ' ' | language:len }}"></img>
-            {% else %}
-            <img class="repo-image" id="{{forloop.counter}}" value="{{ bookmark.repo.language | language:len }}"></img>
-            {% endif %}
+            <img class="repo-image" id="{{forloop.counter}}" value="{{ bookmark.repo.language }}"></img>
             <div class="repo-summary">
                 <div class="repo-items"><span class="material-icons-outlined">person</span>{{ bookmark.repo.full_name | split:'/' }}</div>
                 <div class="repo-items"><span class="material-icons-outlined">article</span>{{bookmark.repo.repo_name}}</div>
                 <div class="repo-items"><span class="material-icons-outlined">star_outline</span>{{bookmark.repo.stars}}</div>
-                {% if bookmark.repo.language is None %}
-                <div class="repo-items"><span class="material-icons-outlined">public</span> </div>
-                {% else %}
+                {% if bookmark.repo.language and bookmark.repo.language != 'None' %}
                 <div class="repo-items"><span class="material-icons-outlined">public</span>{{bookmark.repo.language}}</div>
+                {% else %}
+                <div class="repo-items"><span class="material-icons-outlined">public</span> </div>
                 {% endif %}
             </div>
         </div>
