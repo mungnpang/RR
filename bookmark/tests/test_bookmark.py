@@ -2,7 +2,9 @@ from django.db.utils import IntegrityError
 from django.test import TestCase
 
 from bookmark.models import Bookmark
-from bookmark.tests.services.bookmark_service import Create_Bookmark, Delete_BookMark, Read_Bookmark
+from bookmark.tests.services.bookmark_service import (Create_Bookmark,
+                                                      Delete_BookMark,
+                                                      Read_Bookmark)
 from repositories.tests.services import CREATE_REPO_DATA
 from user.tests.services import join_service
 

@@ -1,8 +1,8 @@
 from typing import Any, List
 from urllib.error import HTTPError
-from django.db.utils import IntegrityError
 
 from django.contrib.auth.decorators import login_required
+from django.db.utils import IntegrityError
 from django.http import HttpRequest, HttpResponse, JsonResponse, response
 from ninja import Router
 
@@ -32,7 +32,7 @@ router = Router(tags=["comment"])
 def comment_read_user(request: HttpRequest, user: int) -> List[Comment]:
     comments = read_user_comments(user)
     if len(comments) == 0:
-        raise HTTPError(404, "Comment is None")
+        return JsonResponse({"message": "Comment is None"}, status=404)
     return comments
 
 
@@ -40,7 +40,7 @@ def comment_read_user(request: HttpRequest, user: int) -> List[Comment]:
 def comment_read(request: HttpRequest, repo: str) -> List[Comment]:
     comments = read_comments(int(repo))
     if len(comments) == 0:
-        raise HTTPError(404, "Comment is None")
+        return JsonResponse({"message": "Comment is None"}, status=404)
     return comments
 
 
@@ -48,7 +48,7 @@ def comment_read(request: HttpRequest, repo: str) -> List[Comment]:
 def comment_reply_read(request: HttpRequest, repo: str) -> List[Comment]:
     replys = read_replys(int(repo))
     if len(replys) == 0:
-        raise HTTPError(404, "Reply is None")
+        return JsonResponse({"message": "Comment is None"}, status=404)
     return replys
 
 
@@ -61,9 +61,7 @@ def comment_create(
     try:
         create_comment(
             user_id,
-            create_comment_request.REPO_ID,
-            create_comment_request.CONTENT,
-            create_comment_request.PARENT_COMMENT_ID,
+            create_comment_request,
         )
     except IntegrityError:
         raise HTTPError(422, "Empty Space")

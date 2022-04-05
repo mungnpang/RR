@@ -1,6 +1,7 @@
 from django.urls import path
 
-from render.views import detail_page, history_page, index_page, my_page, nickname, profile_page, repository_page
+from render.views import (detail_page, history_page, index_page, my_page,
+                          nickname, profile_page, repository_page)
 
 urlpatterns = [
     path("", index_page, name="main"),
