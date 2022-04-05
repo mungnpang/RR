@@ -1,6 +1,8 @@
-from user.models import UserModel
 from asgiref.sync import sync_to_async
+
+from user.models import UserModel
 from user.services.validator import validation
+
 
 @sync_to_async
 def IDCHECK(email: str) -> str:
