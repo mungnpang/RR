@@ -1,54 +1,67 @@
-from os import stat
 from typing import List
+from urllib.error import HTTPError
+
+from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from ninja import Router
+
 from bookmark.API.V1.schemas import (
     CreateBookmarkRequest,
     CreateBookmarkResponse,
-    ReadBookmarkResponse,
     DeleteBookmarkRequest,
-    DeleteBookmarkResponse
+    DeleteBookmarkResponse,
+    ReadBookmarkResponse,
 )
-
-from django.contrib.auth.decorators import login_required
-from bookmark.services import CREATE_BOOKMARK, READ_BOOKMARK, DELETE_BOOKMARK, READ_GET_BOOKMARK
 from bookmark.models import Bookmark
+from bookmark.services import (
+    create_bookmark,
+    read_bookmark,
+    read_get_bookmark,
+    delete_bookmark,
+)
 
 router = Router(tags=["Bookmark"])
 
+
 @login_required(login_url="/accounts/login")
-@router.get('/read/{user_id}', response={200: List[ReadBookmarkResponse]})
-def read_bookmark(request: HttpRequest, user_id: int) -> List[Bookmark]:
-    bookmark = READ_BOOKMARK(user_id)
+@router.get("/read/{user_id}", response={200: List[ReadBookmarkResponse]})
+def bookmark_read(request: HttpRequest, user_id: int) -> List[Bookmark]:
+    bookmark = read_bookmark(user_id)
     if len(bookmark) == 0:
-        return JsonResponse({"result":"failed","message":"Bookmark is None"}, status=422)
+        raise HTTPError(404, "Bookmark is None")
     return bookmark
 
+
 @login_required(login_url="/accounts/login")
-@router.get('/read_get_one/{repo_id}', response={200: ReadBookmarkResponse})
+@router.get("/read_get_one/{repo_id}", response={200: ReadBookmarkResponse})
 def read_get_one_bookmark(request: HttpRequest, repo_id: int) -> Bookmark:
     user = request.user.id
-    bookmark = READ_GET_BOOKMARK(user, repo_id)
+    bookmark = read_get_bookmark(user, repo_id)
     if len(bookmark) == 0:
-        return JsonResponse({"result":"failed","message":"Bookmark is None"})
-    return JsonResponse({"result":"success"}, status=200)
+        raise HTTPError(404, "Bookmark is None")
+    return JsonResponse({"result": "success"}, status=200)
+
 
 @login_required(login_url="/accounts/login")
-@router.post('/create/', response={201:CreateBookmarkResponse})
-def create_bookmark(request: HttpRequest, create_bookmark_request: CreateBookmarkRequest) -> str:
+@router.post("/create/", response={201: CreateBookmarkResponse})
+def bookmark_create(
+    request: HttpRequest, create_bookmark_request: CreateBookmarkRequest
+) -> dict[str, str]:
     user = request.user.id
-    result, message = CREATE_BOOKMARK(user, create_bookmark_request.REPO_ID)
-    if result:
-        return JsonResponse({"result":"failed","message" : message}, status=422)
-    return JsonResponse({"result":"success","message" : message}, status=201)
+    bookmark = create_bookmark(user, create_bookmark_request.REPO_ID)
+    if bookmark:
+        return JsonResponse({"result": "success"}, status=201)
+    raise HTTPError(404, "Bookmark is None")
+
 
 @login_required(login_url="/accounts/login")
-@router.delete('/delete', response={201:DeleteBookmarkResponse})
-def delete_bookmark(request: HttpRequest, delete_bookmark_request: DeleteBookmarkRequest) -> str:
+@router.delete("/delete", response={201: DeleteBookmarkResponse})
+def bookmark_delete(
+    request: HttpRequest, delete_bookmark_request: DeleteBookmarkRequest
+) -> dict[str, str]:
     user = request.user.id
-    result, message =  DELETE_BOOKMARK(user, delete_bookmark_request.REPO_ID)
-    if result:
-        return JsonResponse({"result":"failed", "message":message}, status=422)
-    return JsonResponse({"result":"success", "message": message}, status=201)
-
-
+    try:
+        bookmark = delete_bookmark(user, delete_bookmark_request.REPO_ID)
+    except Bookmark.DoesNotExist:
+        raise HTTPError(404, "Bookmark is None")
+    return JsonResponse({"result": "success"}, status=201)
