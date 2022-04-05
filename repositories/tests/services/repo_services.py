@@ -1,6 +1,6 @@
 from typing import List
 from repositories.models import Repositories
-from random import random, randrange
+from random import randrange
 
 def CREATE_REPO_DATA(index: int, keyword: str) -> Repositories:
     return Repositories.objects.create(
@@ -13,7 +13,6 @@ def CREATE_REPO_DATA(index: int, keyword: str) -> Repositories:
             language = "python",
             stars = randrange(1,500),
             forks = randrange(1,500),
-            subscribers = randrange(1,500),
             topics = ["test","tdd","python","django"]
         )
         

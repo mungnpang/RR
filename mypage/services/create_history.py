@@ -1,7 +1,7 @@
 from mypage.models import Mypage
 
 
-def CREATE_HISTORY(user_id: int, repo_id:int, repo_list: list) -> None:
+def create_history(user_id: int, repo_id:int, repo_list: list) -> None:
     try:
         user_info = Mypage.objects.get(user_id=user_id)
     except Mypage.DoesNotExist:
@@ -17,7 +17,6 @@ def CREATE_HISTORY(user_id: int, repo_id:int, repo_list: list) -> None:
         if repo_id in visit_list:
             visit_list.remove(repo_id)
         visit_list.append(repo_id)
-        print(visit_list)
         user_info.recently_visit = visit_list
         user_info.recently_recommand = repo_list
         user_info.save()
