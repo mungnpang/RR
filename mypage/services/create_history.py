@@ -1,15 +1,11 @@
 from mypage.models import Mypage
 
 
-def create_history(user_id: int, repo_id:int, repo_list: list) -> None:
+def create_history(user_id: int, repo_id: int, repo_list: list) -> None:
     try:
         user_info = Mypage.objects.get(user_id=user_id)
     except Mypage.DoesNotExist:
-        Mypage.objects.create(
-        user_id = user_id,
-        recently_visit = repo_id,
-        recently_recommand = repo_list
-        )
+        Mypage.objects.create(user_id=user_id, recently_visit=repo_id, recently_recommand=repo_list)
     else:
         visit_list = user_info.recently_visit
         if len(visit_list) > 19:
@@ -20,5 +16,3 @@ def create_history(user_id: int, repo_id:int, repo_list: list) -> None:
         user_info.recently_visit = visit_list
         user_info.recently_recommand = repo_list
         user_info.save()
-
-

@@ -1,19 +1,14 @@
-from comment.models import Comment
 from django.db.transaction import atomic
 
+from comment.models import Comment
+
+
 @atomic
-def DELETE_COMMENT(comment_id: int)-> str:
-    try:
-        comment = Comment.objects.get(id=comment_id)
-    except Comment.DoesNotExist:
-        return True, "Comment is None"
-    reply = comment.parent_comment_id
+def delete_comment(comment_id: int) -> None:
+    comment = Comment.objects.get(id=comment_id)
     comment.delete()
+    reply = comment.parent_comment_id
     if reply:
         reply_parent = Comment.objects.get(id=reply)
         reply_parent.reply -= 1
         reply_parent.save()
-            
-    
-    return False, "Delete Success"
-

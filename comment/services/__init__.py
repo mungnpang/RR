@@ -1,4 +1,4 @@
-from .read_comments import COMMENTS_READ, REPLYS_READ, COMMENTS_READ_USER
-from .create_comment import COMMENTS_CREATE
-from .update_comment import COMMENT_UPDATE
-from .delete_comment import DELETE_COMMENT
+from .create_comment import create_comment
+from .delete_comment import delete_comment
+from .read_comments import read_comments, read_replys, read_user_comments
+from .update_comment import update_comment

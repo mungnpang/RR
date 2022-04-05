@@ -1,2 +1,2 @@
-from .repo_request import RepoRequest, LanguageRequest
-from .repo_response import ReadRepoResponse, LanguageResponse
+from .repo_request import LanguageRequest, RepoRequest
+from .repo_response import LanguageResponse, ReadRepoResponse

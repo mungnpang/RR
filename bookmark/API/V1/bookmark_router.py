@@ -51,7 +51,7 @@ def bookmark_create(
     bookmark = create_bookmark(user, create_bookmark_request.REPO_ID)
     if bookmark:
         return JsonResponse({"result": "success"}, status=201)
-    raise HTTPError(404, "Bookmark is None")
+    raise HTTPError(404, "User or Repository is None")
 
 
 @login_required(login_url="/accounts/login")
@@ -61,7 +61,7 @@ def bookmark_delete(
 ) -> dict[str, str]:
     user = request.user.id
     try:
-        bookmark = delete_bookmark(user, delete_bookmark_request.REPO_ID)
+        delete_bookmark(user, delete_bookmark_request.REPO_ID)
     except Bookmark.DoesNotExist:
         raise HTTPError(404, "Bookmark is None")
     return JsonResponse({"result": "success"}, status=201)
