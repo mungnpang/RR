@@ -25,7 +25,7 @@ def repo_read_one(request: HttpRequest, repo: int) -> Repositories:
     try:
         repo = read_detail_repo(repo)
     except Repositories.DoesNotExist:
-        return HTTPError(404, f"Repository #{repo} Not Found.")
+        raise HTTPError(404, f"Repository #{repo} Not Found.")
     return repo
 
 @router.get("/language/{lang}", response=LanguageResponse)
@@ -54,5 +54,5 @@ def repo_read(request: HttpRequest, keyword: str, index: int ) -> List[Repositor
     keyword = re.sub('[^a-zA-Z0-9가-힣]','',keyword)
     repos = read_repo(keyword)
     if not len(repos):
-        return JsonResponse({"message" : repos}, status=422)
+        raise HTTPError(404, f"Keyword #{keyword} Not Found")
     return list(repos)[12*index:12*(index+1)]
