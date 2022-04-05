@@ -1,9 +1,10 @@
-from django.test import TestCase
-from  user.tests.services import join_service
-from repositories.tests.services import CREATE_REPO_DATA
-from bookmark.tests.services.bookmark_service import Create_Bookmark, Read_Bookmark, Delete_BookMark
-from bookmark.models import Bookmark
 from django.db.utils import IntegrityError
+from django.test import TestCase
+
+from bookmark.models import Bookmark
+from bookmark.tests.services.bookmark_service import Create_Bookmark, Delete_BookMark, Read_Bookmark
+from repositories.tests.services import CREATE_REPO_DATA
+from user.tests.services import join_service
 
 
 class Test_bookmark(TestCase):
@@ -15,19 +16,17 @@ class Test_bookmark(TestCase):
         self.bookmark_1 = Create_Bookmark(self.user_1.id, self.repo_1.id)
         self.bookmark_2 = Create_Bookmark(self.user_2.id, self.repo_2.id)
 
-
     # CREATE_BOOKMARK
     def test_create_bookmark(self) -> str:
         create = Create_Bookmark(self.user_1.id, self.repo_2.id)
         self.assertIsInstance(create, Bookmark)
-    
+
     # CREATE_BOOKMARK_UNIQUE_VALID
     def test_create_bookmark_unique(self) -> str:
         create = Create_Bookmark(self.user_1.id, self.repo_2.id)
         self.assertIsInstance(create, Bookmark)
         with self.assertRaises(IntegrityError):
             Create_Bookmark(self.user_1.id, self.repo_1.id)
-        
 
     # CREATE_BOOKMARK_FAILED
     def test_create_bookmark_failed(self) -> str:
@@ -54,7 +53,7 @@ class Test_bookmark(TestCase):
         read = Read_Bookmark(4)
         self.assertEqual(read, "User is None")
 
-    # DELETE_BOOKMARK 
+    # DELETE_BOOKMARK
     def test_delete_bookmark(self) -> str:
         read = Read_Bookmark(self.user_1.id)
         self.assertEqual(len(read), 1)
@@ -64,9 +63,9 @@ class Test_bookmark(TestCase):
 
     # DELETE_BOOKMARK FAILED
     def test_delete_bookmark_failed(self) -> str:
-        delete = Delete_BookMark(99,self.repo_1.id)
+        delete = Delete_BookMark(99, self.repo_1.id)
         self.assertEqual(delete, "User is None")
-        delete = Delete_BookMark(self.user_1.id,99)
+        delete = Delete_BookMark(self.user_1.id, 99)
         self.assertEqual(delete, "Repository is None")
-        delete = Delete_BookMark(self.user_2.id,self.repo_1.id)
+        delete = Delete_BookMark(self.user_2.id, self.repo_1.id)
         self.assertEqual(delete, "Bookmark is None")
