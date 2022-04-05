@@ -10,17 +10,6 @@ def split(str, key):
     return str.split(key)[0]
 
 
-@register.filter(name="language")
-def language_list(language, length, list=[]):
-    list.append(language)
-    if length < len(list):
-        list.clear()
-        list.append(language)
-    if len(list) == length:
-        return ",".join(list)
-    return language
-
-
 @register.filter(name="time")
 def timezone(time):
     now = datetime.now()

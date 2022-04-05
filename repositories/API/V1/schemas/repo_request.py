@@ -8,4 +8,4 @@ class RepoRequest(Schema):
 
 
 class LanguageRequest(Schema):
-    DATA: str
+    DATA: List

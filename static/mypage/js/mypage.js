@@ -4,7 +4,12 @@ $(window).on("load",function () {
 
 async function language_image(){
     let count = $('#length').attr('value')
-    let language_list = $(`#${count}`).attr('value')
+    let language_list = []
+    for (let i=0; i < count; i ++){
+        let language = $(`#${i+1}`).attr('value')
+        language_list.push(language)
+    }
+    
     await axios({
         'url': `https://gitlini.com/api/v1/repository/language_many/`,
         'method':'post',
