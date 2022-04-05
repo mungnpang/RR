@@ -1,27 +1,33 @@
 from typing import List
-from django.http import HttpRequest
+from urllib.error import HTTPError
+from django.http import HttpRequest, JsonResponse
 from ninja import Router
 from mypage.API.V1.schemas import (
     Create_History_Request,
     Read_Reponse
     )
 
-from mypage.services import CREATE_HISTORY, READ_HISTORY
+from mypage.services import create_history, read_history
 from django.contrib.auth.decorators import login_required
+from mypage.models import Mypage
 
 router = Router(tags=["mypage"])
 
 @login_required(login_url="/accounts/login")
 @router.post('/create/', response = None)
-def Create_History(request: HttpRequest, create_history_request: Create_History_Request) -> None:
+def create_user_history(request: HttpRequest, create_history_request: Create_History_Request) -> None:
     recommand_list = create_history_request.RECOMMAND
     repo_id = create_history_request.REPOSITORY
     user = request.user.id
-    CREATE_HISTORY(user, repo_id, recommand_list)
+    create_history(user, repo_id, recommand_list)
 
 @login_required(login_url="/accounts/login")
 @router.get('/read/{user}', response={200: Read_Reponse})
-def Read_History(request: HttpRequest, user: int) -> dict:
-    return READ_HISTORY(user)
+def read_user_history(request: HttpRequest, user: int) -> dict:
+    try:
+        user_info = read_history(user)
+    except Mypage.DoesNotExist:
+        raise HTTPError(404, "User Not Found")
+    return JsonResponse({'repo_history':user_info.recently_visit, 'reco_history':user_info.recently_recommand})
 
     
