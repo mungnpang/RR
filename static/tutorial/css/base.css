@@ -22,7 +22,7 @@
   height: 85vh;
   margin: auto;
   border-radius: 10px;
-  background-color: lightslategrey;
+  background-color: #1b1a2a;
   /*background: rgb(191,95,240);*/
   /*background: linear-gradient(120deg, rgba(191,95,240,1) 30%, rgba(93,103,232,1) 60%, rgba(134,179,240,1) 90%);*/
   opacity: 0.9;
@@ -36,7 +36,7 @@
   border-radius: 7px;
   background: white;
   margin-left: 2%;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 .index-container > .index {
   width: 90%;

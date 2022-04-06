@@ -1,6 +1,6 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-
+import codecs
 git_list = []
 
 
@@ -8,7 +8,6 @@ git_list = []
 
 
 def tuto(request):
-
     if request.method == "POST":
         command = request.POST.get("command")
         if command == "git init":
@@ -54,11 +53,11 @@ def tuto(request):
         return render(request, "practice_push.html")
 
 
+
 def git(request):
     return render(request, "tutorial_page.html")
 
 
-import codecs
 
 
 def git_index_click(request, name):
