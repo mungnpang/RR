@@ -5,20 +5,37 @@ from django.http import HttpRequest, JsonResponse
 from ninja import Router
 from ninja.errors import HttpError
 
-from mypage.API.V1.schemas import Create_History_Request, Read_Reponse
+from mypage.API.V1.schemas import (
+    Create_History_Recommand_Request,
+    Create_History_Repository_Request,
+    Read_Reponse,
+)
 from mypage.models import Mypage
-from mypage.services import create_history, read_history
+from mypage.services import (
+    create_history_repository,
+    create_history_recocommand,
+    read_history,
+)
 
 router = Router(tags=["mypage"])
 
 
 @login_required(login_url="/accounts/login")
-@router.post("/create/", response=None)
-def create_user_history(request: HttpRequest, create_history_request: Create_History_Request) -> None:
-    recommand_list = create_history_request.RECOMMAND
-    repo_id = create_history_request.REPOSITORY
+@router.post("/create/repo", response=None)
+def create_user_history(
+    request: HttpRequest, create_history_request: Create_History_Repository_Request
+) -> None:
     user = request.user.id
-    create_history(user, repo_id, recommand_list)
+    create_history_repository(user, create_history_request.REPOSITORY)
+
+
+@login_required(login_url="/accounts/login")
+@router.post("/create/reco", response=None)
+def create_user_history(
+    request: HttpRequest, create_history_request: Create_History_Recommand_Request
+) -> None:
+    user = request.user.id
+    create_history_recocommand(user, create_history_request.RECOMMAND)
 
 
 @login_required(login_url="/accounts/login")
