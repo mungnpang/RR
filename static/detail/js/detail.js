@@ -21,7 +21,6 @@ async function bookmark(){
         }
     })
     .catch(function(error){
-        
     })
 }
 
@@ -220,7 +219,6 @@ function update_comment_set(id,reply){
     let text = ''
     if (reply == true){
         text = $(`#reply_${id}`).text().split("$ ")[1]
-        console.log(text)
     } else if (reply == false){
         text = $(`#comment_${id}`).text().split("$ ")[1]
     }
@@ -293,7 +291,10 @@ async function create_bookmark(){
         }
     })
     .catch(function(error){
-        alert(error)
+        let confirm_result = confirm("로그인이 필요한 서비스입니다. 로그인페이지로 이동하시겠습니까?")
+        if (confirm_result == true){
+            window.location.href=`/accounts/login/?next=/detail/${id}`
+        }
     })
 }
 
@@ -320,3 +321,9 @@ async function delete_bookmark(){
     })
 }
 
+function login_confirm(id){
+    let confirm_result = confirm("로그인이 필요한 서비스입니다. 로그인페이지로 이동하시겠습니까?")
+    if (confirm_result == true){
+        window.location.href=`/accounts/login/?next=/detail/${id}`
+    }
+}

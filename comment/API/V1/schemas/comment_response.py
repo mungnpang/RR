@@ -1,7 +1,10 @@
 from datetime import datetime
 from typing import Optional
+
 from ninja import Schema
+
 from user.API.V1.schemas.join_response import UserNameResponse
+
 
 class CommentsResponse(Schema):
     id: int
@@ -13,13 +16,15 @@ class CommentsResponse(Schema):
     created_at: datetime
     reply: int
     repo_id: int
-    
+
 
 class CreateCommentResponse(Schema):
     message: str
 
+
 class UpdateCommentResponse(Schema):
-    message: str 
+    message: str
+
 
 class DeleteCommentResponse(Schema):
-    message: str 
+    message: str

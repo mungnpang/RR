@@ -137,7 +137,7 @@
             {% else %}
             <div class="comments-nav">
             </div>
-            <textarea readonly class="comments-input" rows="3" maxlength="200" placeholder="This service requires login. &#13;&#10;if you want login, please click here" onclick="window.location.href='{% url 'account_login' %}'"></textarea>
+            <textarea readonly style="cursor: pointer;" class="comments-input" rows="3" maxlength="200" placeholder="This service requires login. &#13;&#10;if you want login, please click here" onclick="login_confirm({{repo.id}})"></textarea>
             {% endif %}
         </div>
     </div>

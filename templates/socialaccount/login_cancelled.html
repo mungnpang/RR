@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load i18n %}
+{% load account socialaccount %}
+{% load static %}
+    <meta charset="UTF-8">
+    <title>Sign in to GitHub Tutorials</title>
+    <link rel="stylesheet" href="{% static 'account/css/verification_sent.css' %}">
+</head>
+
+<body>
+    <div id="verification_wrap">
+        <h1>로그인 취소됨</h1>
+      <p>기존 계정중 하나를 사용한 로그인을 취소하였습니다. 실수로 인한 경우, 로그인을 진행해 주세요.</p>
+    </div>
+    <div id="account_wrap">
+      <button class="verifi_btn" onclick="window.location.href ='{% url 'account_login' %}'"> Login 
+      <button class="verifi_btn" onclick="window.location.href ='{% url 'account_signup' %}'"> Sign-Up </button>
+    </div>
+</body>
+</html>

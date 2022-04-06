@@ -1,2 +1,2 @@
-from .create_history import CREATE_HISTORY
-from .read_history import READ_HISTORY
+from .create_history import create_history
+from .read_history import read_history
