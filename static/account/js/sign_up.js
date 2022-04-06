@@ -52,7 +52,7 @@ async function valid_check(input_id) {
     body: JSON.stringify(data)
 })
 .then(response => response.json())
-if (response['result'] == "success"){
+if (response['result'] == true){
     if (input_id == "email"){
         $('#password_wrap').show()
     } else if (input_id == "password1"){
@@ -70,7 +70,7 @@ if (response['result'] == "success"){
     } 
 } else {
     $(`#${input_id}_check`).attr('value','False')
-    $(`#${input_id}_check`).text(response['message'])
+    $(`#${input_id}_check`).text(response['detail'])
     $(`#${input_id}_check`).show()
     $(`#${input_id}_icon`).attr('class','check_false')
     $(`#${input_id}_icon`).attr('viewBox', '0 0 320 512')

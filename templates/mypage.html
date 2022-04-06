@@ -74,7 +74,7 @@
 
     <h1 id="bookmark-title">Bookmarked Repositories</h1>
         {% with len=bookmark_data|length%}
-        {% if bookmark_data.result %}
+        {% if not bookmark_data %}
         <div class="bookmark_is_none"> 등록되어있는 Bookmark가 없습니다. </div>
         {% else %}
         <div class="repo-container">

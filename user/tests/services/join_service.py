@@ -1,4 +1,5 @@
 import json
+from typing import Optional
 
 from django.test import Client
 
@@ -9,26 +10,26 @@ class join_service:
     def create_user(email: str, nickname: str) -> UserModel:
         return UserModel.objects.create(username=nickname, email=email)
 
-    def check_to_id_modify(email: str) -> str:
+    def check_to_id_modify(email: str) -> json:
         client = Client()
         return client.post(
             "/api/v1/user/emailcheck",
-            json.dumps({"EMAIL": email}),
-            content_type="mutlpart_from xform",
-        )
-
-    def check_to_pw_modify(password: str) -> str:
-        client = Client()
-        return client.post(
-            "/api/v1/user/passwordcheck",
-            json.dumps({"PASSWORD": password}),
+            data=json.dumps({"EMAIL": email}),
             content_type="application/json",
         )
 
-    def check_to_name_modify(nickname: str) -> str:
+    def check_to_pw_modify(password: str) -> json:
         client = Client()
         return client.post(
-            "/api/v1/user/nicknamecheck",
-            json.dumps({"NICKNAME": nickname}),
+            "/api/v1/user/password1check",
+            data={"PASSWORD1": password},
+            content_type="application/json",
+        )
+
+    def check_to_name_modify(nickname: str) -> json:
+        client = Client()
+        return client.post(
+            "/api/v1/user/usernamecheck",
+            data={"USERNAME": nickname},
             content_type="application/json",
         )

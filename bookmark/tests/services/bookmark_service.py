@@ -1,34 +1,35 @@
 from typing import List
 
+from ninja.errors import HttpError
+
 from bookmark.models import Bookmark
 from repositories.models import Repositories
 from user.models import UserModel
 
 
-def Create_Bookmark(user_id: int, repo_id: int) -> Bookmark:
+def create_bookmark(user_id: int, repo_id: int) -> None:
     if not UserModel.objects.filter(id=user_id).exists():
-        return "User is None"
+        raise HttpError(404, "User Not Found")
     if not Repositories.objects.filter(id=repo_id).exists():
-        return "Repository is None"
-    return Bookmark.objects.create(
+        raise HttpError(404, "Repository Not Found")
+    Bookmark.objects.create(
         user_id=user_id,
         repo_id=repo_id,
     )
 
 
-def Read_Bookmark(user_id: int) -> List[Bookmark]:
+def read_bookmark(user_id: int) -> List[Bookmark]:
     if not UserModel.objects.filter(id=user_id).exists():
-        return "User is None"
+        raise HttpError(404, "User Not Found")
     return list(Bookmark.objects.filter(user_id=user_id))
 
 
-def Delete_BookMark(user_id: int, repo_id: int) -> str:
+def delete_bookmark(user_id: int, repo_id: int) -> None:
     if not UserModel.objects.filter(id=user_id).exists():
-        return "User is None"
+        raise HttpError(404, "User Not Found")
     if not Repositories.objects.filter(id=repo_id).exists():
-        return "Repository is None"
+        raise HttpError(404, "Repository Not Found")
     delete = Bookmark.objects.filter(user_id=user_id, repo_id=repo_id)
     if not delete.exists():
-        return "Bookmark is None"
+        raise HttpError(404, "Bookmark Not Found")
     delete.delete()
-    return "Delete Success"

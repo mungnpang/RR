@@ -1,7 +1,7 @@
 from typing import Optional
 
-from comment.models import Comment
 from comment.API.V1.schemas import CreateCommentRequest
+from comment.models import Comment
 
 
 def create_comment(author: int, CreateCommentRequest) -> None:

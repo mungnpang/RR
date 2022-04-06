@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-{% load static %}
+<!--    {% load static %}-->
     <title>Repositories</title>
     <meta charset="UTF-8">
 <!-- JQuery -->
@@ -10,7 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-    <link href="{% static 'tutorial/css/base.css' %}" rel="stylesheet">
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link href="/static/tutorial/css/base.css?after" rel="stylesheet">
+
     {% block static %}
     
     {% endblock %}
