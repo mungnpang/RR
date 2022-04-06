@@ -69,30 +69,47 @@ function search_keyword(e, step){
 
 function search_result_is_none(){
   crawling(keyword)
+  .catch(function (error){
+    if (error.response && error.response.status == 404){
+      let temp_html = `
+      <h3 style="color: ghostwhite;text-align: center;">죄송합니다.<br>'${keyword}'에 해당하는 검색결과가 없습니다.</h3>
+      `
+      $('#repo_cards').append(temp_html)
+      $('.loading').hide()
+      $('#repo_cards').css({
+        'justify-content': 'center',
+        'align-items': 'center'
+      })
+    }
+  })
+  .then(function (response){
+    get_data(keyword)
     .then(function (response){
-      get_data(keyword)
-      .then(function (response){
-        $('.desktop-screen').hide()
-        $('.search-result').show()
-          repository_fill(response.data)
-        })
+      repository_fill(response.data)
     })
+    })
+    $('.desktop-screen').hide()
+    $('.search-result').show()
 }
 
 function search_result_is_already(){
   get_data(keyword)
   .then(function (response){
-    $('.desktop-screen').hide()
-    $('.search-result').show()
-    repository_fill(response.data)
-    if (response.data.length != 12){
+  $('.desktop-screen').hide()
+  $('.search-result').show()
+  repository_fill(response.data)
+  if (response.data.length != 12){
       loading_max = true
-    }
-    index = index + 1
+  }
+  index = index + 1
   })
+
+    
 }
 
 async function repository_fill(respositories){
+  $('#repo_cards').removeAttr('style')
+  console.log($('#repo_cards').scrollTop(), $('#repo_cards').innerHeight(), $('#repo_cards')[0].scrollHeight)
   for (let i= 0;  i < respositories.length; i++){
     let name = respositories[i]['repo_name']
     let stars = respositories[i]['stars']

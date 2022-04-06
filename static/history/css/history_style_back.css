@@ -8,8 +8,8 @@
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background: #1b1a2a;
-  opacity: 0.9;
+  background: #0d1117;
+  opacity: 1;
 }
 
 #history-title {
@@ -29,7 +29,12 @@
   height: 80vh;
   margin: auto;
   border-radius: 10px;
-  background: #0f0e17;
+  background: rgb(190, 149, 123);
+  background: linear-gradient(
+    120deg,
+    rgba(190, 149, 123, 1) 30%,
+    rgba(221, 198, 182, 1) 70%
+  );
   opacity: 0.9;
   display: flex;
   align-items: center;
@@ -44,14 +49,12 @@
   opacity: 0.8;
   box-shadow: 2px 2px 5px black;
   overflow: auto;
-  -ms-overflow-style: none;
 }
 
 .history-index {
   width: 80%;
-  margin-top: 3vh;
+  margin-top: 5vh;
   margin-left: 2vw;
-  overflow: auto;
 }
 
 .history-intro {
@@ -113,7 +116,6 @@
 .subtitle {
   font-size: 3rem;
   font-weight: bold;
-  text-shadow: 1px 1px 2px gray;
 }
 
 .contents-area::-webkit-scrollbar {

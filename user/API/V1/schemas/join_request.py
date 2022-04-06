@@ -11,3 +11,7 @@ class PassWordCheckRequest(Schema):
 
 class NickNameCheckRequest(Schema):
     USERNAME: str
+
+
+class EmailDBCheckRequest(Schema):
+    EMAIL: str
