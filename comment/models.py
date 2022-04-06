@@ -1,4 +1,5 @@
 from django.db import models
+from pydantic import validator
 
 from repositories.models import Repositories
 from user.models import UserModel

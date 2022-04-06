@@ -1,13 +1,13 @@
 from django.test import TestCase
 
-from repositories.tests.services.repo_services import CREATE_REPO_DATA
+from repositories.tests.services.repo_services import create_repo_data
 
 
 class test_repository_api(TestCase):
     def setUp(self) -> None:
-        self.repo_1 = CREATE_REPO_DATA(1, "test")
-        self.repo_2 = CREATE_REPO_DATA(2, "test")
-        self.repo_3 = CREATE_REPO_DATA(3, "django")
+        self.repo_1 = create_repo_data(1, "test")
+        self.repo_2 = create_repo_data(2, "test")
+        self.repo_3 = create_repo_data(3, "django")
 
     # READ_REPO
     def test_read_api(self) -> None:
@@ -28,14 +28,15 @@ class test_repository_api(TestCase):
     # READ_REPO FAILED
     def test_read_api_failed(self) -> None:
         # Given
-        keyword = ""
+        keyword = " "
 
         # When
-        response = self.client.get(f"/api/v1/repository/{keyword}")
+        response = self.client.get(f"/api/v1/repository/{keyword}/0")
 
         # Then
         self.assertEqual(404, response.status_code)
-        self.assertEqual(response.json()["message"], "Keyword is Empty")
+        response = response.json()
+        self.assertEqual(response["detail"], "Keyword Not Found")
 
     # READ_DETAIL_REPO
     def test_detail_read_api(self) -> None:
@@ -58,5 +59,6 @@ class test_repository_api(TestCase):
         response = self.client.get(f"/api/v1/repository/detail/{repo_id}")
 
         # Then
-        self.assertEqual(422, response.status_code)
-        self.assertEqual(response.json()["message"], "Repository is None")
+        self.assertEqual(404, response.status_code)
+        response = response.json()
+        self.assertEqual(response["detail"], "Repository Not Found.")

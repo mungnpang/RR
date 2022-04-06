@@ -1,9 +1,9 @@
 from typing import List
-from urllib.error import HTTPError
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, JsonResponse
 from ninja import Router
+from ninja.errors import HttpError
 
 from mypage.API.V1.schemas import Create_History_Request, Read_Reponse
 from mypage.models import Mypage
@@ -27,7 +27,7 @@ def read_user_history(request: HttpRequest, user: int) -> dict:
     try:
         user_info = read_history(user)
     except Mypage.DoesNotExist:
-        raise HTTPError(404, "User Not Found")
+        raise HttpError(404, "User Not Found")
     return JsonResponse(
         {
             "repo_history": user_info.recently_visit,

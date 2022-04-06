@@ -1,4 +1,4 @@
-from .idcheck import IDCHECK
-from .namecheck import NAMECHECK
-from .pwcheck import PASSWORDCHECK
+from .idcheck import idcheck
+from .namecheck import namecheck
+from .pwcheck import passwordcheck
 from .validator import validation

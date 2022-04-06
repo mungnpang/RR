@@ -4,7 +4,7 @@ from typing import List
 from repositories.models import Repositories
 
 
-def CREATE_REPO_DATA(index: int, keyword: str) -> Repositories:
+def create_repo_data(index: int, keyword: str) -> Repositories:
     return Repositories.objects.create(
         keyword=keyword,
         repo_id=index,
@@ -19,14 +19,9 @@ def CREATE_REPO_DATA(index: int, keyword: str) -> Repositories:
     )
 
 
-def READ_DETAIL_REPO_DATA(repo_id: int) -> Repositories:
-    try:
-        repo = Repositories.objects.get(id=repo_id)
-    except Repositories.DoesNotExist:
-        return "Data is None"
-    else:
-        return repo
+def read_detail_repo_data(repo_id: int) -> Repositories:
+    return Repositories.objects.get(id=repo_id)
 
 
-def READ_REPO_DATA(keyword: str) -> List[Repositories]:
+def read_repo_data(keyword: str) -> List[Repositories]:
     return list(Repositories.objects.filter(keyword=keyword))
