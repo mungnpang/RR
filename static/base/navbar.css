@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+  box-sizing: unset;
+}
+
 .navbar_item_wrapper {
   background: #ffffff;
   display: flex;
