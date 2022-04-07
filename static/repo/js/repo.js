@@ -87,6 +87,19 @@ function search_result_is_none(){
     .then(function (response){
       repository_fill(response.data)
     })
+    .catch(function (error){
+      if (error.response && error.response.status == 404){
+        let temp_html = `
+        <h3 style="color: ghostwhite;text-align: center;">죄송합니다.<br>'${keyword}'에 해당하는 검색결과가 없습니다.</h3>
+        `
+        $('#repo_cards').append(temp_html)
+        $('.loading').hide()
+        $('#repo_cards').css({
+          'justify-content': 'center',
+          'align-items': 'center'
+        })
+      }
+    })
     })
     $('.desktop-screen').hide()
     $('.search-result').show()

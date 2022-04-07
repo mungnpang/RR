@@ -33,7 +33,7 @@
                 <div class="target-items"><span class="material-icons-outlined">person_outline</span>Username: {{ repo.full_name | split:'/' }}</div>
                 <div class="target-items"><span id="bookmark" class="material-icons-outlined" style="font-size: 35px; color:steelblue" onclick="create_bookmark()">bookmark_border</span></div>
                 <div class="target-items"><span class="material-icons-outlined">menu_book</span>Repository: {{ repo.repo_name }}</div>
-                <div class="target-items"><span class="material-icons-outlined">home</span>Address: <p onclick="window.location.href='http://github.com/{{repo.full_name}}'">Move to Github Page</p></div>
+                <div class="target-items"><span class="material-icons-outlined">home</span>Address: <p onclick="window.open('http://github.com/{{repo.full_name}}')">Move to Github Page</p></div>
                 <div class="target-items"><span class="material-icons-outlined">star_outline</span>Stars: {{ repo.stars }}</div>
                 <div class="target-items"><span class="material-icons-outlined">account_tree</span>Forks: {{ repo.forks }}</div>
                 <div class="target-items"><span class="material-icons-outlined">schedule</span>Created: {{ repo.created }}</div>
