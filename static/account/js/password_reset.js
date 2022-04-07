@@ -11,7 +11,7 @@ async function email_validation(){
     let email = $('#id_email').val()
     
     await axios({
-        url: 'http://127.0.0.1:8000/api/v1/user/email_db_check',
+        url: 'https://gitlini.com/api/v1/user/email_db_check',
         method: 'post',
         data: {
             "EMAIL" : email
