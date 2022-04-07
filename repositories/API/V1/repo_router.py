@@ -6,12 +6,8 @@ from django.http import HttpRequest, HttpResponse, JsonResponse, response
 from ninja import Router
 from ninja.errors import HttpError
 
-from repositories.API.V1.schemas import (
-    LanguageRequest,
-    LanguageResponse,
-    ReadRepoResponse,
-    RepoRequest,
-)
+from repositories.API.V1.schemas import (LanguageRequest, LanguageResponse,
+                                         ReadRepoResponse, RepoRequest)
 from repositories.apps import RepositoriesConfig
 from repositories.models import Repositories
 from repositories.services import read_detail_repo, read_repo
@@ -33,16 +29,8 @@ def language_img_read(request: HttpRequest, lang: str) -> dict:
     img_list = RepositoriesConfig.language_img_list
     if lang in img_list:
         lang = quote(lang, safe="")
-        return JsonResponse(
-            {
-                "path": f"https://rrproject.s3.ap-northeast-2.amazonaws.com/language_image/{lang}.svg"
-            }
-        )
-    return JsonResponse(
-        {
-            "path": "https://rrproject.s3.ap-northeast-2.amazonaws.com/language_image/default.svg"
-        }
-    )
+        return JsonResponse({"path": f"https://rrproject.s3.ap-northeast-2.amazonaws.com/language_image/{lang}.svg"})
+    return JsonResponse({"path": "https://rrproject.s3.ap-northeast-2.amazonaws.com/language_image/default.svg"})
 
 
 @router.post("/language_many/", response=List)
@@ -53,13 +41,9 @@ def language_imgs_read(request: HttpRequest, language_request: LanguageRequest) 
     for lang in language_list:
         if lang in img_list:
             lang = quote(lang, safe="")
-            lang_img_list.append(
-                f"https://rrproject.s3.ap-northeast-2.amazonaws.com/language_image/{lang}.svg"
-            )
+            lang_img_list.append(f"https://rrproject.s3.ap-northeast-2.amazonaws.com/language_image/{lang}.svg")
         else:
-            lang_img_list.append(
-                "https://rrproject.s3.ap-northeast-2.amazonaws.com/language_image/default.svg"
-            )
+            lang_img_list.append("https://rrproject.s3.ap-northeast-2.amazonaws.com/language_image/default.svg")
     return lang_img_list
 
 

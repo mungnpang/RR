@@ -17,7 +17,3 @@ class NickNameCheckResponse(Schema):
 
 class UserNameResponse(Schema):
     username: str
-
-
-class EmailDBResponse(Schema):
-    result: str
