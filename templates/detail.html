@@ -31,7 +31,7 @@
             <div class="target-image"><img id="image" src="https://i.imgur.com/vngEnqV.png"></div>
             <div class="target-contents">
                 <div class="target-items"><span class="material-icons-outlined">person_outline</span>Username: {{ repo.full_name | split:'/' }}</div>
-                <div class="target-items"><span id="bookmark" class="material-icons-outlined" style="font-size: 35px; color:steelblue" onclick="create_bookmark()">bookmark_border</span></div>
+                <div class="target-items"><span id="bookmark" class="material-icons-outlined" style="font-size: 35px; color:steelblue; margin-right: 2vw;" onclick="create_bookmark()">bookmark_border</span></div>
                 <div class="target-items"><span class="material-icons-outlined">menu_book</span>Repository: {{ repo.repo_name }}</div>
                 <div class="target-items"><span class="material-icons-outlined">home</span>Address: <p onclick="window.open('http://github.com/{{repo.full_name}}')">Move to Github Page</p></div>
                 <div class="target-items"><span class="material-icons-outlined">star_outline</span>Stars: {{ repo.stars }}</div>

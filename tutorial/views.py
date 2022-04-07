@@ -1,6 +1,8 @@
+import codecs
+
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-import codecs
+
 git_list = []
 
 
@@ -53,11 +55,8 @@ def tuto(request):
         return render(request, "practice_push.html")
 
 
-
 def git(request):
     return render(request, "tutorial_page.html")
-
-
 
 
 def git_index_click(request, name):

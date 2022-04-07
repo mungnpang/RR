@@ -14,9 +14,6 @@ $('#origin_password').on('input', function () {
     origin_check()
 })
 
-$('#id_username').on('input', function() {
-    valid_check('username')
-})
 
 function origin_check(){
     let origin_value = $('#origin_password').val()
@@ -42,44 +39,6 @@ function pwd_show(password){
         $(`#${password}_show`).attr('viewBox', "0 0 576 512")
         $(`#${password}_show_path`).attr('d', "M160 256C160 185.3 217.3 128 288 128C358.7 128 416 185.3 416 256C416 326.7 358.7 384 288 384C217.3 384 160 326.7 160 256zM288 336C332.2 336 368 300.2 368 256C368 211.8 332.2 176 288 176C287.3 176 286.7 176 285.1 176C287.3 181.1 288 186.5 288 192C288 227.3 259.3 256 224 256C218.5 256 213.1 255.3 208 253.1C208 254.7 208 255.3 208 255.1C208 300.2 243.8 336 288 336L288 336zM95.42 112.6C142.5 68.84 207.2 32 288 32C368.8 32 433.5 68.84 480.6 112.6C527.4 156 558.7 207.1 573.5 243.7C576.8 251.6 576.8 260.4 573.5 268.3C558.7 304 527.4 355.1 480.6 399.4C433.5 443.2 368.8 480 288 480C207.2 480 142.5 443.2 95.42 399.4C48.62 355.1 17.34 304 2.461 268.3C-.8205 260.4-.8205 251.6 2.461 243.7C17.34 207.1 48.62 156 95.42 112.6V112.6zM288 80C222.8 80 169.2 109.6 128.1 147.7C89.6 183.5 63.02 225.1 49.44 256C63.02 286 89.6 328.5 128.1 364.3C169.2 402.4 222.8 432 288 432C353.2 432 406.8 402.4 447.9 364.3C486.4 328.5 512.1 286 526.6 256C512.1 225.1 486.4 183.5 447.9 147.7C406.8 109.6 353.2 80 288 80V80z")
     }
-}
-
-async function valid_check(input_id) {
-    let input_value = $(`#id_${input_id}`).val()
-    let type = input_id + 'check'
-    let key = input_id.toUpperCase()
-    let data ={}
-    data[key] = input_value
-    const response = await fetch(`/api/v1/user/${type}`, {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-})
-.then(response => response.json())
-if (response['result'] == "success" | input_value == $('#origin_name').attr('value')){
-    $(`#${input_id}_check`).attr('value','True')
-    $(`#${input_id}_check`).text('')
-    $(`#${input_id}_check`).hide()
-    $(`#${input_id}_icon`).attr('class','check_true')
-    $(`#${input_id}_icon`).attr('viewBox', '0 0 448 512')
-    $(`#${input_id}_icon_path`).attr("d", "M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z")
-    if ( input_id == 'username'){
-        $('#nickname').show()
-    }
-} else {
-    $(`#${input_id}_check`).attr('value','False')
-    $(`#${input_id}_check`).text(response['message'])
-    $(`#${input_id}_check`).show()
-    $(`#${input_id}_icon`).attr('class','check_false')
-    $(`#${input_id}_icon`).attr('viewBox', '0 0 320 512')
-    $(`#${input_id}_icon_path`).attr("d", "M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z")
-    $(`.${input_id}_checkicon_false`).show()
-    if ( input_id == 'username'){
-        $('#nickname').hide()
-    }
-}
 }
 
 function repeat_valid_check() {
