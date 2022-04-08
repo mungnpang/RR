@@ -4,7 +4,10 @@
 <div id="navbar_container">
     <div class ="navbar_item_wrapper">
         <div id="navbar_home" class="navbar_items">
-            <a href="{% url 'main' %}"><img class="navbar_imgs" src="{% static 'main/img/home.png' %}" alt="home"></a>
+            <a href="{% url 'main' %}">
+                <img class="navbar_imgs" src="{% static 'main/img/home.png' %}" alt="home">
+            </a>
+
         </div>
         <div id="navbar_history" class="navbar_items">
             <a href="{% url 'history' %}"><img class="navbar_imgs" src="{% static 'main/img/history.png' %}" alt="history"></a>
