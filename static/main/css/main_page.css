@@ -113,8 +113,8 @@ a {
 .subtitle_item_wrapper {
   display: flex;
   flex-direction: column;
-  margin: 0 20px;
-  width: 250px;
+  margin: 0 10px;
+  width: 260px;
 }
 
 .sub_item_btn {
