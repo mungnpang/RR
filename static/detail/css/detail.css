@@ -130,12 +130,12 @@
   overflow-y: auto;
 }
 
-.comments-container::-webkit-scrollbar{
+.comments-container::-webkit-scrollbar {
   width: 0.5vw;
   background-color: lightgray;
 }
 
-.comments-container::-webkit-scrollbar-thumb{
+.comments-container::-webkit-scrollbar-thumb {
   height: 17%;
   border-radius: 10px;
   background-color: #343450;
@@ -378,7 +378,7 @@
   width: 15vw;
   height: 32vh;
   background: ghostwhite;
-  margin: 4vh 1.2vw;
+  margin: 4vh 1vw;
   border-radius: 15px;
   box-shadow: 3px 3px 7px black;
   overflow: hidden;

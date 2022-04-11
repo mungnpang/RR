@@ -55,7 +55,6 @@ async function valid_check(input_id) {
     body: JSON.stringify(data)
 })
 .then(response => response.json())
-console.log(response)
 if (response['result'] == true){
     $(`#${input_id}_check`).attr('value','True')
     $(`#${input_id}_check`).text('')

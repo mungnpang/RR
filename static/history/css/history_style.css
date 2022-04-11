@@ -108,6 +108,7 @@
   box-shadow: 2px 2px 8px black;
   font-size: 1.8rem;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .subtitle {
@@ -139,7 +140,7 @@
 
   .history-index > div > li:hover {
     font-size: 1.2rem;
-    font-weight: bold
+    font-weight: bold;
   }
   .history-intro:hover {
     font-size: 1.5rem;
