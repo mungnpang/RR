@@ -8,8 +8,8 @@
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background: #0d1117;
-  opacity: 1;
+  background: #1b1a2a;
+  opacity: 0.9;
 }
 
 #history-title {
@@ -18,7 +18,7 @@
 }
 
 #history-title p {
-  width: 32%;
+  width: 100%;
   font-size: 4rem;
   letter-spacing: 0.015em;
   cursor: pointer;
@@ -29,12 +29,7 @@
   height: 80vh;
   margin: auto;
   border-radius: 10px;
-  background: rgb(190, 149, 123);
-  background: linear-gradient(
-    120deg,
-    rgba(190, 149, 123, 1) 30%,
-    rgba(221, 198, 182, 1) 70%
-  );
+  background: #0f0e17;
   opacity: 0.9;
   display: flex;
   align-items: center;
@@ -48,13 +43,19 @@
   margin-left: 2vw;
   opacity: 0.8;
   box-shadow: 2px 2px 5px black;
-  overflow: scroll;
+  overflow: auto;
+  -ms-overflow-style: none;
 }
 
 .history-index {
   width: 80%;
-  margin-top: 5vh;
+  margin-top: 3vh;
   margin-left: 2vw;
+  overflow: auto;
+}
+
+.history-index-container::-webkit-scrollbar {
+  display: none;
 }
 
 .history-intro {
@@ -63,24 +64,24 @@
 
 .history-index > div {
   margin-top: 3vh;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: bold;
   color: black;
 }
 
 .history-index > div > li {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: lighter;
   cursor: pointer;
 }
 
 .history-intro:hover {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   cursor: pointer;
 }
 
 .history-index > div > li:hover {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 #github-image {
@@ -105,45 +106,85 @@
   opacity: 0.9;
   padding: 3%;
   box-shadow: 2px 2px 8px black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 1.8rem;
   overflow-y: auto;
-  -ms-overflow-style: none;
 }
 
 .subtitle {
   font-size: 3rem;
   font-weight: bold;
+  text-shadow: 1px 1px 2px gray;
 }
 
 .contents-area::-webkit-scrollbar {
-  display: none;
+  width: 0.5vw;
+  background-color: lightgray;
 }
 
-#contents-5 {
-  position: relative;
-  top: 18vh;
+.contents-area::-webkit-scrollbar-thumb {
+  height: 17%;
+  border-radius: 10px;
+  background-color: #343450;
 }
 
-#contents-6 {
-  position: relative;
-  top: 18vh;
-}
+@media screen and (max-width: 1650px) {
+  .history-index > div {
+    font-size: 1.3rem;
+  }
 
-@media screen and (max-width: 1500px) {
   .history-index > div > li {
-    font-size: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .history-index > div > li:hover {
+    font-size: 1.2rem;
+    font-weight: bold
+  }
+  .history-intro:hover {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 1260px) {
+  .history-index > div {
+    font-size: 1.1rem;
+  }
+
+  .history-index > div > li {
+    font-size: 0.8rem;
     font-weight: lighter;
     cursor: pointer;
   }
 
   .history-index > div > li:hover {
     font-size: 1rem;
+    font-weight: bold;
   }
   .history-intro:hover {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 1020px) {
+  .history-index > div {
+    font-size: 0.6rem;
+  }
+
+  .history-index > div > li {
+    font-size: 0.4rem;
+    font-weight: lighter;
+    cursor: pointer;
+  }
+
+  .history-index > div > li:hover {
+    font-size: 0.6rem;
+    font-weight: bold;
+  }
+  .history-intro:hover {
+    font-size: 0.8rem;
     cursor: pointer;
   }
 }

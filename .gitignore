@@ -12,8 +12,6 @@ db.sqlite3
 db.sqlite3-journal
 media
 conf/
-django.crt
-django.key
 .elasticbeanstalk/
 .idea/
 

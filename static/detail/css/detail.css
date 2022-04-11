@@ -27,7 +27,7 @@
 #detail-title p {
   cursor: pointer;
   width: 26rem;
-  font-size: 3rem;
+  font-size: 4rem;
 }
 
 .target-detail-container {
@@ -127,7 +127,18 @@
   width: 95%;
   height: 70%;
   margin: 2vh auto;
-  overflow: scroll;
+  overflow-y: auto;
+}
+
+.comments-container::-webkit-scrollbar{
+  width: 0.5vw;
+  background-color: lightgray;
+}
+
+.comments-container::-webkit-scrollbar-thumb{
+  height: 17%;
+  border-radius: 10px;
+  background-color: #343450;
 }
 
 .add-reply:hover {
@@ -335,7 +346,7 @@
 
 #relevant-title {
   color: ghostwhite;
-  font-size: 5rem;
+  font-size: 4rem;
   margin: 15vh auto 5vh 15vw;
 }
 
@@ -353,14 +364,21 @@
 }
 
 .repo-container::-webkit-scrollbar {
-  display: none;
+  width: 0.5vw;
+  background-color: lightgray;
+}
+
+.repo-container::-webkit-scrollbar-thumb {
+  height: 17%;
+  border-radius: 10px;
+  background-color: #343450;
 }
 
 .repo-card {
   width: 15vw;
   height: 32vh;
   background: ghostwhite;
-  margin: 4vh 1.25vw;
+  margin: 4vh 1.2vw;
   border-radius: 15px;
   box-shadow: 3px 3px 7px black;
   overflow: hidden;
