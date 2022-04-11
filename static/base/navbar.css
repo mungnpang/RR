@@ -13,9 +13,9 @@
   width: 60px;
   position: fixed;
   right: 20px;
-  top: 30vh;
+  top: 24vh;
   border-radius: 10px;
-  border: 2px solid #b3b3b3;
+  border: 3px solid #b3b3b3;
   transition: 1s;
   padding: 5px;
   z-index: 999;

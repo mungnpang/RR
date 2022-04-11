@@ -24,11 +24,36 @@
         <h1 id="project_title_text" class="extended-font0"><span class="text"></span><span class="blink">|</span></h1>
     </div>
 </div>
+<div id="info_container" class="item_container">
+
+    <h2 class="info_text_h2">저희 서비스는 어떤 서비스 인가요?</h2>
+    <div class="info_wrapper">
+        <div class="info_item_box">
+            <h3 class=info_text_h3>About Git</h3>
+            <img class="info_img"src="{% static 'main/img/history_prev.png' %}" alt="history_prev">
+            <p class="info_desc"></p>About Git 에서 git 그리고 github 의 등장배경부터 발전해온 발자취를 한번 배워보세요!<br> 왼쪽의 인덱스를 통해 해당되는 내용들을 볼 수 있습니다.</p>
+        </div>
+        <div class="info_item_box">
+            <h3 class=info_text_h3>Git Tutorials</h3>
+            <img class="info_img"src="{% static 'main/img/tuto_prev.png' %}" alt="tuto_prev">
+            <p class="info_desc"></p>Git Tutorials 에서는 실제 개발에서 자주 쓰이는 git 커맨드를 배워보고 이를 실제로 입력하고 버전을 관리해보는 튜토리얼 기능을 제공합니다.</p>
+        </div>
+        <div class="info_item_box">
+            <h3 class=info_text_h3>Recommend Repository</h3>
+            <img class="info_img"src="{% static 'main/img/reco_prev.png' %}" alt="reco_prev">
+            <p class="info_desc"></p>Recommend Repository 에서는 입력한 검색어 기반으로 실제 Github에 올라와 있는 원격 저장소를 추천해드립니다. <br>한번 관심있는 주제를 입력하고 어떤 원격저장소들이 있는지 찾아보세요.</p>
+        </div>
+    </div>
+
+</div>
+
+
 <div class="item_container">
     <div id="history_box" class="subtitle_box_row subtitle_box">
         <h2 class="subtitle_text">About<br>Git</h2>
         <div class="subtitle_item_wrapper">
-            <p class="subtitle_description">Git? Github? 개발자들은 다들 쓴다는데 도대체 뭘까? 왜 써야하는 걸까? Git과 Github의 탄생 배경을 한 번 알아봅시다!</p>
+            <p class="subtitle_description">Git? Github? 개발자들은 다들 쓴다는데<br>왜 써야하는 걸까? <br>Git과 Github의 탄생 배경을 한 번 알아봅시다!
+            </p>
             <button class="sub_item_btn" onclick="window.location.href='{% url 'history' %}'">LEARN MORE</button>
         </div>
     </div>
@@ -37,7 +62,7 @@
     <div id="tutorials_box" class="subtitle_box_row_reverse subtitle_box">
         <h2 class="subtitle_text">Git<br>Tutorials</h2>
         <div class="subtitle_item_wrapper">
-            <p class="subtitle_description">Git은 뭐고 Github는 뭘까? 기본적인 Git의 명령어와 Github 사용법을 한 번 알아봅시다!</p>
+            <p class="subtitle_description">Git은 뭐고 Github는 뭘까?<br>기본적인 Git의 명령어와 Github<br>사용법을 한 번 알아봅시다!</p>
             <button class="sub_item_btn" onclick="window.location.href='{% url 'git.html' %}'">LEARN MORE</button>
         </div>
     </div>
@@ -46,13 +71,13 @@
     <div id="history_box" class="subtitle_box_row subtitle_box">
             <h2 class="subtitle_text">Recommend<br>Repository</h2>
         <div class="subtitle_item_wrapper">
-            <p class="subtitle_description">Github에 Repository 찾기 어려워...나에게 안성맞춤 Repository를 추천해드립니다!</p>
+            <p class="subtitle_description">Github에 Repository 찾기 어려워...<br>나에게 안성맞춤 Repository를 키워드로<br>추천해드립니다!</p>
             <button class="sub_item_btn" onclick="window.location.href='{% url 'repository' %}'">LEARN MORE</button>
         </div>
     </div>
 </div>
 <div id="footer_box">
-    <p id="copyright_text">© 2022. sparta. all rights reserved.</p>
+    <p id="copyright_text">© 2022. 10사기조. all rights reserved.</p>
 </div>
 <script src="{% static 'main/js/main_page.js' %}"></script>
 </body>
