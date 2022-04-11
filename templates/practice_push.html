@@ -1,26 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block static %}
-    <link href="{% static 'tutorial/css/practice_push.css' %}" rel="stylesheet">
+        <link href="{% static 'tutorial/css/practice_push.css' %}" rel="stylesheet">
 {% endblock %}
 {% include 'nav.html' %}
 {% block navbar %}
 {% endblock %}
 {% block theme %}
-
-    <a href="/tutorial/git/" style="text-decoration:none; color: white;">Git Tutorial</a>
-
+    Git Tutorial
 {% endblock %}
 {% block index %}
-     <div>
-        <button id="index-btn" onclick="click_btn('answer')">Command</button>
+    <div>
+        <button class="index-btn" onclick="window.history.back()">←</button>
+        <button class="index-btn" onclick="click_btn('answer')">Command</button>
         <div class="answer" id="answer">
-            <li>git init</li><br>
-            <li>git add .</li><br>
-            <li>git commit -m "commit message"</li><br>
-            <li>git remote add origin https://github.com/me/my_repo.git</li><br>
-            <li>git remote -v</li><br>
-            <li>git push origin main</li><br>
+            <li>git init</li>
+            <br>
+            <li>git add .</li>
+            <br>
+            <li>git commit -m "commit message"</li>
+            <br>
+            <li>git remote add origin https://github.com/me/my_repo.git</li>
+            <br>
+            <li>git remote -v</li>
+            <br>
+            <li>git push origin main</li>
+            <br>
         </div>
     </div>
 
@@ -35,36 +40,42 @@
 
     <div class="flow-container">
         <div id="work-dir" class="box">
-            <h4>Working directory</h4>
+            <div class="box-name">Working directory</div>
             <p>🗈 app.py</p>
             <p>📁 templates</p>
             <p>📁 static</p>
         </div>
         <div id="stage" class="non-box">
-            <h4>Staging area</h4>
+            <div class="box-name">Staging area</div>
 
         </div>
         <div id="local-repo" class="non-box">
-            <h4>Local Repository</h4>
+            <div class="box-name">Local Repository</div>
 
         </div>
         <div id="remote-repo" class="box">
-            <h4>Remote Repository</h4>
+            <div class="box-name">Remote Repository</div>
         </div>
     </div>
     <hr>
     <div id="box-wrap">
         <form method="post" id="form">
             {% csrf_token %}
-            <div id="command-head"><span style="color: lawngreen"> me@work</span><span
-                    style="color: deeppink">  MINGW64 ~</span>
+            <div>입력</div>
+            <div id="command-head"><span style="color: lawngreen"> Hello@World</span><span
+                    style="color: deeppink">  GitRINI ~</span>
             </div>
             <input type="text" id="command" autocomplete="off">
-            <button type="submit">Enter</button>
+            <div id="divBtnDelete">
+                <button type="submit">Enter</button>
+            </div>
+
         </form>
-        <div id="result-box">
+        <div id="result-box-wrap">
+            <div>결과</div>
+            <div id="result-box"></div>
         </div>
-    </div>
+
     </div>
 {% endblock %}
 
@@ -83,21 +94,15 @@
                 .then(response => {
                     let msg = response.data['msg']
                     let command = response.data['command']
+                    console.log(msg)
 
-                    let msg1 = msg.split('?')[0]
-                    let hint = msg.split('?')[1]
-                    if (hint === undefined) {
-                        hint = ''
-                    }
-                    document.getElementById('result-box').innerHTML = `<p>${msg1}</p>
-                                                                        <p>${hint}</p>`
+                    document.getElementById('result-box').innerHTML = `<p>${msg}</p>`
 
                     switch (command) {
                         case 'init':
-                            console.log('init!!')
                             let nonbox = document.getElementsByClassName('non-box')
                             for (let i = 0; i < nonbox.length; i++) {
-                                nonbox[i].style.backgroundColor = "lightskyblue"
+                                nonbox[i].style.backgroundColor = "lightslategrey"
                             }
                             break;
 
@@ -117,12 +122,12 @@
                             document.getElementById('remote-repo').innerHTML += `<p>🗈 app.py</p>
                                                                                 <p>📁 templates</p>
                                                                                 <p>📁 static</p>`
-                            break
+                            break;
                     }
                     document.getElementById('command').value = '';
-                    
+
                 })
-                
+
                 .catch(error => {
                     console.log(error)
                 })
@@ -131,6 +136,7 @@
 
         $(document).ready(() => {
             $('.answer').hide()
+            $("#divBtnDelete").hide()
 
         })
 
@@ -138,6 +144,7 @@
             $(`#${name}`).toggle()
 
         }
+
     </script>
 
 {% endblock %}
