@@ -125,7 +125,7 @@
 ![image](https://user-images.githubusercontent.com/92630511/157482826-0302237c-b963-4a22-b4de-acba68dad2f8.png)
 
 Workflow & Wireframe in Figma: https://www.figma.com/file/1aZNTndbyzyAaJKDsvr2XO/RR?node-id=0%3A1
-<br><br><br>
+<br><br><br><br><br>
 
 ### KPT 회고<br><br>
 
