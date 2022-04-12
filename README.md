@@ -1,5 +1,3 @@
-## 서비스 url: <a>gitlini.com</a>
-
 # Recommend Repositories
 
 ## 프로젝트 개요
