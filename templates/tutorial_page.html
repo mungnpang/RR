@@ -34,14 +34,12 @@ Git Tutorial
         <li><a onclick="click_subtitle('github')">GitHub?</a></li>
         <li><a onclick="click_subtitle('github_issue')">Github Issue</a></li>
         <li><a onclick="click_subtitle('github_pr')">Pull requests</a></li>
-
     </div>
-</div>
-<div>
-    <button class="title-btn" onclick="click_btn('practice_git')">Practice Git</button>
-    <div class="subtitle" id="practice_git">
-        <li><a href="tuto/" style="text-decoration:none;color: black;">Practice push</a></li>
-
+    <div>
+        <button class="title-btn" onclick="click_btn('practice_git')">Practice Git</button>
+        <div class="subtitle" id="practice_git">
+            <li><a href="tuto/" style="text-decoration:none;color: black;">Practice push</a></li>
+        </div>
     </div>
 </div>
 {% endblock %}
@@ -70,13 +68,14 @@ Git Tutorial
     }
 
     function click_subtitle(name) {
-        fetch(name).then(function (response) {
-            response.text().then(function (text) {
-                document.getElementById('contents-container').innerHTML = text;
-            })
-        })
+       fetch(name).then(function (response) {
+           response.text().then(function (text) {
+               document.getElementById('contents-container').innerHTML = text;
+           })
+       })
 
     }
+
 
 </script>
 {% endblock %}

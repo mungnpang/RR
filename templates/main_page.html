@@ -30,33 +30,24 @@
     <div class="info_wrapper text_white">
         <div class="info_item_box">
             <h3 class=info_text_h3>About Git</h3>
-            <img class="info_img"src="static/img/history_prev.png" alt="history_prev">
+            <img class="info_img"src="{% static 'main/img/history_prev.png' %}" alt="history_prev">
             <p class="info_desc"></p>About Git 에서 git 그리고 github 의 등장배경부터 발전해온 발자취를 한번 배워보세요!<br> 왼쪽의 인덱스를 통해 해당되는 내용들을 볼 수 있습니다.</p>
         </div>
         <div class="info_item_box">
             <h3 class=info_text_h3>Git Tutorials</h3>
-            <img class="info_img"src="static/img/tuto_prev.png" alt="tuto_prev">
+            <img class="info_img"src="{% static 'main/img/tuto_prev.png' %}" alt="tuto_prev">
             <p class="info_desc"></p>Git Tutorials 에서는 실제 개발에서 자주 쓰이는 git 커맨드를 배워보고 이를 실제로 입력하고 버전을 관리해보는 튜토리얼 기능을 제공합니다.</p>
         </div>
         <div class="info_item_box">
             <h3 class=info_text_h3>Recommend Repository</h3>
-            <img class="info_img"src="static/img/reco_prev.png" alt="reco_prev">
+            <img class="info_img"src="{% static 'main/img/reco_prev.png' %}" alt="reco_prev">
             <p class="info_desc"></p>Recommend Repository 에서는 입력한 검색어 기반으로 실제 Github에 올라와 있는 원격 저장소를 추천해드립니다. <br>한번 관심있는 주제를 입력하고 어떤 원격저장소들이 있는지 찾아보세요.</p>
         </div>
     </div>
 
 </div>
 
-<div class="item_container">
-    <div id="history_box" class="subtitle_box_row subtitle_box">
-        <h2 class="subtitle_text">About<br>Git</h2>
-        <div class="subtitle_item_wrapper">
-            <p class="subtitle_description">Git? Github? 개발자들은 다들 쓴다는데<br>왜 써야하는 걸까? <br>Git과 Github의 탄생 배경을 한 번 알아봅시다!
-            </p>
-            <button class="sub_item_btn" onclick="window.location.href='{% url 'history' %}'">LEARN MORE</button>
-        </div>
-    </div>
-</div>
+
 <div class="item_container">
     <div id="history_box" class="subtitle_box_row subtitle_box">
         <h2 class="subtitle_text">About<br>Git</h2>

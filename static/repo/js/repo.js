@@ -60,6 +60,7 @@ function search_keyword(e, step){
       } else if (message == 'already'){
         search_result_is_already(keyword)
       }
+      $('#result-title').text(`${keyword}에 관한 검색결과`)
     })
     if (step == 'search_second'){
       $('#repo_cards').empty()
@@ -90,14 +91,14 @@ function search_result_is_none(){
   })
   .then(function (response){
     get_data(keyword)
-    .then(function (response){
-      repository_fill(response.data)
-    })
     .catch(function (error){
       if (error.response && error.response.status == 404){
         error_keyword_is_none()
         return
       }
+    })
+    .then(function (response){
+      repository_fill(response.data)
     })
 
     $('.desktop-screen').hide()
@@ -150,7 +151,6 @@ async function repository_fill(respositories){
       })
   }
   $('.loading').hide()
-  $('#result-title').text(`${keyword}에 관한 검색결과`)
 }
 
 async function language_image(language){

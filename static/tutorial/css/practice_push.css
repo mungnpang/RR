@@ -1,6 +1,6 @@
-#index-btn {
+.index-btn {
     background-color: transparent;
-    width: 100%;
+    width: 90%;
     font-size: x-large;
     font-weight: bolder;
     border-radius: 20px;
@@ -19,10 +19,11 @@
     margin: auto;
     /*div 넘어가지 않게해줌*/
     word-break: break-all;
+
 }
 
 .question {
-    font-size: 20px;
+    font-size: 0.9em;
     font-weight: bold;
     margin: 2% 2%;
 }
@@ -36,19 +37,19 @@
 
 .non-box {
     width: 30%;
-    height: 200px;
+    height: 20vh;
     background-color: transparent;
     margin: 3% 2%;
     border-radius: 5px;
     border: black solid 2px;
 }
 
-.non-box > h4 {
-    width: 100px;
+.non-box > .box-name {
+    height: 7vh;
     margin: auto;
     text-align: center;
     color: black;
-    font-weight: bold;
+    font-weight: bolder;
 
 }
 
@@ -61,19 +62,19 @@
 
 .box {
     width: 30%;
-    height: 200px;
-    background-color: lightskyblue;
+    height: 20vh;
+    background-color: lightslategrey;
     margin: 3% 2%;
     border-radius: 5px;
     border: black solid 2px;
 }
 
-.box > h4 {
-    width: 100px;
+.box > .box-name {
+    height: 7vh;
     margin: auto;
     text-align: center;
     color: black;
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 .box > p {
@@ -85,44 +86,44 @@
 
 
 #box-wrap {
+    width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+
+}
+#form{
+    width: 15vw;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
-#form {
-    width: 40%;
-}
-
-#form > #command-head {
-    font-size: 0.5em;
-    background-color: black;
-    border: black solid 1px;
-    padding: 1%;
-    width: 100%;
-    height: 30px;
-}
-
-#form > #command {
+#command-head {
+    font-size: 0.7em;
     background-color: black;
     width: 100%;
-    height: 100px;
+    border-radius: 5px 5px 0 0;
+}
+
+#command {
+    background-color: black;
     color: white;
     outline: none;
     border: none;
     font-size: 0.7em;
+    width: 100%;
+    box-sizing : border-box;
+    height: 15vh;
+    border-radius: 0 0 5px 5px;
 }
 
-#form > button {
-    font-size: 20px;
-    display: flex;
-    flex-direction: row;
+#result-box-wrap{
+    width: 15vw;
+    margin-right: 2%;
+
 }
-
-
 #result-box {
-    width: 40%;
-    height: 126px;
-    background-color: gray;
+    height: 15.5vh;
+    background-color: #1b1a2a;
     color: white;
     font-size: 0.7em;
     padding: 2% 2%;

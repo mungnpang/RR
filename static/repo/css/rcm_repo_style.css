@@ -131,14 +131,21 @@
 }
 
 .repo-container::-webkit-scrollbar {
-  display: none;
+  width: 0.5vw;
+  background-color: lightgray;
+}
+
+.repo-container::-webkit-scrollbar-thumb {
+  height: 17%;
+  border-radius: 10px;
+  background-color: #343450;
 }
 
 .repo-card {
   width: 15vw;
   height: 32vh;
   background: ghostwhite;
-  margin: 4vh 1.25vw;
+  margin: 4vh 1vw;
   border-radius: 15px;
   box-shadow: 3px 3px 7px black;
   overflow: hidden;

@@ -64,24 +64,24 @@
 
 .history-index > div {
   margin-top: 3vh;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: bold;
   color: black;
 }
 
 .history-index > div > li {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: lighter;
   cursor: pointer;
 }
 
 .history-intro:hover {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   cursor: pointer;
 }
 
 .history-index > div > li:hover {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 #github-image {
@@ -108,7 +108,7 @@
   box-shadow: 2px 2px 8px black;
   font-size: 1.8rem;
   overflow-y: auto;
-  -ms-overflow-style: none;
+  box-sizing: border-box;
 }
 
 .subtitle {
@@ -118,15 +118,14 @@
 }
 
 .contents-area::-webkit-scrollbar {
-  display: none;
+  width: 0.5vw;
+  background-color: lightgray;
 }
 
-#contents-5 {
-
-}
-
-#contents-6 {
-
+.contents-area::-webkit-scrollbar-thumb {
+  height: 17%;
+  border-radius: 10px;
+  background-color: #343450;
 }
 
 @media screen and (max-width: 1650px) {
@@ -141,7 +140,7 @@
 
   .history-index > div > li:hover {
     font-size: 1.2rem;
-    font-weight: bold
+    font-weight: bold;
   }
   .history-intro:hover {
     font-size: 1.5rem;

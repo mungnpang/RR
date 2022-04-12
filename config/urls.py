@@ -24,14 +24,16 @@ from repositories.API.V1 import router as repo_router
 from user.API.V1 import router as user_router
 
 api = NinjaAPI()
+api.docs_url = "/gitlini/view/"
 api.add_router("/user/", user_router)
 api.add_router("/comment/", comment_router)
 api.add_router("/repository/", repo_router)
 api.add_router("/bookmark/", bookmark_router)
-api.add_router("/mypage", mypage_router)
+api.add_router("/mypage/", mypage_router)
+
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("gitlini/permission/admin/", admin.site.urls),
     path("api/v1/", api.urls),
     path("accounts/", include("allauth.urls"), name="accounts"),
     path("", include("render.urls")),
