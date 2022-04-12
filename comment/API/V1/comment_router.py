@@ -6,15 +6,24 @@ from django.http import HttpRequest, HttpResponse, JsonResponse, response
 from ninja import Router
 from ninja.errors import HttpError
 
-from comment.API.V1.schemas import (CommentsResponse, CreateCommentRequest,
-                                    CreateCommentResponse,
-                                    DeleteCommentRequest,
-                                    DeleteCommentResponse,
-                                    UpdateCommentRequest,
-                                    UpdateCommentResponse)
+from comment.API.V1.schemas import (
+    CommentsResponse,
+    CreateCommentRequest,
+    CreateCommentResponse,
+    DeleteCommentRequest,
+    DeleteCommentResponse,
+    UpdateCommentRequest,
+    UpdateCommentResponse,
+)
 from comment.models import Comment
-from comment.services import (create_comment, delete_comment, read_comments,
-                              read_replys, read_user_comments, update_comment)
+from comment.services import (
+    create_comment,
+    delete_comment,
+    read_comments,
+    read_replys,
+    read_user_comments,
+    update_comment,
+)
 
 router = Router(tags=["comment"])
 
@@ -45,7 +54,9 @@ def comment_reply_read(request: HttpRequest, repo: str) -> List[Comment]:
 
 @login_required(login_url="/accounts/login")
 @router.post("/create/", response={201: CreateCommentResponse})
-def comment_create(request: HttpRequest, create_comment_request: CreateCommentRequest) -> dict:
+def comment_create(
+    request: HttpRequest, create_comment_request: CreateCommentRequest
+) -> dict:
     user_id = request.user.id
     try:
         create_comment(
@@ -59,9 +70,15 @@ def comment_create(request: HttpRequest, create_comment_request: CreateCommentRe
 
 @login_required(login_url="/accounts/login")
 @router.put("/update", response={201: UpdateCommentResponse})
-def comment_update(request: HttpRequest, update_comment_request: UpdateCommentRequest) -> dict:
+def comment_update(
+    request: HttpRequest, update_comment_request: UpdateCommentRequest
+) -> dict:
     try:
-        update_comment(update_comment_request.COMMENT_ID, update_comment_request.CONTENT)
+        update_comment(
+            request.user,
+            update_comment_request.COMMENT_ID,
+            update_comment_request.CONTENT,
+        )
     except Comment.DoesNotExist:
         raise HttpError(404, "Comment is None")
     return JsonResponse({"result": "success"}, status=201)
@@ -69,9 +86,11 @@ def comment_update(request: HttpRequest, update_comment_request: UpdateCommentRe
 
 @login_required(login_url="/accounts/login")
 @router.delete("/delete", response={201: DeleteCommentResponse})
-def comment_delete(request: HttpRequest, delete_comment_request: DeleteCommentRequest) -> dict:
+def comment_delete(
+    request: HttpRequest, delete_comment_request: DeleteCommentRequest
+) -> dict:
     try:
-        delete_comment(delete_comment_request.COMMENT_ID)
+        delete_comment(request.user, delete_comment_request.COMMENT_ID)
     except Comment.DoesNotExist:
         raise HttpError(404, "Comment is None")
     return JsonResponse({"result": "success"}, status=201)
