@@ -15,6 +15,7 @@
   font-size: 4rem;
   margin: 1vh auto auto 15vw;
   font-weight: bold;
+  display: inline-block;
 }
 
 .all-container {
@@ -22,9 +23,7 @@
   height: 85vh;
   margin: auto;
   border-radius: 10px;
-  background-color: lightslategrey;
-  /*background: rgb(191,95,240);*/
-  /*background: linear-gradient(120deg, rgba(191,95,240,1) 30%, rgba(93,103,232,1) 60%, rgba(134,179,240,1) 90%);*/
+  background-color: #1b1a2a;
   opacity: 0.9;
   display: flex;
   align-items: center;
@@ -36,7 +35,12 @@
   border-radius: 7px;
   background: white;
   margin-left: 2%;
-  opacity: 0.5;
+  opacity: 0.8;
+  overflow: auto;
+  -ms-overflow-style: none;
+}
+.index-container::-webkit-scrollbar{
+  display: none;
 }
 .index-container > .index {
   width: 90%;

@@ -2,6 +2,7 @@ $(document).ready(function(){
     card_image()
     recommand()
     bookmark()
+    create_history_repo()
     $('.reply-nav').hide()
     $('.hide-reply').hide()
     $('#cancle').hide()
@@ -82,18 +83,28 @@ async function fill_recommand_cards(repo){
             })
         recommand_list.push(id)
     }
-    await create_history()
+    await create_history_reco()
 }
 
-async function create_history(){
+async function create_history_repo(){
     let id = window.location.href.split('/')[4]
 
     await axios({
-        'url': 'https://gitlini.com/api/v1/mypage/create/',
+        'url': 'https://gitlini.com/api/v1/mypage/create/repo',
+        'method':'post',
+        'data': {
+            "REPOSITORY": id
+        }
+    })
+}
+
+async function create_history_reco(){
+
+    await axios({
+        'url': 'https://gitlini.com/api/v1/mypage/create/reco',
         'method':'post',
         'data': {
             "RECOMMAND": recommand_list,
-            "REPOSITORY": id
         }
     })
 }
@@ -219,7 +230,6 @@ function update_comment_set(id,reply){
     let text = ''
     if (reply == true){
         text = $(`#reply_${id}`).text().split("$ ")[1]
-        console.log(text)
     } else if (reply == false){
         text = $(`#comment_${id}`).text().split("$ ")[1]
     }

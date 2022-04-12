@@ -1,45 +1,33 @@
 from typing import List, Optional
+
+from ninja.errors import HttpError
+
 from comment.models import Comment
-from django.db.utils import IntegrityError
-from django.db import transaction
 
 
-def Create_Comment(content: str, author_id:int, repo_id:int, parent_id: int)->Comment:
-    try:
-        with transaction.atomic():
-            comment = Comment.objects.create(
-                content = content,
-                author_id = author_id,
-                repo_id = repo_id,
-                parent_comment_id = parent_id
-            )
-    except IntegrityError:
-        return "Empty Space"
-    return comment
+def create_comment(content: str, author_id: int, repo_id: int, parent_id: int) -> Comment:
+    if not content or not author_id or not repo_id:
+        raise HttpError(404, "Empty Space")
+    return Comment.objects.create(
+        content=content,
+        author_id=author_id,
+        repo_id=repo_id,
+        parent_comment_id=parent_id,
+    )
 
-def Read_Comment(repo_id: int) -> List[Comment]:
-    comments = list(Comment.objects.filter(repo_id=repo_id))
-    if comments == []:        
-        return "Data is None"
-    return list(comments)
 
-def Update_Comment(comment_id: int, content: str) -> Comment:
+def read_comment(repo_id: int) -> List[Comment]:
+    return list(Comment.objects.filter(repo_id=repo_id))
+
+
+def update_comment(comment_id: int, content: str) -> None:
     if content == "" or content is None:
-        return "Comment is Empty"
-    try:
-        comment = Comment.objects.get(id=comment_id)
-    except Comment.DoesNotExist:
-        return "Comment is None"
-    else:
-        comment.content = content
-        comment.save()
-    return comment
-    
-def Delete_Comment(comment_id: int) -> str:
-    try:
-        comment = Comment.objects.get(id=comment_id)
-    except Comment.DoesNotExist:
-        return "Comment is None"
-    else:
-        comment.delete()
-    return "Delete Success"
+        raise HttpError(404, "Comment is Empty")
+    comment = Comment.objects.get(id=comment_id)
+    comment.content = content
+    comment.save()
+
+
+def delete_comment(comment_id: int) -> None:
+    comment = Comment.objects.get(id=comment_id)
+    comment.delete()

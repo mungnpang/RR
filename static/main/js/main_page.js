@@ -1,5 +1,5 @@
 let sublinetext = document.querySelector(".subtitle_item_wrapper")
-let content = "Git Rini";
+let content = "Git Lini";
 let text = document.querySelector(".text")
 let i = 0;
 function typing(){

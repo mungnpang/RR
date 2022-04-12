@@ -14,26 +14,28 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
 from ninja import NinjaAPI
 
-from user.API.V1 import router as user_router
-from comment.API.V1 import router as comment_router
-from repositories.API.V1 import router as repo_router
 from bookmark.API.V1 import router as bookmark_router
+from comment.API.V1 import router as comment_router
 from mypage.API.V1 import router as mypage_router
+from repositories.API.V1 import router as repo_router
+from user.API.V1 import router as user_router
 
 api = NinjaAPI()
+api.docs_url = "/gitlini/view/"
 api.add_router("/user/", user_router)
 api.add_router("/comment/", comment_router)
 api.add_router("/repository/", repo_router)
 api.add_router("/bookmark/", bookmark_router)
-api.add_router("/mypage", mypage_router)
+api.add_router("/mypage/", mypage_router)
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/v1/', api.urls),
-    path('accounts/', include('allauth.urls'), name="accounts"),
-    path('', include('render.urls')),
-    path('tutorial/', include('tutorial.urls'), name="tutorial"),
+    path("gitlini/permission/admin/", admin.site.urls),
+    path("api/v1/", api.urls),
+    path("accounts/", include("allauth.urls"), name="accounts"),
+    path("", include("render.urls")),
+    path("tutorial/", include("tutorial.urls"), name="tutorial"),
 ]

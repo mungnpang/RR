@@ -69,7 +69,38 @@ a {
   align-items: center;
   height: 100vh;
 }
-
+#info_container{
+  background-color: #212032;
+}
+.info_wrapper{
+  display: flex;
+  flex-direction: row;
+  
+}
+.info_item_box{
+  
+  height: 60vh;
+  margin: 40px 60px;
+  width: 300px;
+}
+.info_text_h2{
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 10vh;
+}
+.info_text_h3{
+  text-align: center;
+  font-size: 24px;
+}
+.info_img{
+  width: 300px;
+  height: 180px;
+  border-radius: 8px;
+  margin: 5vh 0;
+}
+.text_white{
+  color: white;
+}
 #tutorials_container {
   background-color: #040506;
   color: #ffffff;
@@ -113,13 +144,8 @@ a {
 .subtitle_item_wrapper {
   display: flex;
   flex-direction: column;
-  margin: 0 20px;
-  width: 250px;
-}
-
-.subtitle_description {
-  font-size: 20px;
-  height: 96px;
+  margin: 0 10px;
+  width: 260px;
 }
 
 .sub_item_btn {

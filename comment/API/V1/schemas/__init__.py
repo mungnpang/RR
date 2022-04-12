@@ -1,2 +1,4 @@
-from .comment_request import CommentsRequest, CreateCommentRequest, UpdateCommentRequest, DeleteCommentRequest
-from .comment_response import CommentsResponse, CreateCommentResponse, UpdateCommentResponse, DeleteCommentResponse
+from .comment_request import (CommentsRequest, CreateCommentRequest,
+                              DeleteCommentRequest, UpdateCommentRequest)
+from .comment_response import (CommentsResponse, CreateCommentResponse,
+                               DeleteCommentResponse, UpdateCommentResponse)

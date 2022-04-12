@@ -1,12 +1,11 @@
 from comment.models import Comment
+from ninja.errors import HttpError
 
-def COMMENT_UPDATE(comment_id: int, content: str) -> str:
-    if content == '':
-        return True, "Empty Space"
-    try:
-        comment = Comment.objects.get(id = comment_id)
+
+def update_comment(user: str, comment_id: int, content: str) -> None:
+    comment = Comment.objects.get(id=comment_id)
+    if user == comment.author:
         comment.content = content
         comment.save()
-    except Comment.DoesNotExist:
-        return True, "Comment is None"
-    return False, "Update Success"
+        return
+    raise HttpError(422, "작성자가 아닙니다.")
