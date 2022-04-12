@@ -125,11 +125,9 @@
 ![image](https://user-images.githubusercontent.com/92630511/157482826-0302237c-b963-4a22-b4de-acba68dad2f8.png)
 
 Workflow & Wireframe in Figma: https://www.figma.com/file/1aZNTndbyzyAaJKDsvr2XO/RR?node-id=0%3A1
+<br><br><br>
 
-
-
-
-###KPT 회고<br><br>
+### KPT 회고<br><br>
 
 [Keep]<br>
 1. 기획단계에서 파트 배분과 구현하고자 하는 기능들을 비교적 구체적으로 정해놓고 출발하여 시간적으로 효율성있게 진행할 수 있었다
